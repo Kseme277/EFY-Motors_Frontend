@@ -1,0 +1,242 @@
+<app-header></app-header>
+
+<!-- Loader -->
+<div id="ftco-loader" class="fullscreen" [class.show]="isLoading" [class.hidden]="!isLoading">
+  <svg class="circular" width="48px" height="48px">
+    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#005F9B"/>
+  </svg>
+</div>
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <p class="breadcrumbs">
+          <span class="mr-2"><a routerLink="/">Accueil <i class="ion-ios-arrow-forward"></i></a></span> 
+          <span><a routerLink="/cars">Véhicules <i class="ion-ios-arrow-forward"></i></a></span> 
+          <span>Détails du véhicule <i class="ion-ios-arrow-forward"></i></span>
+        </p>
+        <h1 class="mb-3 bread">Détails du Véhicule</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Message de chargement -->
+<div *ngIf="isLoading" class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+      <div class="spinner-border text-primary" role="status" style="color: #005F9B !important;">
+        <span class="sr-only">Chargement...</span>
+      </div>
+      <p class="mt-3">Chargement des détails du véhicule...</p>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section ftco-car-details" *ngIf="car && !isLoading">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="car-details">
+          <div class="img rounded" [style.background-image]="'url(' + car.image + ')'"></div>
+          <div class="text text-center">
+            <span class="subheading">{{ car.brand }}</span>
+            <h2>{{ car.name }}</h2>
+            <p class="price-display">{{ car.price | number }} FCFA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row car-specs">
+      <div class="col-md d-flex align-self-stretch ftco-animate">
+        <div class="spec-item">
+          <div class="spec-icon">
+            <span class="flaticon-dashboard"></span>
+          </div>
+          <div class="spec-content">
+            <p class="spec-label">Kilométrage</p>
+            <p class="spec-value">{{ car.mileage | number }} km</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md d-flex align-self-stretch ftco-animate">
+        <div class="spec-item">
+          <div class="spec-icon">
+            <span class="flaticon-pistons"></span>
+          </div>
+          <div class="spec-content">
+            <p class="spec-label">Transmission</p>
+            <p class="spec-value">{{ getTransmissionLabel(car.transmission) }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md d-flex align-self-stretch ftco-animate">
+        <div class="spec-item">
+          <div class="spec-icon">
+            <span class="flaticon-car-seat"></span>
+          </div>
+          <div class="spec-content">
+            <p class="spec-label">Sièges</p>
+            <p class="spec-value">{{ car.seats }} personnes</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md d-flex align-self-stretch ftco-animate">
+        <div class="spec-item">
+          <div class="spec-icon">
+            <span class="flaticon-backpack"></span>
+          </div>
+          <div class="spec-content">
+            <p class="spec-label">Bagages</p>
+            <p class="spec-value">{{ car.luggage }} valise(s)</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md d-flex align-self-stretch ftco-animate">
+        <div class="spec-item">
+          <div class="spec-icon">
+            <span class="flaticon-diesel"></span>
+          </div>
+          <div class="spec-content">
+            <p class="spec-label">Carburant</p>
+            <p class="spec-value">{{ getFuelLabel(car.fuel) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 pills">
+        <div class="bd-example bd-example-tabs">
+          <div class="d-flex justify-content-center">
+            <ul class="nav nav-tabs mb-4" id="car-tabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="isActiveTab('features')" (click)="setActiveTab('features')" type="button">Caractéristiques</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="isActiveTab('description')" (click)="setActiveTab('description')" type="button">Description</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="isActiveTab('review')" (click)="setActiveTab('review')" type="button">Avis</button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tab-content" id="car-tab-content">
+            <div class="tab-pane" [class.show]="isActiveTab('features')" [class.active]="isActiveTab('features')" [hidden]="!isActiveTab('features')">
+              <div class="row">
+                <div class="col-md-4" *ngFor="let featureGroup of getFeatureGroups()">
+                  <ul class="features-list">
+                    <li class="feature-item" [class.check]="feature.available" [class.remove]="!feature.available" *ngFor="let feature of featureGroup">
+                      <span [class]="feature.available ? 'ion-ios-checkmark' : 'ion-ios-close'"></span>{{ feature.name }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" [class.show]="isActiveTab('description')" [class.active]="isActiveTab('description')" [hidden]="!isActiveTab('description')">
+              <div class="description-content">
+                <h4>Description du véhicule</h4>
+                <p class="description-text">{{ car.description || 'Une voiture exceptionnelle avec toutes les fonctionnalités modernes. Parfaite pour les longs trajets et le confort maximal.' }}</p>
+                
+                <h5>Caractéristiques principales</h5>
+                <p>Cette voiture offre une expérience de conduite exceptionnelle avec un design élégant et des performances remarquables. Idéale pour vos déplacements quotidiens ou vos voyages, elle combine confort, sécurité et style.</p>
+                
+                <h5>Confort et sécurité</h5>
+                <p>Équipée des dernières technologies de sécurité et de confort, cette voiture vous garantit une conduite agréable et sécurisée. Les sièges ergonomiques, la climatisation automatique et les systèmes d'assistance à la conduite rendent chaque trajet une expérience plaisante.</p>
+                
+                <h5>Performance</h5>
+                <p>Avec un moteur puissant et une transmission {{ getTransmissionLabel(car.transmission).toLowerCase() }}, cette voiture offre des performances optimales tout en maintenant une consommation de carburant raisonnable. Parfaite pour la ville comme pour les longues distances.</p>
+              </div>
+            </div>
+
+            <div class="tab-pane" [class.show]="isActiveTab('review')" [class.active]="isActiveTab('review')" [hidden]="!isActiveTab('review')">
+              <div class="row">
+                <div class="col-md-7">
+                  <h3 class="reviews-heading">{{ reviews.length }} Avis</h3>
+                  <div class="reviews-list">
+                    <div class="review-item" *ngFor="let review of reviews">
+                      <div class="user-img" [style.background-image]="'url(' + review.avatar + ')'"></div>
+                      <div class="review-content">
+                        <div class="review-header">
+                          <h4 class="reviewer-name">{{ review.name }}</h4>
+                          <span class="review-date">{{ review.date }}</span>
+                        </div>
+                        <div class="review-rating">
+                          <span class="stars">
+                            <i class="ion-ios-star" *ngFor="let star of getStarsArray(review.rating)"></i>
+                            <i class="ion-ios-star-outline" *ngFor="let star of getEmptyStars(review.rating)"></i>
+                          </span>
+                        </div>
+                        <p class="review-text">{{ review.comment }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="rating-summary">
+                    <h3 class="summary-heading">Note moyenne</h3>
+                    <div class="average-rating">
+                      <span class="rating-number">{{ getAverageRating() }}</span>
+                      <div class="rating-stars-large">
+                        <i class="ion-ios-star" *ngFor="let star of getStarsArray(getRoundedAverageRating())"></i>
+                        <i class="ion-ios-star-outline" *ngFor="let star of getEmptyStars(getRoundedAverageRating())"></i>
+                      </div>
+                    </div>
+                    <div class="rating-breakdown">
+                      <div class="rating-bar-item" *ngFor="let rating of [5,4,3,2,1]">
+                        <span class="rating-label">{{ rating }} étoiles</span>
+                        <div class="rating-bar">
+                          <div class="rating-bar-fill" [style.width.%]="getRatingPercentage(rating)"></div>
+                        </div>
+                        <span class="rating-count">{{ getRatingCount(rating) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <a routerLink="/contact" class="btn btn-primary btn-lg py-3 px-5" style="background-color: #005F9B; border-color: #005F9B;">Nous contacter pour l'achat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftco-no-pt" *ngIf="!isLoading">
+  <div class="container">
+    <div class="row justify-content-center" *ngIf="isLoadingRelated">
+      <div class="col-md-12 text-center mb-5">
+        <div class="spinner-border text-primary" role="status" style="color: #005F9B !important;">
+          <span class="sr-only">Chargement...</span>
+        </div>
+        <p class="mt-3">Chargement des véhicules similaires...</p>
+      </div>
+    </div>
+    <div *ngIf="!isLoadingRelated && relatedCars.length > 0">
+      <div class="row justify-content-center">
+        <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          <span class="subheading">Choisir une voiture</span>
+          <h2 class="mb-2">Véhicules similaires</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let relatedCar of relatedCars">
+          <app-car-card [car]="relatedCar" [showPrice]="true" [showDetails]="true"></app-car-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+

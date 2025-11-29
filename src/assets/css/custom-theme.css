@@ -1,0 +1,756 @@
+/* Thème personnalisé EFY Motors basé sur le logo */
+/* Couleurs du logo : Bleu foncé/teal pour le texte "EFY MOTORS", Marron/rouge foncé pour la voiture */
+
+:root {
+  --efy-primary: #005F9B; /* Bleu foncé du logo "EFY MOTORS" - teal foncé */
+  --efy-accent: #8B2E3D; /* Marron/rouge foncé de la voiture */
+  --efy-primary-hover: #004A7A; /* Version plus claire pour le hover */
+  --efy-accent-hover: #A03D4F; /* Version plus claire pour le hover */
+  --efy-primary-light: rgba(0, 94, 155, 0.1); /* Version très claire pour les fonds */
+}
+
+/* Boutons primaires - Bleu foncé */
+.btn-primary,
+.bg-primary,
+.table-primary,
+.border-primary {
+  background-color: var(--efy-primary) !important;
+  border-color: var(--efy-primary) !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--efy-primary-hover) !important;
+  border-color: var(--efy-primary-hover) !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active {
+  background-color: var(--efy-primary-hover) !important;
+  border-color: var(--efy-primary-hover) !important;
+}
+
+/* Boutons secondaires - Marron/rouge foncé */
+.btn-secondary {
+  background-color: var(--efy-accent) !important;
+  border-color: var(--efy-accent) !important;
+  color: #fff !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+  background-color: var(--efy-accent-hover) !important;
+  border-color: var(--efy-accent-hover) !important;
+}
+
+/* Liens - couleur primaire PAR DÉFAUT */
+a {
+  color: var(--efy-primary) !important;
+}
+
+a:hover {
+  color: var(--efy-primary-hover) !important;
+}
+
+/* EXCEPTION : Liens dans les sections avec texte blanc DOIVENT RESTER BLANCS */
+.heading-section-white a,
+.ftco-section.ftco-about .heading-section-white a,
+.ftco-section.ftco-about .wrap-about a,
+.ftco-intro a {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+.heading-section-white a:hover,
+.ftco-section.ftco-about .heading-section-white a:hover,
+.ftco-section.ftco-about .wrap-about a:hover,
+.ftco-intro a:hover {
+  color: #fff !important;
+  opacity: 0.8;
+}
+
+/* Headings avec couleur primaire */
+.heading-section .subheading {
+  color: var(--efy-primary) !important;
+}
+
+/* Sections avec fond primaire - IMPORTANT : assurez-vous que tout le texte est blanc */
+.ftco-section.ftco-about .heading-section-white,
+.ftco-section.ftco-about .wrap-about {
+  background-color: #005F9B !important; /* Bleu EFY Motors */
+  padding: 10px 0px !important; /* Padding augmenté entre le texte et les bords */
+}
+
+/* Padding spécifique pour le conteneur heading-section-white */
+.ftco-section.ftco-about .heading-section-white.pl-md-5 {
+  padding-left: 80px !important;
+  padding-right: 80px !important;
+  padding-top: 60px !important;
+  padding-bottom: 60px !important;
+}
+
+/* Section des services offerts */
+.services-list {
+  background-color: #005F9B !important; /* Bleu EFY Motors */
+  padding: 60px 80px !important;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.services-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.services-list li {
+  color: #fff !important;
+  font-size: 18px;
+  line-height: 1.8;
+  padding: 8px 0;
+  font-weight: 400;
+}
+
+/* GARANTIR QUE TOUS LES TEXTES DANS LES SECTIONS SOMBRES RESTENT BLANCS */
+.ftco-section.ftco-about .heading-section-white,
+.ftco-section.ftco-about .heading-section-white h1,
+.ftco-section.ftco-about .heading-section-white h2,
+.ftco-section.ftco-about .heading-section-white h3,
+.ftco-section.ftco-about .heading-section-white h4,
+.ftco-section.ftco-about .heading-section-white h5,
+.ftco-section.ftco-about .heading-section-white h6,
+.ftco-section.ftco-about .heading-section-white p,
+.ftco-section.ftco-about .heading-section-white span,
+.ftco-section.ftco-about .heading-section-white a,
+.ftco-section.ftco-about .heading-section-white .subheading,
+.ftco-section.ftco-about .wrap-about,
+.ftco-section.ftco-about .wrap-about h1,
+.ftco-section.ftco-about .wrap-about h2,
+.ftco-section.ftco-about .wrap-about h3,
+.ftco-section.ftco-about .wrap-about h4,
+.ftco-section.ftco-about .wrap-about h5,
+.ftco-section.ftco-about .wrap-about h6,
+.ftco-section.ftco-about .wrap-about p,
+.ftco-section.ftco-about .wrap-about span,
+.ftco-section.ftco-about .wrap-about a,
+.ftco-section.ftco-about .wrap-about .subheading {
+  color: #fff !important;
+}
+
+/* Sections d'intro avec fond personnalisé - mais on assure que le texte reste blanc */
+.ftco-intro {
+  /* Laisser les styles CSS par défaut pour les backgrounds */
+}
+
+/* Assurer que TOUS les textes de intro restent blancs ET visibles */
+.ftco-intro .heading-section-white h2,
+.ftco-intro .heading-section-white p,
+.ftco-intro .heading-section-white span,
+.ftco-intro .heading-section-white a,
+.ftco-intro h2,
+.ftco-intro p,
+.ftco-intro span {
+  color: #fff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Assurer que TOUS les textes des headings blancs sont blancs - S'APPLIQUE PARTOUT */
+.heading-section-white,
+.heading-section-white h1,
+.heading-section-white h2,
+.heading-section-white h3,
+.heading-section-white h4,
+.heading-section-white h5,
+.heading-section-white h6,
+.heading-section-white p,
+.heading-section-white span,
+.heading-section-white .subheading {
+  color: #fff !important;
+}
+
+/* IMPORTANT: Rendre visible tous les contenus ftco-animate si le JavaScript n'est pas chargé */
+.ftco-animate {
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation-play-state: paused !important;
+}
+
+/* Forcer la visibilité sur tous les éléments par défaut - fallback */
+section, div, article, main, footer, nav, header, span, p, button, form, input {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Exception pour les liens dans les cartes de voitures - ils doivent être cachés par défaut */
+.light .carousel-car .img-wrapper a {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.light .carousel-car .car:hover .img-wrapper a {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Assurer que les conteneurs carrousel sont visibles - sauf ceux avec owl-loaded qui gèrent leur propre opacité */
+.carousel-car:not(.owl-loaded), 
+.carousel-testimony:not(.owl-loaded), 
+.owl-carousel:not(.owl-loaded), 
+.owl-stage-outer:not(.owl-loaded), 
+.owl-stage:not(.owl-loaded) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Exception pour les boutons dans les cartes de voitures - ils doivent être cachés par défaut */
+.light .carousel-car .img-wrapper a {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Overlay - NE PAS MODIFIER LES COULEURS, LAISSER LES DEFAULTS */
+/* Ne pas écraser les overlays car ils ont leurs propres styles */
+
+/* Hero sections */
+.hero-wrap {
+  position: relative;
+}
+
+.hero-wrap .overlay {
+  /* Laisser les styles par défaut du CSS Bootstrap/style.css */
+}
+
+/* Tableaux */
+.table-primary > th,
+.table-primary > td {
+  background-color: var(--efy-primary) !important;
+  border-color: var(--efy-primary) !important;
+}
+
+/* Formulaires */
+.form-control:focus {
+  border-color: var(--efy-primary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 94, 155, 0.25) !important;
+}
+
+
+/* Loader - couleur de l'animation */
+#ftco-loader .path {
+  stroke: var(--efy-accent) !important;
+}
+
+/* S'assurer que le loader est masqué par défaut */
+#ftco-loader {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Le loader ne doit être visible que s'il a explicitement la classe "show" */
+#ftco-loader.show {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Supprimer l'espace en haut de la navbar */
+.ftco-navbar-light,
+#ftco-navbar,
+nav.ftco_navbar {
+  top: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Supprimer les espaces par défaut */
+body, html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+app-root, router-outlet {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Navigation active */
+.navbar-nav .nav-link.active {
+  color: var(--efy-primary) !important;
+}
+
+/* Prix et éléments importants */
+.price {
+  color: var(--efy-primary) !important;
+}
+
+/* Icônes et éléments décoratifs */
+.icon {
+  color: var(--efy-primary) !important;
+}
+
+/* Boutons outline */
+.btn-outline-primary {
+  color: var(--efy-primary) !important;
+  border-color: var(--efy-primary) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--efy-primary) !important;
+  border-color: var(--efy-primary) !important;
+  color: #fff !important;
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+/* Dark mode variables */
+.dark {
+  --efy-primary: #005F9B;
+  --efy-primary-hover: #0070b8;
+  --efy-accent: #8B2E3D;
+  --efy-accent-hover: #A03D4F;
+}
+
+/* Dark mode body and main containers */
+.dark body {
+  background-color: #1a1a1a;
+  color: #e5e5e5;
+}
+
+.dark .ftco-section {
+  background-color: #1a1a1a;
+  color: #e5e5e5;
+}
+
+.dark .ftco-section.bg-light {
+  background-color: #2a2a2a !important;
+}
+
+.dark .ftco-section.bg-white {
+  background-color: #1a1a1a !important;
+}
+
+/* Dark mode footer */
+.dark .ftco-footer {
+  background-color: #1a1a1a !important;
+  color: #e5e5e5;
+}
+
+.dark .ftco-footer .ftco-heading-2,
+.dark .ftco-footer h2,
+.dark .ftco-footer h3,
+.dark .ftco-footer h4,
+.dark .ftco-footer h5,
+.dark .ftco-footer h6 {
+  color: #e5e5e5;
+}
+
+.dark .ftco-footer p,
+.dark .ftco-footer span,
+.dark .ftco-footer .text {
+  color: #b0b0b0;
+}
+
+.dark .ftco-footer a {
+  color: #e5e5e5;
+}
+
+.dark .ftco-footer a:hover {
+  color: #005F9B;
+}
+
+/* Dark mode cards */
+.dark .card,
+.dark .light,
+.dark .car {
+  background-color: #2a2a2a;
+  color: #e5e5e5;
+  border-color: #3a3a3a;
+}
+
+.dark .card h1,
+.dark .card h2,
+.dark .card h3,
+.dark .card h4,
+.dark .card h5,
+.dark .card h6,
+.dark .light h1,
+.dark .light h2,
+.dark .light h3,
+.dark .light h4,
+.dark .light h5,
+.dark .light h6 {
+  color: #e5e5e5;
+}
+
+/* Dark mode forms */
+.dark .form-control,
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #2a2a2a;
+  color: #e5e5e5;
+  border-color: #3a3a3a;
+}
+
+.dark .form-control:focus,
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  background-color: #2a2a2a;
+  color: #e5e5e5;
+  border-color: #005F9B;
+  box-shadow: 0 0 0 0.2rem rgba(0, 95, 155, 0.25) !important;
+}
+
+/* Dark mode tables */
+.dark .table {
+  color: #e5e5e5;
+  background-color: #2a2a2a;
+}
+
+.dark .table th,
+.dark .table td {
+  border-color: #3a3a3a;
+}
+
+.dark .table-striped tbody tr:nth-of-type(odd) {
+  background-color: #252525;
+}
+
+/* Dark mode headings */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #e5e5e5;
+}
+
+.dark p, .dark span, .dark div, .dark li {
+  color: #e5e5e5;
+}
+
+/* Dark mode links */
+.dark a {
+  color: #e5e5e5;
+}
+
+.dark a:hover {
+  color: #005F9B;
+}
+
+/* Dark mode buttons - keep primary color */
+.dark .btn-primary {
+  background-color: #005F9B;
+  border-color: #005F9B;
+  color: #fff;
+}
+
+.dark .btn-primary:hover {
+  background-color: #0070b8;
+  border-color: #0070b8;
+}
+
+.dark .btn-outline-primary {
+  color: #005F9B;
+  border-color: #005F9B;
+}
+
+.dark .btn-outline-primary:hover {
+  background-color: #005F9B;
+  border-color: #005F9B;
+  color: #fff;
+}
+
+/* Dark mode breadcrumbs */
+.dark .breadcrumbs,
+.dark .bread {
+  color: #b0b0b0;
+}
+
+.dark .breadcrumbs a {
+  color: #e5e5e5;
+}
+
+.dark .breadcrumbs a:hover {
+  color: #005F9B;
+}
+
+/* Dark mode hero sections - keep overlay dark */
+.dark .hero-wrap .overlay {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Dark mode price */
+.dark .price {
+  color: #005F9B;
+}
+
+/* Dark mode icons */
+.dark .icon {
+  color: #005F9B;
+}
+
+/* Dark mode - keep white text sections white */
+.dark .heading-section-white,
+.dark .heading-section-white h1,
+.dark .heading-section-white h2,
+.dark .heading-section-white h3,
+.dark .heading-section-white h4,
+.dark .heading-section-white h5,
+.dark .heading-section-white h6,
+.dark .heading-section-white p,
+.dark .heading-section-white span,
+.dark .heading-section-white a {
+  color: #fff !important;
+}
+
+/* Dark mode - sections with blue background keep white text */
+.dark .ftco-section.ftco-about .heading-section-white,
+.dark .ftco-section.ftco-about .wrap-about {
+  background-color: #005F9B !important;
+}
+
+.dark .services-list {
+  background-color: #005F9B !important;
+}
+
+.dark .services-list li {
+  color: #fff !important;
+}
+
+/* Dark mode pour les loaders */
+.dark #ftco-loader {
+  background: rgba(26, 26, 26, 0.95) !important;
+}
+
+/* Dark mode pour les formulaires */
+.dark .contact-form,
+.dark .request-form {
+  background-color: #2a2a2a !important;
+  color: #e5e5e5;
+}
+
+.dark .contact-form .form-control,
+.dark .request-form .form-control {
+  background-color: #1a1a1a !important;
+  color: #e5e5e5 !important;
+  border-color: #3a3a3a !important;
+}
+
+.dark .contact-form .form-control:focus,
+.dark .request-form .form-control:focus {
+  background-color: #1a1a1a !important;
+  color: #e5e5e5 !important;
+  border-color: #005F9B !important;
+}
+
+.dark .contact-form label,
+.dark .request-form label {
+  color: #e5e5e5;
+}
+
+/* Dark mode pour les panneaux de filtres */
+.dark .filter-panel,
+.dark .bg-white {
+  background-color: #2a2a2a !important;
+  color: #e5e5e5;
+  border-color: #3a3a3a;
+}
+
+/* Dark mode pour les sections avec bg-light */
+.dark .bg-light {
+  background-color: #2a2a2a !important;
+}
+
+/* Dark mode pour ftco-degree-bg */
+.dark .ftco-degree-bg:after {
+  background-color: #2a2a2a !important;
+}
+
+/* Dark mode pour les alertes */
+.dark .alert-success {
+  background-color: #1e4620;
+  border-color: #2d5a2f;
+  color: #d4edda;
+}
+
+.dark .alert-danger {
+  background-color: #4a1e1e;
+  border-color: #5a2d2d;
+  color: #f8d7da;
+}
+
+/* Dark mode pour les tableaux */
+.dark .table {
+  background-color: #2a2a2a;
+  color: #e5e5e5;
+}
+
+.dark .table th,
+.dark .table td {
+  border-color: #3a3a3a;
+  color: #e5e5e5;
+}
+
+.dark .table-striped tbody tr:nth-of-type(odd) {
+  background-color: #252525;
+}
+
+/* Dark mode pour les badges et tags */
+.dark .badge,
+.dark .tag {
+  background-color: #3a3a3a;
+  color: #e5e5e5;
+}
+
+/* Dark mode pour les breadcrumbs */
+.dark .breadcrumbs,
+.dark .bread {
+  color: #b0b0b0;
+}
+
+.dark .breadcrumbs a {
+  color: #e5e5e5;
+}
+
+.dark .breadcrumbs a:hover {
+  color: #005F9B;
+}
+
+/* Dark mode pour les media-custom */
+.dark .media-custom {
+  background: #2a2a2a;
+}
+
+.dark .media-custom .media-body .name {
+  color: #005F9B;
+}
+
+.dark .media-custom .media-body .position {
+  color: #b0b0b0;
+}
+
+/* Dark mode pour les sections de recherche */
+.dark .request-form {
+  background-color: #2a2a2a !important;
+}
+
+.dark .request-form h2 {
+  color: #e5e5e5;
+}
+
+.dark .request-form .label {
+  color: #e5e5e5;
+}
+
+/* Dark mode pour les sections featured-top */
+.dark .featured-top {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections de compteur */
+.dark .ftco-counter {
+  background-color: #1a1a1a;
+}
+
+.dark .ftco-counter .ftco-number {
+  color: #FFD700;
+}
+
+.dark .ftco-counter .ftco-label {
+  color: #FFD700;
+}
+
+/* Dark mode pour les sections de témoignages */
+.dark .testimony-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections hero-wrap */
+.dark .hero-wrap {
+  background-color: #1a1a1a;
+}
+
+/* Dark mode pour les sections avec overlay */
+.dark .hero-wrap .overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark mode pour les sections de recherche de véhicules */
+.dark .search-vehicle-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les listes */
+.dark ul,
+.dark ol {
+  color: #e5e5e5;
+}
+
+.dark li {
+  color: #e5e5e5;
+}
+
+/* Dark mode pour les sections de services */
+.dark .services-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections de pricing */
+.dark .pricing-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections de blog */
+.dark .blog-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections de contact */
+.dark .contact-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections about */
+.dark .about-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections cars */
+.dark .cars-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections car-single */
+.dark .car-single-section {
+  background-color: #2a2a2a;
+}
+
+/* Dark mode pour les sections avec img bg-light */
+.dark .img.bg-light {
+  background-color: #2a2a2a !important;
+}
+
+/* Dark mode pour les sections avec bg-light dans les classes */
+.dark section.bg-light {
+  background-color: #2a2a2a !important;
+}
+
+/* Dark mode pour les divs avec bg-light */
+.dark div.bg-light {
+  background-color: #2a2a2a !important;
+}
+
+/* Dark mode pour les sections avec bg-white */
+.dark section.bg-white {
+  background-color: #1a1a1a !important;
+}
+
+/* Dark mode pour les divs avec bg-white */
+.dark div.bg-white {
+  background-color: #1a1a1a !important;
+}
+

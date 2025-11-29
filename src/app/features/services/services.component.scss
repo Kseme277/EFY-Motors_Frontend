@@ -1,0 +1,57 @@
+// Services component styles are in the global style.css
+
+:host {
+  display: block !important;
+  position: relative !important;
+  z-index: 1 !important;
+  min-height: 100px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+app-header {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-wrap {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  
+  &.hero-wrap-2 {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 120px 0 60px 0 !important;
+    position: relative !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    
+    &.js-fullheight {
+      min-height: auto !important;
+      height: auto !important;
+      padding: 120px 0 60px 0 !important;
+    }
+  }
+  
+  .overlay {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+  
+  .slider-text {
+    position: relative;
+    z-index: 2;
+    
+    &.js-fullheight {
+      min-height: auto !important;
+      height: auto !important;
+    }
+  }
+}
+

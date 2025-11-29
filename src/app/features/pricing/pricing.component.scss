@@ -1,0 +1,22 @@
+// Pricing component styles are in the global style.css
+
+:host {
+  display: block !important;
+  position: relative !important;
+  z-index: 1 !important;
+  min-height: 100px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+app-header {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-wrap {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+

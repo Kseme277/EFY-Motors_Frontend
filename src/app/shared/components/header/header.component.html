@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <div class="logo-circle">
+        <img src="assets/images/logo.png" alt="EFY Motors" class="logo-img">
+      </div>
+    </a>
+    <div class="d-flex align-items-center">
+      <!-- Bouton de thème visible sur mobile à côté du menu burger -->
+      <div class="d-lg-none mr-2">
+        <app-theme-toggle-button></app-theme-toggle-button>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto align-items-center">
+        <li class="nav-item">
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">À propos</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/services" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Services</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cars" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="nav-link">Véhicules</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Contact</a>
+        </li>
+        <!-- Bouton de thème visible sur desktop -->
+        <li class="nav-item ml-3 d-none d-lg-block">
+          <app-theme-toggle-button></app-theme-toggle-button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

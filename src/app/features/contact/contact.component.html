@@ -1,0 +1,124 @@
+<app-header></app-header>
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/contact.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <p class="breadcrumbs"><span class="mr-2"><a routerLink="/">Accueil <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i class="ion-ios-arrow-forward"></i></span></p>
+        <h1 class="mb-3 bread">Contactez-nous</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section contact-section">
+  <div class="container">
+    <div class="row d-flex mb-5 contact-info">
+      <div class="col-md-4">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="border w-100 p-4 rounded mb-2 d-flex">
+              <div class="icon mr-3">
+                <span class="icon-map-o"></span>
+              </div>
+              <p><span>Adresse :</span> Yaoundé-Cameroun</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="border w-100 p-4 rounded mb-2 d-flex">
+              <div class="icon mr-3">
+                <span class="icon-mobile-phone"></span>
+              </div>
+              <p><span>Téléphone/WhatsApp :</span> <a href="https://wa.me/237697364696" target="_blank">+237 697 364 696</a></p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="border w-100 p-4 rounded mb-2 d-flex">
+              <div class="icon mr-3">
+                <span class="icon-facebook"></span>
+              </div>
+              <p><span>Facebook :</span> <a href="https://www.facebook.com/EFYMotorsCompany" target="_blank">EFY Motors Company</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 block-9 mb-md-5">
+        <form (ngSubmit)="onSubmit()" class="bg-light p-5 contact-form" #form="ngForm">
+          <div *ngIf="successMessage" class="alert alert-success" role="alert">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+          </div>
+          <div class="form-group">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Votre nom"
+              [(ngModel)]="contactForm.name"
+              name="name"
+              required>
+          </div>
+          <div class="form-group">
+            <input 
+              type="email" 
+              class="form-control" 
+              placeholder="Votre email"
+              [(ngModel)]="contactForm.email"
+              name="email"
+              required>
+          </div>
+          <div class="form-group">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Sujet"
+              [(ngModel)]="contactForm.subject"
+              name="subject"
+              required>
+          </div>
+          <div class="form-group">
+            <textarea 
+              name="message" 
+              id="message" 
+              cols="30" 
+              rows="7" 
+              class="form-control" 
+              placeholder="Message"
+              [(ngModel)]="contactForm.message"
+              required></textarea>
+          </div>
+          <div class="form-group">
+            <button 
+              type="submit" 
+              class="btn btn-primary py-3 px-5"
+              [disabled]="isLoading">
+              <span *ngIf="!isLoading">Envoyer le message</span>
+              <span *ngIf="isLoading">Envoi en cours...</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-12">
+        <div class="map-container" style="width: 100%; height: 500px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127314.1234567890!2d11.5021!3d3.8480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcf7b8c0b0b0b%3A0x0!2sYaound%C3%A9!5e0!3m2!1sfr!2scm!4v1234567890123!5m2!1sfr!2scm" 
+            width="100%" 
+            height="500" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localisation EFY Motors - Yaoundé, Cameroun">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+

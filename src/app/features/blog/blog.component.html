@@ -1,0 +1,53 @@
+<app-header></app-header>
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <p class="breadcrumbs"><span class="mr-2"><a routerLink="/">Accueil <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
+        <h1 class="mb-3 bread">Notre Blog</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 text-center d-flex ftco-animate" *ngFor="let post of blogPosts">
+        <div class="blog-entry justify-content-end mb-md-5">
+          <a routerLink="/blog/{{post.id}}" class="block-20 img" [style.background-image]="'url(' + post.image + ')'"></a>
+          <div class="text px-md-5 pt-4">
+            <div class="meta mb-3">
+              <div><a href="#">{{post.date}}</a></div>
+              <div><a href="#">Admin</a></div>
+              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            </div>
+            <h3 class="heading mt-2"><a routerLink="/blog/{{post.id}}">{{post.title}}</a></h3>
+            <p>{{post.excerpt}}</p>
+            <p><a routerLink="/blog/{{post.id}}" class="btn btn-primary">Continuer <span class="icon-long-arrow-right"></span></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col text-center">
+        <div class="block-27">
+          <ul>
+            <li><a href="#">&lt;</a></li>
+            <li class="active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+

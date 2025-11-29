@@ -1,0 +1,48 @@
+// Footer styles are in the global style.css
+
+.logo {
+  display: inline-block;
+  
+  .footer-logo-img {
+    height: 80px;
+    width: auto;
+    max-width: 320px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); // Rend le logo blanc pour le footer sombre
+    transition: filter 0.3s ease;
+  }
+}
+
+/* Dark mode pour le footer */
+:host-context(.dark) .ftco-footer {
+  background-color: #1a1a1a !important;
+  color: #e5e5e5;
+  
+  .ftco-heading-2,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #e5e5e5;
+  }
+  
+  p,
+  span,
+  .text {
+    color: #b0b0b0;
+  }
+  
+  a {
+    color: #e5e5e5;
+    
+    &:hover {
+      color: #005F9B;
+    }
+  }
+  
+  .logo .footer-logo-img {
+    filter: brightness(0) invert(1);
+  }
+}
+

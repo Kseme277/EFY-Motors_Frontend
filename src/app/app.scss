@@ -1,0 +1,33 @@
+/* Styles pour s'assurer que le router-outlet fonctionne */
+router-outlet {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* S'assurer que le contenu est visible */
+app-root {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh !important;
+  position: relative !important;
+}
+
+/* S'assurer que tous les composants sont visibles */
+app-home,
+app-about,
+app-cars,
+app-services,
+app-pricing,
+app-blog,
+app-contact {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+

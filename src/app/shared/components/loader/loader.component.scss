@@ -1,0 +1,25 @@
+// Loader styles are in the global style.css
+
+// S'assurer que le loader est masqué par défaut
+#ftco-loader {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+// Le loader ne doit être visible que s'il a explicitement la classe "show"
+#ftco-loader.show {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+// S'assurer que le loader ne bloque pas le contenu une fois masqué
+#ftco-loader.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+

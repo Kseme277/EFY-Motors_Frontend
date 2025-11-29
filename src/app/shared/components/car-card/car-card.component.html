@@ -1,0 +1,19 @@
+<div class="light">
+  <div class="car">
+    <div class="img-wrapper">
+      <img [src]="car.image" [alt]="car.name">
+      <a [routerLink]="['/cars', car.id]" class="learn-more-btn">En savoir plus</a>
+    </div>
+    <div class="car-content">
+      <h3>{{ car.name }}</h3>
+      <ul class="car-tags" *ngIf="car.tags && car.tags.length > 0">
+        <li *ngFor="let tag of car.tags">{{ tag }}</li>
+      </ul>
+      <div class="car-price" *ngIf="showPrice && car.price">
+        <span class="price-value">{{ car.price | number }} FCFA</span>
+      </div>
+      <a *ngIf="showDetails" [routerLink]="['/cars', car.id]" class="btn-details">Voir détails</a>
+    </div>
+  </div>
+</div>
+

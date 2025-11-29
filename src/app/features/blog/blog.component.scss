@@ -1,0 +1,37 @@
+// Blog component styles are in the global style.css
+
+/* Forcer l'affichage du composant */
+:host {
+  display: block !important;
+  position: relative !important;
+  z-index: 1 !important;
+  min-height: 100px !important;
+  width: 100% !important;
+  background: white !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode */
+:host-context(.dark) {
+  background: #1a1a1a !important;
+}
+
+app-header {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-wrap {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* S'assurer que le contenu est visible */
+section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+

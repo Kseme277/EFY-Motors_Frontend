@@ -1,0 +1,213 @@
+// Header styles are in the global style.css
+
+/* Supprimer les espaces en haut */
+:host {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+nav.ftco_navbar,
+#ftco-navbar,
+.ftco-navbar-light {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  top: 0 !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px);
+  position: relative !important;
+  z-index: 1000 !important;
+  transition: background-color 0.3s ease;
+  
+  &.bg-dark {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .navbar-nav {
+    z-index: 1001 !important;
+    position: relative !important;
+  }
+}
+
+/* Dark mode pour la navbar */
+.dark nav.ftco_navbar,
+.dark #ftco-navbar,
+.dark .ftco-navbar-light {
+  background-color: rgba(26, 26, 26, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &.bg-dark {
+    background-color: rgba(26, 26, 26, 0.98) !important;
+  }
+}
+
+/* Forcer top: 0 sur tous les écrans */
+.ftco-navbar-light {
+  top: 0 !important;
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* Garantir que tous les éléments de navigation sont cliquables */
+#ftco-navbar,
+.ftco-navbar-light,
+.navbar-nav,
+.nav-item,
+.nav-link {
+  pointer-events: auto !important;
+}
+
+.navbar-collapse {
+  pointer-events: auto !important;
+}
+
+/* Sur mobile aussi */
+@media (max-width: 991.98px) {
+  .ftco-navbar-light {
+    top: 0 !important;
+  }
+}
+
+/* Style du logo dans un cercle blanc */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  position: relative !important;
+  z-index: 1001 !important;
+  pointer-events: auto !important;
+  
+  .logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    pointer-events: auto !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    
+    .logo-img {
+      height: 60px;
+      width: auto;
+      max-width: 60px;
+      object-fit: contain;
+    }
+  }
+  
+  /* Dark mode pour le logo */
+  .dark & .logo-circle {
+    background: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar-brand .logo-circle {
+    width: 65px;
+    height: 65px;
+    padding: 8px;
+    
+    .logo-img {
+      height: 50px;
+      max-width: 50px;
+    }
+  }
+}
+
+// Styles pour la navigation en blanc avec hover #005F9B
+#ftco-navbar .navbar-nav,
+.ftco-navbar-light .navbar-nav {
+  z-index: 1001 !important;
+  position: relative !important;
+  
+  .nav-item {
+    position: relative !important;
+    z-index: 1002 !important;
+    
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem !important;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1003 !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      display: block !important;
+      text-decoration: none !important;
+      
+      &:hover {
+        color: #005F9B !important;
+      }
+      
+      &.active {
+        color: #005F9B !important;
+      }
+      
+      // Effet de soulignement au hover
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 80%;
+        height: 2px;
+        background: #005F9B;
+        transition: transform 0.3s ease;
+        z-index: -1;
+        pointer-events: none;
+      }
+      
+      &:hover::after,
+      &.active::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
+    
+    &.active > .nav-link {
+      color: #005F9B !important;
+    }
+  }
+}
+
+// Style pour le bouton toggle en blanc
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.3);
+  
+  .oi-menu {
+    color: #fff;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+  }
+}
+
+// Style pour le conteneur du bouton de thème et du menu burger en responsive
+.d-flex.align-items-center {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  @media (max-width: 991.98px) {
+    margin-left: auto;
+  }
+}
+
+// Dark mode pour le conteneur
+.dark .d-flex.align-items-center {
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+    
+    .oi-menu {
+      color: #fff;
+    }
+  }
+}
+

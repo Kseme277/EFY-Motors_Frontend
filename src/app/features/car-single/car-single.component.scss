@@ -1,0 +1,702 @@
+:host {
+  display: block !important;
+  position: relative !important;
+  z-index: 1 !important;
+  min-height: 100px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+// Loader styles
+#ftco-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  
+  &.show {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+  
+  .circular {
+    animation: loader-rotate 2s linear infinite;
+  }
+  
+  .path {
+    stroke: #005F9B;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    animation: loader-dash 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+  }
+}
+
+@keyframes loader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -136px;
+  }
+}
+
+// Spinner de chargement
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3em;
+  
+  &.text-primary {
+    color: #005F9B !important;
+    border-color: #005F9B;
+    border-right-color: transparent;
+  }
+}
+
+app-header {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-wrap {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  
+  &.hero-wrap-2 {
+    position: relative;
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4) !important;
+      z-index: 1;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+.ftco-car-details {
+  .car-details {
+    margin-bottom: 3rem;
+    
+    .img {
+      height: 500px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    
+    .text {
+      margin-top: 2rem;
+      
+      .subheading {
+        color: #005F9B;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      
+      h2 {
+        color: #005F9B;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+      }
+      
+      .price-display {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #005F9B;
+        margin-top: 1rem;
+        
+        span {
+          font-size: 1rem;
+          color: #6c757d;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+  
+  // Spécifications de la voiture - Design moderne avec icônes dans cercles
+  .car-specs {
+    margin: 3rem 0;
+  }
+  
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: transparent;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+    
+    .spec-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #005F9B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      
+      span {
+        font-size: 2rem;
+        color: #005F9B;
+      }
+    }
+    
+    .spec-content {
+      .spec-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+      
+      .spec-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #005F9B;
+        margin: 0;
+      }
+    }
+  }
+  
+  // Onglets - Style moderne
+  .nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    justify-content: center;
+    
+    .nav-item {
+      margin: 0 0.5rem;
+    }
+    
+    .nav-link {
+      color: #6c757d;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        color: #495057;
+        background: #f8f9fa;
+      }
+      
+      &.active {
+        color: #005F9B;
+        background: #f8f9fa;
+        border: 1px solid #000;
+        border-bottom: 2px solid #000;
+      }
+    }
+  }
+  
+  .tab-content {
+    margin-top: 2rem;
+    padding: 2.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    min-height: 400px;
+    
+    .tab-pane {
+      animation: fadeIn 0.3s ease-in;
+      
+      &[hidden] {
+        display: none !important;
+      }
+      
+      &:not([hidden]) {
+        display: block;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    // Section Caractéristiques
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      .feature-item {
+        padding: 0.75rem 0;
+        font-size: 1rem;
+        color: #495057;
+        display: flex;
+        align-items: center;
+        
+        &.check {
+          color: #495057;
+          
+          .ion-ios-checkmark {
+            color: #28a745;
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            font-weight: bold;
+          }
+        }
+        
+        &.remove {
+          color: #495057;
+          
+          .ion-ios-close {
+            color: #dc3545;
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    
+    // Section Description
+    .description-content {
+      h4, h5 {
+        color: #005F9B;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+      
+      h4 {
+        font-size: 1.5rem;
+      }
+      
+      h5 {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+      }
+      
+      .description-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #495057;
+        margin-bottom: 1.5rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #6c757d;
+        margin-bottom: 1rem;
+      }
+    }
+    
+    // Section Avis
+    .reviews-heading {
+      color: #005F9B;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .reviews-list {
+      .review-item {
+        display: flex;
+        margin-bottom: 2.5rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e9ecef;
+        
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+        
+        .user-img {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          background-size: cover;
+          background-position: center;
+          margin-right: 1.5rem;
+          flex-shrink: 0;
+          border: 3px solid #e9ecef;
+        }
+        
+        .review-content {
+          flex: 1;
+          
+          .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            
+            .reviewer-name {
+              font-size: 1.1rem;
+              font-weight: 700;
+          color: #005F9B;
+              margin: 0;
+            }
+            
+            .review-date {
+              font-size: 0.9rem;
+              color: #6c757d;
+            }
+          }
+          
+          .review-rating {
+            margin-bottom: 0.75rem;
+            
+            .stars {
+              i {
+                color: #ffc107;
+                font-size: 1.1rem;
+                margin-right: 0.25rem;
+                
+                &.ion-ios-star-outline {
+                  color: #e9ecef;
+                }
+              }
+            }
+          }
+          
+          .review-text {
+            color: #495057;
+            line-height: 1.7;
+            margin: 0;
+            font-size: 0.95rem;
+          }
+        }
+      }
+    }
+    
+    // Résumé des notes
+    .rating-summary {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      
+      .summary-heading {
+        color: #005F9B;
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .average-rating {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid #e9ecef;
+        
+        .rating-number {
+          display: block;
+          font-size: 3rem;
+          font-weight: 700;
+          color: #005F9B;
+          margin-bottom: 0.5rem;
+        }
+        
+        .rating-stars-large {
+          i {
+            color: #ffc107;
+            font-size: 1.5rem;
+            margin: 0 0.2rem;
+            
+            &.ion-ios-star-outline {
+              color: #e9ecef;
+            }
+          }
+        }
+      }
+      
+      .rating-breakdown {
+        .rating-bar-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+          
+          .rating-label {
+            width: 80px;
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 600;
+          }
+          
+          .rating-bar {
+            flex: 1;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 0 1rem;
+            overflow: hidden;
+            
+            .rating-bar-fill {
+              height: 100%;
+              background: linear-gradient(90deg, #005F9B 0%, #004A7A 100%);
+              transition: width 0.3s ease;
+            }
+          }
+          
+          .rating-count {
+            width: 50px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #495057;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    
+    // Formulaire d'ajout d'avis
+    .add-review-form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 2px solid #e9ecef;
+      
+      .form-heading {
+        color: #005F9B;
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-group {
+        margin-bottom: 1.5rem;
+        
+        label {
+          display: block;
+          font-weight: 600;
+          color: #005F9B;
+          margin-bottom: 0.5rem;
+          font-size: 0.95rem;
+        }
+        
+        .form-control {
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid #dee2e6;
+          border-radius: 6px;
+          font-size: 0.95rem;
+          transition: all 0.3s ease;
+          
+          &:focus {
+            outline: none;
+            border-color: #005F9B;
+            box-shadow: 0 0 0 0.2rem rgba(0, 94, 155, 0.25);
+          }
+        }
+        
+        textarea.form-control {
+          resize: vertical;
+        }
+      }
+      
+      .rating-input {
+        display: flex;
+        gap: 0.5rem;
+        
+        .star-input {
+          cursor: pointer;
+          
+          i {
+            font-size: 2rem;
+            color: #e9ecef;
+            transition: all 0.2s ease;
+            
+            &.active {
+              color: #ffc107;
+            }
+          }
+          
+          &:hover i {
+            color: #ffc107;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #005F9B 0%, #004A7A 100%);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 94, 155, 0.4);
+    }
+  }
+}
+
+.car-wrap {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 94, 155, 0.2);
+  }
+  
+  .img {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: transform 0.3s ease;
+    
+    .cat {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+      background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+      color: #fff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  &:hover .img {
+    transform: scale(1.05);
+  }
+  
+  .text {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #005F9B;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      
+      a {
+        color: #005F9B;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: #004A7A;
+        }
+      }
+    }
+    
+    .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #005F9B;
+      margin: 0;
+      line-height: 1.2;
+    }
+    
+    .btn {
+      border-radius: 6px;
+      font-weight: 600;
+      padding: 0.65rem 1.25rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.8rem;
+      flex: 1;
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%) !important;
+      border: none !important;
+      color: #fff !important;
+    }
+    
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    }
+  }
+}
+

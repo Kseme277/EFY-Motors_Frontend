@@ -1,0 +1,80 @@
+<app-header></app-header>
+
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <p class="breadcrumbs"><span class="mr-2"><a routerLink="/">Accueil <i class="ion-ios-arrow-forward"></i></a></span> <span>Tarifs <i class="ion-ios-arrow-forward"></i></span></p>
+        <h1 class="mb-3 bread">Nos Tarifs</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftco-cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ftco-animate">
+        <div class="car-list">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr class="text-center">
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th class="bg-primary heading">Tarif horaire</th>
+                <th class="bg-dark heading">Tarif journalier</th>
+                <th class="bg-black heading">Location longue durée</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let car of cars">
+                <td class="car-image"><div class="img" [style.background-image]="'url(' + car.image + ')'"></div></td>
+                <td class="product-name">
+                  <h3>{{car.name}}</h3>
+                  <p class="mb-0 rated">
+                    <span>rated:</span>
+                    <span class="ion-ios-star" *ngFor="let star of [1,2,3,4,5]"></span>
+                  </p>
+                </td>
+                <td class="price">
+                  <p class="btn-custom"><a href="#">Louer une voiture</a></p>
+                  <div class="price-rate">
+                    <h3>
+                      <span class="num"><small class="currency">$</small> {{car.hourlyRate}}</span>
+                      <span class="per">/par heure</span>
+                    </h3>
+                    <span class="subheading">$3/heure de carburant</span>
+                  </div>
+                </td>
+                <td class="price">
+                  <p class="btn-custom"><a href="#">Louer une voiture</a></p>
+                  <div class="price-rate">
+                    <h3>
+                      <span class="num"><small class="currency">€</small> {{car.dailyRate}}</span>
+                      <span class="per">/par jour</span>
+                    </h3>
+                    <span class="subheading">€3/heure de carburant</span>
+                  </div>
+                </td>
+                <td class="price">
+                  <p class="btn-custom"><a href="#">Louer une voiture</a></p>
+                  <div class="price-rate">
+                    <h3>
+                      <span class="num"><small class="currency">€</small> {{car.monthlyRate}}</span>
+                      <span class="per">/par mois</span>
+                    </h3>
+                    <span class="subheading">€3/heure de carburant</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+
