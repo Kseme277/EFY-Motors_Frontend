@@ -1,0 +1,218 @@
+<div class="vehicle-form-container">
+  <div class="form-header">
+    <div>
+      <h1 class="page-title">{{ isEditMode ? 'Modifier un véhicule' : 'Ajouter un véhicule' }}</h1>
+      <p class="page-subtitle">{{ isEditMode ? 'Modifiez les informations du véhicule' : 'Remplissez le formulaire pour ajouter un nouveau véhicule' }}</p>
+    </div>
+    <a routerLink="/admin/vehicles" class="btn btn-secondary">
+      <span class="ion-ios-arrow-back"></span>
+      Retour
+    </a>
+  </div>
+
+  <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()" class="vehicle-form">
+    <div class="form-grid">
+      <!-- Colonne gauche -->
+      <div class="form-column">
+        <div class="form-section">
+          <h3 class="section-title">Informations générales</h3>
+          
+          <div class="form-group">
+            <label for="name">Nom du véhicule *</label>
+            <input 
+              type="text" 
+              id="name"
+              class="form-control" 
+              formControlName="name"
+              [class.error]="vehicleForm.get('name')?.invalid && vehicleForm.get('name')?.touched"
+              placeholder="Ex: Toyota RAV4 Hybride">
+            <span class="error-message" *ngIf="vehicleForm.get('name')?.invalid && vehicleForm.get('name')?.touched">
+              {{ getFieldError('name') }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="brand">Marque *</label>
+            <input 
+              type="text" 
+              id="brand"
+              class="form-control" 
+              formControlName="brand"
+              [class.error]="vehicleForm.get('brand')?.invalid && vehicleForm.get('brand')?.touched"
+              placeholder="Ex: Toyota">
+            <span class="error-message" *ngIf="vehicleForm.get('brand')?.invalid && vehicleForm.get('brand')?.touched">
+              {{ getFieldError('brand') }}
+            </span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="price">Prix (FCFA) *</label>
+              <input 
+                type="number" 
+                id="price"
+                class="form-control" 
+                formControlName="price"
+                [class.error]="vehicleForm.get('price')?.invalid && vehicleForm.get('price')?.touched"
+                placeholder="45000">
+              <span class="error-message" *ngIf="vehicleForm.get('price')?.invalid && vehicleForm.get('price')?.touched">
+                {{ getFieldError('price') }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label for="mileage">Kilométrage (km) *</label>
+              <input 
+                type="number" 
+                id="mileage"
+                class="form-control" 
+                formControlName="mileage"
+                [class.error]="vehicleForm.get('mileage')?.invalid && vehicleForm.get('mileage')?.touched"
+                placeholder="15000">
+              <span class="error-message" *ngIf="vehicleForm.get('mileage')?.invalid && vehicleForm.get('mileage')?.touched">
+                {{ getFieldError('mileage') }}
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea 
+              id="description"
+              class="form-control" 
+              formControlName="description"
+              [class.error]="vehicleForm.get('description')?.invalid && vehicleForm.get('description')?.touched"
+              rows="4"
+              placeholder="Description détaillée du véhicule..."></textarea>
+            <span class="error-message" *ngIf="vehicleForm.get('description')?.invalid && vehicleForm.get('description')?.touched">
+              {{ getFieldError('description') }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3 class="section-title">Caractéristiques techniques</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="transmission">Transmission *</label>
+              <select 
+                id="transmission"
+                class="form-control" 
+                formControlName="transmission"
+                [class.error]="vehicleForm.get('transmission')?.invalid && vehicleForm.get('transmission')?.touched">
+                <option value="">Sélectionner</option>
+                <option *ngFor="let type of transmissionTypes" [value]="type">{{ type }}</option>
+              </select>
+              <span class="error-message" *ngIf="vehicleForm.get('transmission')?.invalid && vehicleForm.get('transmission')?.touched">
+                {{ getFieldError('transmission') }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label for="fuel">Carburant *</label>
+              <select 
+                id="fuel"
+                class="form-control" 
+                formControlName="fuel"
+                [class.error]="vehicleForm.get('fuel')?.invalid && vehicleForm.get('fuel')?.touched">
+                <option value="">Sélectionner</option>
+                <option *ngFor="let type of fuelTypes" [value]="type">{{ type }}</option>
+              </select>
+              <span class="error-message" *ngIf="vehicleForm.get('fuel')?.invalid && vehicleForm.get('fuel')?.touched">
+                {{ getFieldError('fuel') }}
+              </span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="seats">Nombre de sièges *</label>
+              <input 
+                type="number" 
+                id="seats"
+                class="form-control" 
+                formControlName="seats"
+                [class.error]="vehicleForm.get('seats')?.invalid && vehicleForm.get('seats')?.touched"
+                min="1"
+                placeholder="5">
+              <span class="error-message" *ngIf="vehicleForm.get('seats')?.invalid && vehicleForm.get('seats')?.touched">
+                {{ getFieldError('seats') }}
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label for="luggage">Capacité bagages *</label>
+              <input 
+                type="number" 
+                id="luggage"
+                class="form-control" 
+                formControlName="luggage"
+                [class.error]="vehicleForm.get('luggage')?.invalid && vehicleForm.get('luggage')?.touched"
+                min="0"
+                placeholder="4">
+              <span class="error-message" *ngIf="vehicleForm.get('luggage')?.invalid && vehicleForm.get('luggage')?.touched">
+                {{ getFieldError('luggage') }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne droite -->
+      <div class="form-column">
+        <div class="form-section">
+          <h3 class="section-title">Image et statut</h3>
+          
+          <div class="form-group">
+            <label for="image">Image du véhicule *</label>
+            <div class="image-upload">
+              <input 
+                type="file" 
+                id="image"
+                class="file-input" 
+                accept="image/*"
+                (change)="onImageChange($event)">
+              <label for="image" class="file-label">
+                <span class="ion-ios-camera"></span>
+                Choisir une image
+              </label>
+            </div>
+            <div class="image-preview" *ngIf="imagePreview">
+              <img [src]="imagePreview" alt="Aperçu">
+              <button type="button" class="btn-remove-image" (click)="imagePreview = null; vehicleForm.patchValue({image: ''})">
+                <span class="ion-ios-close"></span>
+              </button>
+            </div>
+            <span class="error-message" *ngIf="vehicleForm.get('image')?.invalid && vehicleForm.get('image')?.touched">
+              {{ getFieldError('image') }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Statut *</label>
+            <select 
+              id="status"
+              class="form-control" 
+              formControlName="status"
+              [class.error]="vehicleForm.get('status')?.invalid && vehicleForm.get('status')?.touched">
+              <option *ngFor="let status of statusTypes" [value]="status">{{ status }}</option>
+            </select>
+            <span class="error-message" *ngIf="vehicleForm.get('status')?.invalid && vehicleForm.get('status')?.touched">
+              {{ getFieldError('status') }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" routerLink="/admin/vehicles">Annuler</button>
+      <button type="submit" class="btn btn-primary" [disabled]="vehicleForm.invalid">
+        <span class="ion-ios-checkmark"></span>
+        {{ isEditMode ? 'Modifier' : 'Ajouter' }} le véhicule
+      </button>
+    </div>
+  </form>
+</div>
+

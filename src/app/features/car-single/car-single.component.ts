@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../shared/components/header/header.component';
@@ -7,6 +7,7 @@ import { CarCardComponent, CarCard } from '../../shared/components/car-card/car-
 import { STATIC_CARS, StaticCar, StaticReview } from '../../data/cars.data';
 import { getSimilarCars } from '../../data/similar-cars.data';
 import { Subscription } from 'rxjs';
+import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
 
 interface CarFeature {
   name: string;
@@ -23,7 +24,7 @@ type Review = StaticReview;
   templateUrl: './car-single.component.html',
   styleUrl: './car-single.component.scss'
 })
-export class CarSingleComponent implements OnInit, OnDestroy {
+export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
   car: Car | null = null;
   relatedCars: CarCard[] = [];
   reviews: Review[] = [];
@@ -43,7 +44,20 @@ export class CarSingleComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private scrollAnimationService: ScrollAnimationService
   ) {}
+  
+  ngAfterViewInit() {
+    // Initialiser les animations de scroll
+    this.initializeScrollAnimations();
+  }
+  
+  private initializeScrollAnimations() {
+    setTimeout(() => {
+      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
+      this.scrollAnimationService.observeElements(elements);
+    }, 100);
+  }
 
   ngOnInit() {
     // Écouter les changements de paramètres de route
@@ -133,6 +147,11 @@ export class CarSingleComponent implements OnInit, OnDestroy {
 
     this.isLoading = false;
     this.hideLoader();
+    
+    // Réinitialiser les animations de scroll après le chargement
+    setTimeout(() => {
+      this.initializeScrollAnimations();
+    }, 200);
   }
 
   private loadSimilarVehicles(vehicleId: number) {

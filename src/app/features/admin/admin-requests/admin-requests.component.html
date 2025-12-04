@@ -1,0 +1,210 @@
+<div class="requests-container">
+  <!-- Barre de recherche et filtres -->
+  <div class="filters-bar">
+    <div class="search-box">
+      <span class="ion-ios-search search-icon"></span>
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Rechercher par nom, email, véhicule..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()">
+    </div>
+    <div class="filter-actions">
+      <select class="form-control" [(ngModel)]="statusFilter" (change)="onFilterChange()">
+        <option value="all">Tous les statuts</option>
+        <option value="new">Nouvelles</option>
+        <option value="in-progress">En cours</option>
+        <option value="completed">Traitées</option>
+        <option value="cancelled">Annulées</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Tableau des demandes -->
+  <div class="requests-table-container">
+    <table class="requests-table">
+      <thead>
+        <tr>
+          <th class="col-expand"></th>
+          <th class="col-id">ID</th>
+          <th class="col-customer">Client</th>
+          <th class="col-vehicle">Véhicule</th>
+          <th class="col-date">Date</th>
+          <th class="col-status">Statut</th>
+          <th class="col-actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let request of paginatedRequests">
+          <tr 
+            [class.expanded]="isRowExpanded(request.id)"
+            (click)="toggleRow(request.id)"
+            class="table-row-clickable">
+            <td class="col-expand">
+              <span class="expand-icon" [class.expanded]="isRowExpanded(request.id)">
+                <span class="ion-ios-arrow-down"></span>
+              </span>
+            </td>
+            <td class="col-id">{{ request.id }}</td>
+            <td class="col-customer">
+              <div class="customer-info">
+                <strong>{{ request.customerName }}</strong>
+                <div class="customer-contact">
+                  {{ request.email }}
+                  {{ request.phone }}
+                </div>
+              </div>
+            </td>
+            <td class="col-vehicle">
+              <div class="vehicle-info">
+                <div>
+                  <strong>{{ request.vehicleName }}</strong>
+                  <div class="vehicle-brand">{{ request.vehicleBrand }}</div>
+                </div>
+              </div>
+            </td>
+            <td class="col-date">
+              {{ request.date }}
+            </td>
+            <td class="col-status">
+              <span class="badge" [class]="getStatusClass(request.status)">
+                {{ statusLabels[request.status] }}
+              </span>
+            </td>
+            <td class="col-actions" (click)="$event.stopPropagation()">
+              <div class="action-buttons">
+                <div class="status-dropdown" *ngIf="request.status !== 'completed'">
+                  <select class="form-control status-select" (change)="updateStatus(request.id, $any($event.target).value)">
+                    <option [value]="request.status" [selected]="true">{{ statusLabels[request.status] }}</option>
+                    <option value="new" *ngIf="request.status !== 'new'">Nouvelle</option>
+                    <option value="in-progress" *ngIf="request.status !== 'in-progress'">En cours</option>
+                    <option value="completed">Traitée</option>
+                    <option value="cancelled" *ngIf="request.status !== 'cancelled'">Annulée</option>
+                  </select>
+                </div>
+              <button class="btn-action btn-delete" (click)="deleteRequest(request.id)" title="Supprimer">
+                Supprimer
+              </button>
+              </div>
+            </td>
+          </tr>
+          <!-- Ligne de détails expandable directement en dessous -->
+          <tr 
+            class="detail-row"
+            [class.expanded]="isRowExpanded(request.id)">
+            <td colspan="7">
+              <div class="detail-content">
+                <p class="request-message">{{ request.message }}</p>
+                <div class="detail-actions">
+                  <a [routerLink]="['/cars', request.vehicleId]" class="btn-action-icon btn-view-vehicle" target="_blank" title="Voir le véhicule">
+                    <span class="ion-ios-eye"></span>
+                  </a>
+                  <a [href]="'mailto:' + request.email" class="btn-action-icon btn-email" title="Envoyer un email">
+                    <span class="ion-ios-mail"></span>
+                  </a>
+                  <a [href]="'tel:' + request.phone" class="btn-action-icon btn-call" title="Appeler">
+                    <span class="ion-ios-call"></span>
+                  </a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <div class="no-data" *ngIf="paginatedRequests.length === 0">
+      <div class="no-data-content">
+        <span class="ion-ios-document no-data-icon"></span>
+        <p>Aucune demande trouvée</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="filteredRequests.length > 0">
+    <button class="btn-pagination" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+      <span class="ion-ios-arrow-back"></span>
+    </button>
+    <span class="page-info">Page {{ currentPage }} sur {{ totalPages }}</span>
+    <button class="btn-pagination" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+      <span class="ion-ios-arrow-forward"></span>
+    </button>
+  </div>
+</div>
+
+<!-- Modal de détail de la demande -->
+<div class="request-modal" *ngIf="selectedRequest" (click)="closeRequestDetail()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Détails de la demande #{{ selectedRequest.id }}</h2>
+      <button class="btn-close" (click)="closeRequestDetail()">
+        <span class="ion-ios-close"></span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-section">
+        <h3>Informations client</h3>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <label>Nom complet</label>
+            <p>{{ selectedRequest.customerName }}</p>
+          </div>
+          <div class="detail-item">
+            <label>Email</label>
+            <p><a [href]="'mailto:' + selectedRequest.email">{{ selectedRequest.email }}</a></p>
+          </div>
+          <div class="detail-item">
+            <label>Téléphone</label>
+            <p><a [href]="'tel:' + selectedRequest.phone">{{ selectedRequest.phone }}</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h3>Véhicule concerné</h3>
+        <div class="vehicle-detail">
+          <strong>{{ selectedRequest.vehicleName }}</strong>
+          <span class="vehicle-brand">{{ selectedRequest.vehicleBrand }}</span>
+          <a [routerLink]="['/cars', selectedRequest.vehicleId]" class="btn-view-vehicle" target="_blank">
+            <span class="ion-ios-eye"></span> Voir le véhicule
+          </a>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h3>Message</h3>
+        <div class="message-box">
+          <p>{{ selectedRequest.message }}</p>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h3>Informations</h3>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <label>Date de la demande</label>
+            <p>{{ selectedRequest.date }}</p>
+          </div>
+          <div class="detail-item">
+            <label>Statut</label>
+            <span class="badge" [class]="getStatusClass(selectedRequest.status)">
+              {{ statusLabels[selectedRequest.status] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="closeRequestDetail()">Fermer</button>
+      <a [href]="'mailto:' + selectedRequest.email" class="btn btn-primary">
+        <span class="ion-ios-mail"></span> Répondre par email
+      </a>
+      <a [href]="'tel:' + selectedRequest.phone" class="btn btn-success">
+        <span class="ion-ios-call"></span> Appeler
+      </a>
+    </div>
+  </div>
+</div>
+

@@ -248,3 +248,168 @@ app-header {
   }
 }
 
+// Section À propos responsive
+section.ftco-about {
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+    
+    .col-md-6 {
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    .img.img-2 {
+      min-height: 300px !important;
+      margin-bottom: 2rem;
+    }
+    
+    .heading-section-white {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+      
+      h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      p {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1rem !important;
+        text-align: justify !important;
+      }
+      
+      .subheading {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .img.img-2 {
+      min-height: 250px !important;
+    }
+    
+    .heading-section-white {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      padding-top: 1.5rem !important;
+      padding-bottom: 1.5rem !important;
+      
+      h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+      
+      p {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 0.75rem !important;
+        text-align: justify !important;
+      }
+      
+      .subheading {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .btn {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+}
+
+// Section ftco-intro responsive
+section.ftco-intro {
+  @media (max-width: 768px) {
+    padding: 3rem 0 !important;
+    
+    .heading-section-white {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      
+      h2 {
+        font-size: 1.75rem !important;
+      }
+      
+      p {
+        font-size: 0.95rem !important;
+        text-align: justify !important;
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    padding: 2rem 0 !important;
+    
+    .heading-section-white {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      
+      h2 {
+        font-size: 1.5rem !important;
+      }
+      
+      p {
+        font-size: 0.9rem !important;
+        text-align: justify !important;
+      }
+      
+      .btn {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Centrer le contenu en responsive
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  section.ftco-section {
+    .container {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  // Centrer les sections spécifiques
+  section.ftco-about,
+  section.ftco-intro,
+  section.ftco-section {
+    .container {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+

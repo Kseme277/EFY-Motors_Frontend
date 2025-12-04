@@ -92,6 +92,25 @@ a:hover {
   padding-bottom: 60px !important;
 }
 
+/* Responsive pour le padding */
+@media (max-width: 768px) {
+  .ftco-section.ftco-about .heading-section-white.pl-md-5 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .ftco-section.ftco-about .heading-section-white.pl-md-5 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
+
 /* Section des services offerts */
 .services-list {
   background-color: #005F9B !important; /* Bleu EFY Motors */
@@ -176,6 +195,177 @@ a:hover {
   opacity: 1 !important;
   visibility: visible !important;
   animation-play-state: paused !important;
+}
+
+/* Animation "present" pour les transitions d'apparition */
+@keyframes present {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+.present {
+  animation: present 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.present-delay-1 {
+  animation: present 0.6s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.present-delay-2 {
+  animation: present 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.present-delay-3 {
+  animation: present 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.present-delay-4 {
+  animation: present 0.6s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.present-delay-5 {
+  animation: present 0.6s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+/* Animation "present" pour les éléments qui apparaissent depuis la gauche */
+@keyframes presentLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+.present-left {
+  animation: presentLeft 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animation "present" pour les éléments qui apparaissent depuis la droite */
+@keyframes presentRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+.present-right {
+  animation: presentRight 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animation "present" pour les éléments qui apparaissent avec un zoom */
+@keyframes presentZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+
+.present-zoom {
+  animation: presentZoom 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animations de scroll - État initial (avant l'animation) */
+.present:not(.present-animated):not(.scroll-animated),
+.present-left:not(.present-left-animated):not(.scroll-animated),
+.present-right:not(.present-right-animated):not(.scroll-animated),
+.present-zoom:not(.present-zoom-animated):not(.scroll-animated),
+.present-delay-1:not(.present-delay-1-animated):not(.scroll-animated),
+.present-delay-2:not(.present-delay-2-animated):not(.scroll-animated),
+.present-delay-3:not(.present-delay-3-animated):not(.scroll-animated),
+.present-delay-4:not(.present-delay-4-animated):not(.scroll-animated),
+.present-delay-5:not(.present-delay-5-animated):not(.scroll-animated) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Animations de scroll - État animé (après déclenchement) */
+.present-animated {
+  animation: present 0.6s ease-out forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-left-animated {
+  animation: presentLeft 0.6s ease-out forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-right-animated {
+  animation: presentRight 0.6s ease-out forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-zoom-animated {
+  animation: presentZoom 0.5s ease-out forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-delay-1-animated {
+  animation: present 0.6s ease-out 0.1s forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-delay-2-animated {
+  animation: present 0.6s ease-out 0.2s forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-delay-3-animated {
+  animation: present 0.6s ease-out 0.3s forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-delay-4-animated {
+  animation: present 0.6s ease-out 0.4s forwards;
+  opacity: 1;
+  visibility: visible;
+}
+
+.present-delay-5-animated {
+  animation: present 0.6s ease-out 0.5s forwards;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Forcer la visibilité sur tous les éléments par défaut - fallback */

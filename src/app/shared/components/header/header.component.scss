@@ -149,6 +149,22 @@ nav.ftco_navbar,
         color: #005F9B !important;
       }
       
+      &.admin-link {
+        color: #FFD700 !important;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        &:hover {
+          color: #FFA500 !important;
+        }
+        
+        &::after {
+          background: #FFD700;
+        }
+      }
+      
       // Effet de soulignement au hover
       &::after {
         content: '';

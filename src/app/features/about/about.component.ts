@@ -3,6 +3,7 @@ import { HeaderComponent } from '../../shared/components/header/header.component
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
 
 declare var $: any;
 
@@ -16,9 +17,21 @@ declare var $: any;
 export class AboutComponent implements AfterViewInit, OnDestroy {
   private testimonyCarouselInstance: any;
 
+  constructor(private scrollAnimationService: ScrollAnimationService) {}
+
   ngAfterViewInit() {
     // Initialiser le carousel des témoignages
     this.initializeCarousels();
+    
+    // Initialiser les animations de scroll
+    this.initializeScrollAnimations();
+  }
+  
+  private initializeScrollAnimations() {
+    setTimeout(() => {
+      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
+      this.scrollAnimationService.observeElements(elements);
+    }, 100);
   }
 
   private initializeCarousels() {

@@ -1,0 +1,53 @@
+<div class="admin-container">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" [class.collapsed]="!isSidebarOpen" [class.open]="isMobileMenuOpen">
+    <div class="sidebar-header">
+      <div class="logo">
+        <h2>EFY Motors</h2>
+        <span class="logo-subtitle">Admin Panel</span>
+      </div>
+      <button class="sidebar-toggle" (click)="toggleSidebar()">
+        <span class="ion-ios-menu"></span>
+      </button>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon ion-ios-speedometer"></span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a routerLink="/admin/vehicles" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon ion-ios-car"></span>
+        <span class="nav-text">Véhicules</span>
+      </a>
+      <a routerLink="/admin/requests" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon ion-ios-mail"></span>
+        <span class="nav-text">Demandes</span>
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <a routerLink="/" class="back-to-site">
+        <span class="ion-ios-home"></span>
+        <span>Retour au site</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <div class="header-left">
+        <button class="menu-toggle" (click)="toggleSidebar()">
+          <span class="ion-ios-menu"></span>
+        </button>
+        <h1 class="page-title">{{ getPageTitle() }}</h1>
+      </div>
+    </header>
+    
+    <div class="admin-content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+

@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { CarCardComponent, CarCard } from '../../shared/components/car-card/car-card.component';
 import { getFeaturedCars } from '../../data/featured-cars.data';
 import { VideoModalComponent } from '../../shared/components/video-modal/video-modal.component';
+import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
 
 declare var $: any;
 
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   currentVideoId = '';
   isLoadingFeatured: boolean = false;
 
-  constructor() {}
+  constructor(private scrollAnimationService: ScrollAnimationService) {}
 
   openVideoModal(videoId: string) {
     this.currentVideoId = videoId;
@@ -62,6 +63,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     
     // Initialiser le compteur si waypoint est disponible
     this.initializeCounter();
+    
+    // Initialiser les animations de scroll
+    this.initializeScrollAnimations();
+  }
+  
+  private initializeScrollAnimations() {
+    setTimeout(() => {
+      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
+      this.scrollAnimationService.observeElements(elements);
+    }, 100);
   }
   
   private initializeCounter() {

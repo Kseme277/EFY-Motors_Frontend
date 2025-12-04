@@ -32,6 +32,11 @@
         <li class="nav-item">
           <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Contact</a>
         </li>
+        <li class="nav-item">
+          <a routerLink="/admin/dashboard" class="nav-link admin-link">
+            <span class="ion-ios-settings"></span> Admin
+          </a>
+        </li>
         <!-- Bouton de thème visible sur desktop -->
         <li class="nav-item ml-3 d-none d-lg-block">
           <app-theme-toggle-button></app-theme-toggle-button>
