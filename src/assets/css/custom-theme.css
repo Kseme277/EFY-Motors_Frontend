@@ -1,5 +1,6 @@
 /* Thème personnalisé EFY Motors basé sur le logo */
 /* Couleurs du logo : Bleu foncé/teal pour le texte "EFY MOTORS", Marron/rouge foncé pour la voiture */
+/* Note: Ces styles s'appliquent uniquement aux pages publiques, pas à l'admin CoreUI */
 
 :root {
   --efy-primary: #005F9B; /* Bleu foncé du logo "EFY MOTORS" - teal foncé */
@@ -9,49 +10,43 @@
   --efy-primary-light: rgba(0, 94, 155, 0.1); /* Version très claire pour les fonds */
 }
 
-/* Boutons primaires - Bleu foncé */
-.btn-primary,
-.bg-primary,
-.table-primary,
-.border-primary {
+/* Boutons primaires - Bleu foncé (uniquement pour les pages publiques) */
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-primary,
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .bg-primary,
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .table-primary,
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .border-primary {
   background-color: var(--efy-primary) !important;
   border-color: var(--efy-primary) !important;
   color: #fff !important;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-primary:hover,
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-primary:focus,
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-primary:active {
   background-color: var(--efy-primary-hover) !important;
   border-color: var(--efy-primary-hover) !important;
 }
 
-.btn-primary:not(:disabled):not(.disabled):active,
-.btn-primary:not(:disabled):not(.disabled).active {
-  background-color: var(--efy-primary-hover) !important;
-  border-color: var(--efy-primary-hover) !important;
-}
-
-/* Boutons secondaires - Marron/rouge foncé */
-.btn-secondary {
+/* Boutons secondaires - Marron/rouge foncé (uniquement pour les pages publiques) */
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-secondary {
   background-color: var(--efy-accent) !important;
   border-color: var(--efy-accent) !important;
   color: #fff !important;
 }
 
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active {
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-secondary:hover,
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-secondary:focus,
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-secondary:active {
   background-color: var(--efy-accent-hover) !important;
   border-color: var(--efy-accent-hover) !important;
 }
 
-/* Liens - couleur primaire PAR DÉFAUT */
-a {
+/* Liens - couleur primaire PAR DÉFAUT (uniquement pour les pages publiques) */
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) a {
   color: var(--efy-primary) !important;
 }
 
-a:hover {
+:not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) a:hover {
   color: var(--efy-primary-hover) !important;
 }
 
@@ -748,6 +743,391 @@ app-root, router-outlet {
   background-color: #2a2a2a !important;
   color: #e5e5e5;
   border-color: #3a3a3a;
+}
+
+/* Dark mode pour modern-tabs-container */
+.dark .modern-tabs-container {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.dark .modern-tabs-container .nav-tabs {
+  border-bottom-color: #444 !important;
+}
+
+.dark .modern-tabs-container .nav-link {
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .nav-link:hover {
+  color: #005F9B !important;
+  border-bottom-color: #005F9B !important;
+  background-color: rgba(0, 95, 155, 0.1) !important;
+}
+
+.dark .modern-tabs-container .nav-link.active {
+  color: #005F9B !important;
+  border-bottom-color: #005F9B !important;
+  background-color: rgba(0, 95, 155, 0.15) !important;
+}
+
+.dark .modern-tabs-container .tab-content {
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .tab-pane {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .devis-form-container,
+.dark .modern-tabs-container .review-form-section {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;
+  border-color: #444 !important;
+}
+
+.dark .modern-tabs-container .devis-form-container h3,
+.dark .modern-tabs-container .review-form-section h4 {
+  color: #4da6ff !important;
+}
+
+.dark .modern-tabs-container .devis-form-container .form-group label,
+.dark .modern-tabs-container .review-form-section .form-group label {
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .devis-form-container .form-control,
+.dark .modern-tabs-container .review-form-section .form-control {
+  background-color: #3a3a3a !important;
+  border-color: #555 !important;
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .devis-form-container .form-control:focus,
+.dark .modern-tabs-container .review-form-section .form-control:focus {
+  border-color: #005F9B !important;
+  background-color: #444 !important;
+}
+
+/* Dark mode pour le contenu des onglets */
+.dark .modern-tabs-container .description-content,
+.dark .modern-tabs-container .reviews-list,
+.dark .modern-tabs-container .rating-summary {
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .description-content h4,
+.dark .modern-tabs-container .description-content h5,
+.dark .modern-tabs-container .reviews-heading,
+.dark .modern-tabs-container .summary-heading {
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .description-content p,
+.dark .modern-tabs-container .review-text {
+  color: #b0b0b0 !important;
+}
+
+.dark .modern-tabs-container .review-item {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: #444 !important;
+}
+
+.dark .modern-tabs-container .reviewer-name {
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .review-date {
+  color: #999 !important;
+}
+
+.dark .modern-tabs-container .rating-number {
+  color: #005F9B !important;
+}
+
+.dark .modern-tabs-container .rating-label {
+  color: #b0b0b0 !important;
+}
+
+.dark .modern-tabs-container .rating-count {
+  color: #999 !important;
+}
+
+.dark .modern-tabs-container .specs-grid .spec-item {
+  background-color: #2a2a2a !important;
+  color: #e0e0e0 !important;
+}
+
+.dark .modern-tabs-container .specs-grid .spec-item strong {
+  color: #005F9B !important;
+}
+
+/* Dark mode pour la section car-details */
+.dark .ftco-car-details,
+.dark section.ftco-car-details {
+  background-color: #1a1a1a !important;
+  color: #e5e5e5 !important;
+}
+
+.dark .ftco-car-details .container,
+.dark section.ftco-car-details .container {
+  background-color: transparent !important;
+}
+
+.dark .ftco-car-details .car-details {
+  background-color: transparent !important;
+}
+
+.dark .ftco-car-details .car-details .text h2,
+.dark .ftco-car-details .car-details .text .subheading {
+  color: #e5e5e5 !important;
+}
+
+.dark .ftco-car-details .car-details .price-display {
+  color: #005F9B !important;
+}
+
+/* Dark mode pour car-specs */
+.dark .car-specs .spec-item {
+  background-color: #2a2a2a !important;
+  border-color: #3a3a3a !important;
+}
+
+.dark .car-specs .spec-item .spec-label {
+  color: #b0b0b0 !important;
+}
+
+.dark .car-specs .spec-item .spec-value {
+  color: #e5e5e5 !important;
+}
+
+.dark .car-specs .spec-item .spec-icon {
+  color: #005F9B !important;
+}
+
+/* Dark mode pour bd-example-tabs */
+.dark .bd-example-tabs {
+  background-color: transparent !important;
+}
+
+/* Dark mode pour description-content */
+.dark .description-content {
+  background-color: transparent !important;
+  color: #e5e5e5 !important;
+}
+
+.dark .description-content h4,
+.dark .description-content h5 {
+  color: #e5e5e5 !important;
+}
+
+.dark .description-content p {
+  color: #b0b0b0 !important;
+}
+
+.dark .description-content .description-text {
+  color: #b0b0b0 !important;
+}
+
+/* Dark mode pour additional-specs */
+.dark .additional-specs {
+  border-top-color: #444 !important;
+}
+
+.dark .additional-specs h5 {
+  color: #005F9B !important;
+}
+
+.dark .additional-specs .specs-grid .spec-item {
+  background-color: #2a2a2a !important;
+  color: #e5e5e5 !important;
+}
+
+.dark .additional-specs .specs-grid .spec-item strong {
+  color: #005F9B !important;
+}
+
+/* Dark mode pour reviews-list */
+.dark .reviews-list {
+  background-color: transparent !important;
+}
+
+.dark .reviews-list .review-item {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: #444 !important;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.dark .reviews-list .review-item .reviewer-name {
+  color: #e5e5e5 !important;
+}
+
+.dark .reviews-list .review-item .review-date {
+  color: #999 !important;
+}
+
+.dark .reviews-list .review-item .review-text {
+  color: #b0b0b0 !important;
+}
+
+.dark .reviews-heading {
+  color: #e5e5e5 !important;
+}
+
+/* Dark mode pour rating-summary */
+.dark .rating-summary {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.dark .rating-summary .summary-heading {
+  color: #e5e5e5 !important;
+}
+
+.dark .rating-summary .rating-number {
+  color: #005F9B !important;
+}
+
+.dark .rating-summary .rating-label {
+  color: #b0b0b0 !important;
+}
+
+.dark .rating-summary .rating-count {
+  color: #999 !important;
+}
+
+.dark .rating-summary .rating-bar {
+  background-color: #3a3a3a !important;
+}
+
+.dark .rating-summary .rating-bar-fill {
+  background-color: #005F9B !important;
+}
+
+/* Dark mode pour no-reviews */
+.dark .no-reviews {
+  color: #999 !important;
+}
+
+/* Dark mode pour car-gallery */
+.dark .car-gallery {
+  background-color: transparent !important;
+}
+
+.dark .car-gallery .thumbnail {
+  border-color: #444 !important;
+}
+
+.dark .car-gallery .thumbnail.active {
+  border-color: #005F9B !important;
+}
+
+/* Dark mode pour pills et bd-example-tabs */
+.dark .pills,
+.dark .bd-example-tabs {
+  background-color: transparent !important;
+}
+
+/* Dark mode pour tous les tab-content - PRIORITÉ MAXIMALE */
+.dark .pills .tab-content,
+.dark .bd-example-tabs .tab-content,
+.dark .ftco-car-details .tab-content,
+.dark section.ftco-car-details .tab-content,
+.dark .tab-content {
+  background-color: #2a2a2a !important;
+  color: #e5e5e5 !important;
+  border-radius: 12px;
+}
+
+.dark .pills .tab-pane,
+.dark .bd-example-tabs .tab-pane,
+.dark .tab-pane {
+  background-color: transparent !important;
+  color: #e5e5e5 !important;
+}
+
+/* Dark mode pour le contenu général */
+.dark .ftco-car-details .row,
+.dark section.ftco-car-details .row {
+  background-color: transparent !important;
+}
+
+.dark .ftco-car-details .col-md-12,
+.dark section.ftco-car-details .col-md-12 {
+  background-color: transparent !important;
+}
+
+/* Dark mode pour le contenu général des onglets */
+.dark .tab-pane {
+  color: #e5e5e5 !important;
+}
+
+.dark .tab-pane h3,
+.dark .tab-pane h4,
+.dark .tab-pane h5 {
+  color: #e5e5e5 !important;
+}
+
+.dark .tab-pane p {
+  color: #b0b0b0 !important;
+}
+
+/* Dark mode pour les sections similaires */
+.dark section.ftco-section.ftco-no-pt {
+  background-color: #1a1a1a !important;
+  color: #e5e5e5 !important;
+}
+
+.dark section.ftco-section.ftco-no-pt .container {
+  background-color: transparent !important;
+}
+
+.dark section.ftco-section.ftco-no-pt .heading-section h2,
+.dark section.ftco-section.ftco-no-pt .heading-section .subheading {
+  color: #e5e5e5 !important;
+}
+
+/* Dark mode pour tous les textes dans les onglets */
+.dark .tab-content * {
+  color: inherit;
+}
+
+.dark .tab-content h1,
+.dark .tab-content h2,
+.dark .tab-content h3,
+.dark .tab-content h4,
+.dark .tab-content h5,
+.dark .tab-content h6 {
+  color: #e5e5e5 !important;
+}
+
+.dark .tab-content p,
+.dark .tab-content span,
+.dark .tab-content div,
+.dark .tab-content li {
+  color: #b0b0b0 !important;
+}
+
+.dark .tab-content .text-muted {
+  color: #999 !important;
+}
+
+/* Dark mode pour les boutons dans les onglets */
+.dark .tab-content .btn-primary {
+  background-color: #005F9B !important;
+  border-color: #005F9B !important;
+  color: #fff !important;
+}
+
+.dark .tab-content .btn-primary:hover {
+  background-color: #004a7a !important;
+  border-color: #004a7a !important;
 }
 
 /* Dark mode pour les sections avec bg-light */

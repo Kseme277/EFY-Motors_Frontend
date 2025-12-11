@@ -4,9 +4,9 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CarCardComponent, CarCard } from '../../shared/components/car-card/car-card.component';
-import { getFeaturedCars } from '../../data/featured-cars.data';
 import { VideoModalComponent } from '../../shared/components/video-modal/video-modal.component';
 import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
+import { ApiService } from '../../services/api.service';
 
 declare var $: any;
 
@@ -25,9 +25,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   featuredCars: CarCard[] = [];
   isVideoModalOpen = false;
   currentVideoId = '';
-  isLoadingFeatured: boolean = false;
+  isLoadingFeatured: boolean = true;
 
-  constructor(private scrollAnimationService: ScrollAnimationService) {}
+  constructor(
+    private scrollAnimationService: ScrollAnimationService,
+    private apiService: ApiService
+  ) {}
 
   openVideoModal(videoId: string) {
     this.currentVideoId = videoId;
@@ -40,21 +43,46 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Utiliser les données statiques pour les véhicules en vedette
-    const featuredCarsData = getFeaturedCars();
-    this.featuredCars = featuredCarsData.map(car => ({
-      id: car.id,
-      name: car.name,
-      image: car.image,
-      tags: [car.brand],
-      price: car.price,
-      brand: car.brand,
-      mileage: car.mileage,
-      transmission: car.transmission,
-      seats: car.seats,
-      luggage: car.luggage,
-      fuel: car.fuel,
-    }));
+    this.loadFeaturedVehicles();
+  }
+
+  private loadFeaturedVehicles() {
+    this.isLoadingFeatured = true;
+    this.apiService.getFeaturedVehicles(6).subscribe({
+      next: (response) => {
+        const vehicles = response.items || response || [];
+        // Filtrer les doublons par ID
+        const uniqueVehicles = vehicles.filter((vehicle: any, index: number, self: any[]) => 
+          index === self.findIndex((v: any) => v.id === vehicle.id)
+        );
+        
+        this.featuredCars = uniqueVehicles.map((vehicle: any) => ({
+          id: vehicle.id,
+          name: `${vehicle.marque} ${vehicle.modele}`,
+          image: vehicle.photo_principale || vehicle.photos?.[0] || 'assets/images/car-1.jpg',
+          tags: vehicle.tags || [vehicle.marque],
+          price: vehicle.prix,
+          brand: vehicle.marque,
+          mileage: vehicle.kilometrage,
+          transmission: vehicle.boite_vitesse,
+          seats: vehicle.nombre_places,
+          luggage: vehicle.nombre_bagages,
+          fuel: vehicle.carburant,
+          nombre_avis: vehicle.nombre_avis || 0,
+          rating: vehicle.rating || 0
+        }));
+        this.isLoadingFeatured = false;
+        // Réinitialiser le carousel après le chargement des données
+        setTimeout(() => {
+          this.initializeCarCarousel();
+        }, 500);
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des véhicules en vedette:', error);
+        this.featuredCars = [];
+        this.isLoadingFeatured = false;
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -174,37 +202,37 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 1500);
   }
 
-  private initializeCarousels() {
+  private initializeCarCarousel() {
     // Vérifier que jQuery et owlCarousel sont disponibles
     if (typeof $ === 'undefined' || typeof $.fn.owlCarousel === 'undefined') {
       // Réessayer après un court délai
-      setTimeout(() => this.initializeCarousels(), 200);
+      setTimeout(() => this.initializeCarCarousel(), 200);
       return;
     }
 
-    setTimeout(() => {
-      // Carousel des véhicules - initialiser en premier
-      if ($('.carousel-car').length && !this.carCarouselInstance) {
-        try {
-          const $carCarousel = $('.carousel-car');
-          
-          // Détruire toutes les instances existantes
-          if ($carCarousel.hasClass('owl-loaded')) {
-            try {
-              $carCarousel.trigger('destroy.owl.carousel');
-              $carCarousel.removeClass('owl-loaded owl-drag');
-              $carCarousel.find('.owl-stage-outer').children().unwrap();
-            } catch (e) {
-              // Ignorer si déjà détruit
-            }
+    if ($('.carousel-car').length && this.featuredCars.length > 0) {
+      try {
+        const $carCarousel = $('.carousel-car');
+        
+        // Détruire toutes les instances existantes
+        if ($carCarousel.hasClass('owl-loaded')) {
+          try {
+            $carCarousel.owlCarousel('destroy');
+            $carCarousel.removeClass('owl-loaded owl-drag');
+            $carCarousel.find('.owl-stage-outer').children().unwrap();
+          } catch (e) {
+            // Ignorer si déjà détruit
           }
-          
-          // Réinitialiser complètement
-          $carCarousel.removeData();
-          
+        }
+        
+        // Réinitialiser complètement
+        $carCarousel.removeData();
+        
+        // Vérifier qu'il y a des items avant d'initialiser
+        if ($carCarousel.children('.item').length > 0) {
           this.carCarouselInstance = $carCarousel.owlCarousel({
             items: 2,
-            loop: true,
+            loop: this.featuredCars.length > 2,
             margin: 30,
             autoplay: true,
             autoplayTimeout: 4000,
@@ -223,10 +251,22 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
               $carCarousel.css('opacity', '1');
             }
           });
-        } catch (e) {
-          console.error('Error initializing car carousel:', e);
         }
+      } catch (e) {
+        console.error('Error initializing car carousel:', e);
       }
+    }
+  }
+
+  private initializeCarousels() {
+    // Vérifier que jQuery et owlCarousel sont disponibles
+    if (typeof $ === 'undefined' || typeof $.fn.owlCarousel === 'undefined') {
+      // Réessayer après un court délai
+      setTimeout(() => this.initializeCarousels(), 200);
+      return;
+    }
+
+    setTimeout(() => {
 
       // Carousel hero
       if ($('.hero-carousel').length && !this.heroCarouselInstance) {

@@ -12,6 +12,16 @@
       <div class="car-price" *ngIf="showPrice && car.price">
         <span class="price-value">{{ car.price | number }} FCFA</span>
       </div>
+      <div class="car-rating" *ngIf="car.nombre_avis !== undefined && car.nombre_avis > 0">
+        <div class="rating-stars" *ngIf="car.rating && car.rating > 0">
+          <i class="ion-ios-star" *ngFor="let star of getStarsArray(car.rating)"></i>
+          <i class="ion-ios-star-outline" *ngFor="let star of getEmptyStars(car.rating)"></i>
+        </div>
+        <span class="rating-text">
+          <span class="rating-value" *ngIf="car.rating && car.rating > 0">{{ car.rating.toFixed(1) }}</span>
+          <span class="rating-count">({{ car.nombre_avis }} avis)</span>
+        </span>
+      </div>
       <a *ngIf="showDetails" [routerLink]="['/cars', car.id]" class="btn-details">Voir détails</a>
     </div>
   </div>

@@ -41,7 +41,18 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="car-details present-zoom">
-          <div class="img rounded" [style.background-image]="'url(' + car.image + ')'"></div>
+          <!-- Galerie de photos -->
+          <div class="car-gallery" *ngIf="car.photos && car.photos.length > 0">
+            <div class="main-image">
+              <img [src]="car.image" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
+            </div>
+            <div class="thumbnail-images" *ngIf="car.photos.length > 1">
+              <div class="thumbnail" *ngFor="let photo of car.photos" (click)="car.image = photo" [class.active]="car.image === photo">
+                <img [src]="photo" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
+              </div>
+            </div>
+          </div>
+          <div class="img rounded" *ngIf="!car.photos || car.photos.length === 0" [style.background-image]="'url(' + car.image + ')'"></div>
           <div class="text text-center">
             <span class="subheading">{{ car.brand }}</span>
             <h2>{{ car.name }}</h2>
@@ -109,38 +120,45 @@
     </div>
     <div class="row">
       <div class="col-md-12 pills">
-        <div class="bd-example bd-example-tabs">
+        <div class="bd-example bd-example-tabs modern-tabs-container">
           <div class="d-flex justify-content-center">
             <ul class="nav nav-tabs mb-4" id="car-tabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" [class.active]="isActiveTab('features')" (click)="setActiveTab('features')" type="button">Caractéristiques</button>
-              </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" [class.active]="isActiveTab('description')" (click)="setActiveTab('description')" type="button">Description</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" [class.active]="isActiveTab('review')" (click)="setActiveTab('review')" type="button">Avis</button>
               </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" [class.active]="isActiveTab('devis')" (click)="setActiveTab('devis')" type="button">Demande de devis</button>
+              </li>
             </ul>
           </div>
 
           <div class="tab-content" id="car-tab-content">
-            <div class="tab-pane" [class.show]="isActiveTab('features')" [class.active]="isActiveTab('features')" [hidden]="!isActiveTab('features')">
-              <div class="row">
-                <div class="col-md-4" *ngFor="let featureGroup of getFeatureGroups()">
-                  <ul class="features-list">
-                    <li class="feature-item" [class.check]="feature.available" [class.remove]="!feature.available" *ngFor="let feature of featureGroup">
-                      <span [class]="feature.available ? 'ion-ios-checkmark' : 'ion-ios-close'"></span>{{ feature.name }}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
             <div class="tab-pane" [class.show]="isActiveTab('description')" [class.active]="isActiveTab('description')" [hidden]="!isActiveTab('description')">
               <div class="description-content">
                 <h4>Description du véhicule</h4>
-                <p class="description-text">{{ car.description || 'Une voiture exceptionnelle avec toutes les fonctionnalités modernes. Parfaite pour les longs trajets et le confort maximal.' }}</p>
+                <p class="description-text" *ngIf="car.description">{{ car.description }}</p>
+                <p class="description-text" *ngIf="!car.description">Une voiture exceptionnelle avec toutes les fonctionnalités modernes. Parfaite pour les longs trajets et le confort maximal.</p>
+                
+                <div *ngIf="car.annee || car.puissance || car.couleur || car.nombre_portes" class="additional-specs mt-4">
+                  <h5>Caractéristiques supplémentaires</h5>
+                  <div class="specs-grid">
+                    <div class="spec-item" *ngIf="car.annee">
+                      <strong>Année :</strong> {{ car.annee }}
+                    </div>
+                    <div class="spec-item" *ngIf="car.puissance">
+                      <strong>Puissance :</strong> {{ car.puissance }} CV
+                    </div>
+                    <div class="spec-item" *ngIf="car.couleur">
+                      <strong>Couleur :</strong> {{ car.couleur }}
+                    </div>
+                    <div class="spec-item" *ngIf="car.nombre_portes">
+                      <strong>Nombre de portes :</strong> {{ car.nombre_portes }}
+                    </div>
+                  </div>
+                </div>
                 
                 <h5>Caractéristiques principales</h5>
                 <p>Cette voiture offre une expérience de conduite exceptionnelle avec un design élégant et des performances remarquables. Idéale pour vos déplacements quotidiens ou vos voyages, elle combine confort, sécurité et style.</p>
@@ -159,10 +177,10 @@
                   <h3 class="reviews-heading">{{ reviews.length }} Avis</h3>
                   <div class="reviews-list">
                     <div class="review-item" *ngFor="let review of reviews">
-                      <div class="user-img" [style.background-image]="'url(' + review.avatar + ')'"></div>
+                      <div class="user-img" [style.background-image]="'url(' + (review.avatar_url || 'assets/images/testimonial1.jpg') + ')'"></div>
                       <div class="review-content">
                         <div class="review-header">
-                          <h4 class="reviewer-name">{{ review.name }}</h4>
+                          <h4 class="reviewer-name">{{ review.nom_client }}</h4>
                           <span class="review-date">{{ review.date }}</span>
                         </div>
                         <div class="review-rating">
@@ -174,6 +192,74 @@
                         <p class="review-text">{{ review.comment }}</p>
                       </div>
                     </div>
+                    <div *ngIf="reviews.length === 0" class="no-reviews">
+                      <p class="text-muted">Aucun avis pour le moment. Soyez le premier à laisser un avis !</p>
+                    </div>
+                  </div>
+
+                  <!-- Formulaire d'avis -->
+                  <div class="review-form-section">
+                    <h4 class="mb-4">Laisser un avis</h4>
+                    <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()">
+                      <div class="form-group">
+                        <label for="nom_client">Votre nom <span class="text-danger">*</span></label>
+                        <input 
+                          type="text" 
+                          id="nom_client" 
+                          class="form-control" 
+                          formControlName="nom_client"
+                          [class.is-invalid]="reviewForm.get('nom_client')?.invalid && reviewForm.get('nom_client')?.touched"
+                          placeholder="Votre nom">
+                        <div class="invalid-feedback" *ngIf="reviewForm.get('nom_client')?.invalid && reviewForm.get('nom_client')?.touched">
+                          Le nom est requis (minimum 2 caractères).
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Votre note <span class="text-danger">*</span></label>
+                        <div class="rating-input">
+                          <i 
+                            *ngFor="let star of [1,2,3,4,5]" 
+                            class="ion-ios-star star-rating"
+                            [class.filled]="star <= (hoveredRating || selectedRating)"
+                            [class.hover]="star <= hoveredRating"
+                            (click)="setRating(star)"
+                            (mouseenter)="onRatingHover(star)"
+                            (mouseleave)="onRatingLeave()">
+                          </i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="selectedRating === 0 && reviewForm.get('note')?.touched">
+                          Veuillez sélectionner une note.
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="commentaire">Votre avis <span class="text-danger">*</span></label>
+                        <textarea 
+                          id="commentaire" 
+                          class="form-control" 
+                          formControlName="commentaire"
+                          [class.is-invalid]="reviewForm.get('commentaire')?.invalid && reviewForm.get('commentaire')?.touched"
+                          rows="5"
+                          placeholder="Partagez votre expérience avec ce véhicule..."></textarea>
+                        <div class="invalid-feedback" *ngIf="reviewForm.get('commentaire')?.invalid && reviewForm.get('commentaire')?.touched">
+                          Le commentaire est requis (minimum 10 caractères).
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <button 
+                          type="submit" 
+                          class="btn btn-primary" 
+                          [disabled]="reviewForm.invalid || isLoadingReview || selectedRating === 0">
+                          <span *ngIf="!isLoadingReview">Publier mon avis</span>
+                          <span *ngIf="isLoadingReview">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            Publication...
+                          </span>
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
                 <div class="col-md-5">
@@ -200,13 +286,87 @@
                 </div>
               </div>
             </div>
+
+            <div class="tab-pane" [class.show]="isActiveTab('devis')" [class.active]="isActiveTab('devis')" [hidden]="!isActiveTab('devis')">
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="devis-form-container">
+                    <h3 class="text-center mb-4">Demande de devis</h3>
+                    <p class="text-center text-muted mb-4">Remplissez le formulaire ci-dessous pour obtenir un devis personnalisé pour ce véhicule.</p>
+                    
+                    <form [formGroup]="devisForm" (ngSubmit)="onSubmitDevis()">
+                      <div class="form-group">
+                        <label for="nom">Nom complet <span class="text-danger">*</span></label>
+                        <input 
+                          type="text" 
+                          id="nom" 
+                          class="form-control" 
+                          formControlName="nom"
+                          [class.is-invalid]="devisForm.get('nom')?.invalid && devisForm.get('nom')?.touched"
+                          placeholder="Votre nom complet">
+                        <div class="invalid-feedback" *ngIf="devisForm.get('nom')?.invalid && devisForm.get('nom')?.touched">
+                          Le nom est requis (minimum 2 caractères).
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="email">Email <span class="text-danger">*</span></label>
+                        <input 
+                          type="email" 
+                          id="email" 
+                          class="form-control" 
+                          formControlName="email"
+                          [class.is-invalid]="devisForm.get('email')?.invalid && devisForm.get('email')?.touched"
+                          placeholder="votre.email@example.com">
+                        <div class="invalid-feedback" *ngIf="devisForm.get('email')?.invalid && devisForm.get('email')?.touched">
+                          Veuillez entrer une adresse email valide.
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="telephone">Téléphone <span class="text-danger">*</span></label>
+                        <input 
+                          type="tel" 
+                          id="telephone" 
+                          class="form-control" 
+                          formControlName="telephone"
+                          [class.is-invalid]="devisForm.get('telephone')?.invalid && devisForm.get('telephone')?.touched"
+                          placeholder="+33 6 12 34 56 78">
+                        <div class="invalid-feedback" *ngIf="devisForm.get('telephone')?.invalid && devisForm.get('telephone')?.touched">
+                          Veuillez entrer un numéro de téléphone valide.
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="message">Message (optionnel)</label>
+                        <textarea 
+                          id="message" 
+                          class="form-control" 
+                          formControlName="message"
+                          rows="4"
+                          placeholder="Votre message ou questions supplémentaires..."></textarea>
+                      </div>
+
+                      <div class="form-group text-center mt-4">
+                        <button 
+                          type="submit" 
+                          class="btn btn-primary btn-lg py-3 px-5" 
+                          [disabled]="devisForm.invalid || isLoadingDevis"
+                          style="background-color: #005F9B; border-color: #005F9B;">
+                          <span *ngIf="!isLoadingDevis">Envoyer la demande</span>
+                          <span *ngIf="isLoadingDevis">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            Envoi en cours...
+                          </span>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-md-12 text-center">
-        <a routerLink="/contact" class="btn btn-primary btn-lg py-3 px-5" style="background-color: #005F9B; border-color: #005F9B;">Nous contacter pour l'achat</a>
       </div>
     </div>
   </div>

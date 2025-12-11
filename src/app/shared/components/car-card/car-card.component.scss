@@ -126,6 +126,48 @@
         }
       }
 
+      .car-rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        padding: 10px 0;
+        border-top: 1px solid #e9ecef;
+        border-bottom: 1px solid #e9ecef;
+
+        .rating-stars {
+          display: flex;
+          gap: 2px;
+
+          i {
+            font-size: 16px;
+            color: #ffd700;
+
+            &.ion-ios-star-outline {
+              color: #ddd;
+            }
+          }
+        }
+
+        .rating-text {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 14px;
+          color: #666;
+
+          .rating-value {
+            font-weight: 600;
+            color: #333;
+          }
+
+          .rating-count {
+            color: #999;
+            font-size: 12px;
+          }
+        }
+      }
+
       .btn-details {
         display: inline-block;
         background: #005F9B;
@@ -166,6 +208,29 @@
     
     .car-price .price-value {
       color: #005F9B;
+    }
+
+    .car-rating {
+      border-top-color: #444;
+      border-bottom-color: #444;
+
+      .rating-text {
+        color: #b0b0b0;
+
+        .rating-value {
+          color: #e5e5e5;
+        }
+
+        .rating-count {
+          color: #888;
+        }
+      }
+
+      .rating-stars {
+        i.ion-ios-star-outline {
+          color: #555;
+        }
+      }
     }
   }
   

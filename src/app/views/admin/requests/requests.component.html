@@ -1,0 +1,206 @@
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>Gestion des Demandes</strong>
+      </c-card-header>
+      <c-card-body>
+        <!-- Filtres et recherche -->
+        <c-row class="mb-3">
+          <c-col md="6">
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cilMagnifyingGlass" style="color: white !important; fill: white !important;"></svg>
+              </span>
+              <input
+                cFormControl
+                type="text"
+                placeholder="Rechercher par nom, email, véhicule..."
+                [(ngModel)]="searchTerm"
+                (keyup.enter)="onSearch()"
+              />
+            </c-input-group>
+          </c-col>
+          <c-col md="3">
+            <select cSelect [(ngModel)]="statusFilter" (change)="onFilterChange()">
+              <option value="all">Tous les statuts</option>
+              <option value="pending">En attente</option>
+              <option value="accepted">Acceptées</option>
+              <option value="rejected">Rejetées</option>
+            </select>
+          </c-col>
+          <c-col md="3">
+            <button cButton color="secondary" (click)="onSearch()">
+              <svg cIcon name="cilMagnifyingGlass" class="me-2" style="color: white !important; fill: white !important;"></svg>
+              Rechercher
+            </button>
+          </c-col>
+        </c-row>
+
+        <!-- Tableau -->
+        <div *ngIf="isLoading" class="text-center py-5">
+          <div class="spinner-border" role="status" style="color: var(--cui-primary);">
+            <span class="visually-hidden">Chargement...</span>
+          </div>
+        </div>
+
+        <c-alert *ngIf="!isLoading && errorMessage" color="danger" class="mb-3">
+          {{ errorMessage }}
+        </c-alert>
+
+        <table *ngIf="!isLoading" [hover]="true" [responsive]="true" [striped]="true" cTable class="mb-0">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Client</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+              <th scope="col">Véhicule</th>
+              <th scope="col">Date</th>
+              <th scope="col">Statut</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of filteredRequests">
+              <td><strong>#{{ request.id }}</strong></td>
+              <td>{{ request.nom }}</td>
+              <td>{{ request.email }}</td>
+              <td>{{ request.telephone || '-' }}</td>
+              <td>{{ getVehicleName(request.vehicle) }}</td>
+              <td>{{ formatDate(request.created_at) }}</td>
+              <td>
+                <c-badge [color]="getStatusBadgeClass(request.statut)">
+                  {{ statusLabels[request.statut] }}
+                </c-badge>
+              </td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button
+                    *ngIf="request.message"
+                    cButton
+                    color="info"
+                    size="sm"
+                    (click)="viewMessage(request)"
+                    title="Voir le message"
+                    class="me-1"
+                  >
+                    <svg cIcon name="cilEnvelopeOpen" style="color: white !important; fill: white !important;"></svg>
+                  </button>
+                  <button
+                    *ngIf="request.statut === 'pending'"
+                    cButton
+                    color="success"
+                    size="sm"
+                    (click)="updateStatus(request.id, 'accepted')"
+                    title="Accepter"
+                    class="me-1"
+                  >
+                    <svg cIcon name="cilCheck" style="color: white !important; fill: white !important;"></svg>
+                  </button>
+                  <button
+                    *ngIf="request.statut === 'pending'"
+                    cButton
+                    color="warning"
+                    size="sm"
+                    (click)="updateStatus(request.id, 'rejected')"
+                    title="Rejeter"
+                    class="me-1"
+                    style="font-size: 1.2rem; line-height: 1;"
+                  >
+                    ×
+                  </button>
+                  <button
+                    cButton
+                    color="danger"
+                    size="sm"
+                    (click)="deleteRequest(request.id)"
+                    title="Supprimer"
+                  >
+                    <svg cIcon name="cilTrash" style="color: white !important; fill: white !important;"></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="filteredRequests.length === 0">
+              <td colspan="8" class="text-center py-4">
+                <p class="mb-0" style="color: var(--cui-body-color-secondary);">Aucune demande trouvée</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div *ngIf="!isLoading && totalPages > 1" class="d-flex justify-content-between align-items-center mt-3">
+          <div>
+            <p class="mb-0" style="color: var(--cui-body-color-secondary);">
+              Page {{ currentPage }} sur {{ totalPages }} ({{ totalItems }} demandes)
+            </p>
+          </div>
+          <div>
+            <button cButton color="secondary" size="sm" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+              Précédent
+            </button>
+            <button cButton color="secondary" size="sm" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)" class="ms-2">
+              Suivant
+            </button>
+          </div>
+        </div>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+<!-- Modal pour afficher le message -->
+<c-modal
+  [visible]="showMessageModal"
+  (visibleChange)="showMessageModal = $event"
+  alignment="center"
+  size="lg"
+>
+  <c-modal-header>
+    <h5 cModalTitle>Message de la demande #{{ selectedRequest?.id }}</h5>
+    <button (click)="closeMessageModal()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <div *ngIf="selectedRequest">
+      <div class="mb-3">
+        <strong style="color: var(--cui-body-color);">Client :</strong> 
+        <span style="color: var(--cui-body-color);">{{ selectedRequest.nom }}</span>
+      </div>
+      <div class="mb-3">
+        <strong style="color: var(--cui-body-color);">Email :</strong> 
+        <span style="color: var(--cui-body-color);">{{ selectedRequest.email }}</span>
+      </div>
+      <div class="mb-3" *ngIf="selectedRequest.telephone">
+        <strong style="color: var(--cui-body-color);">Téléphone :</strong> 
+        <span style="color: var(--cui-body-color);">{{ selectedRequest.telephone }}</span>
+      </div>
+      <div class="mb-3">
+        <strong style="color: var(--cui-body-color);">Véhicule :</strong> 
+        <span style="color: var(--cui-body-color);">{{ getVehicleName(selectedRequest.vehicle) }}</span>
+      </div>
+      <div class="mb-3">
+        <strong style="color: var(--cui-body-color);">Date :</strong> 
+        <span style="color: var(--cui-body-color);">{{ formatDate(selectedRequest.created_at) }}</span>
+      </div>
+      <div class="mb-3">
+        <strong style="color: var(--cui-body-color);">Statut :</strong>
+        <c-badge [color]="getStatusBadgeClass(selectedRequest.statut)" class="ms-2">
+          {{ statusLabels[selectedRequest.statut] }}
+        </c-badge>
+      </div>
+      <hr style="border-color: var(--cui-border-color);">
+      <div>
+        <strong style="color: var(--cui-body-color);">Message :</strong>
+        <div class="mt-2 p-3" style="background-color: var(--cui-tertiary-bg); border-radius: 4px; min-height: 100px; border: 1px solid var(--cui-border-color);">
+          <p class="mb-0" style="white-space: pre-wrap; color: var(--cui-body-color);">{{ selectedRequest.message || 'Aucun message' }}</p>
+        </div>
+      </div>
+    </div>
+  </c-modal-body>
+  <c-modal-footer>
+    <button cButton color="secondary" (click)="closeMessageModal()">Fermer</button>
+  </c-modal-footer>
+</c-modal>
+

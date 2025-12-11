@@ -4,9 +4,21 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { STATIC_CARS, StaticCar } from '../../data/cars.data';
+import { ApiService } from '../../services/api.service';
 
-type Car = StaticCar;
+interface Car {
+  id: number;
+  name: string;
+  brand: string;
+  image: string;
+  price: number;
+  mileage: number;
+  transmission: string;
+  seats: number;
+  luggage: number;
+  fuel: string;
+  reviews?: any[];
+}
 
 @Component({
   selector: 'app-cars',
@@ -17,7 +29,7 @@ type Car = StaticCar;
 })
 export class CarsComponent implements OnInit {
   allCars: Car[] = [];
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   cars: Car[] = [];
   displayedCars: Car[] = [];
@@ -26,6 +38,7 @@ export class CarsComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 6;
   totalPages: number = 1;
+  totalItems: number = 0;
 
   // Calcul du kilométrage maximum disponible
   maxAvailableMileage: number = 100000;
@@ -43,26 +56,61 @@ export class CarsComponent implements OnInit {
   transmissions: string[] = ['Manuelle', 'Automatique'];
   seats: number[] = [2, 4, 5, 7];
   luggage: number[] = [1, 2, 3, 4];
-  fuels: string[] = ['Essence', 'Diesel', 'Hybride', 'Électrique'];
+  fuels: string[] = ['Essence', 'Diesel', 'Hybride', 'Électrique', 'Hybride Rechargeable'];
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    // Init statique: copier les véhicules depuis STATIC_CARS
-    this.allCars = [...STATIC_CARS];
+    this.loadVehicles();
+  }
 
-    // Initialiser les marques disponibles
-    this.brands = [...new Set(this.allCars.map((c) => c.brand))].sort();
+  private loadVehicles() {
+    this.isLoading = true;
+    const params: any = {
+      page: this.currentPage,
+      size: 100, // Charger plus de véhicules pour les filtres
+      est_disponible: true
+    };
 
-    // Calculer le kilométrage maximum
-    const mileages = this.allCars.map((c) => c.mileage).filter((m) => m > 0);
-    if (mileages.length > 0) {
-      this.maxAvailableMileage = Math.max(...mileages);
-      this.maxMileage = this.maxAvailableMileage;
-    }
+    this.apiService.getVehicles(params).subscribe({
+      next: (response) => {
+        const vehicles = response.items || [];
+        this.allCars = vehicles.map((vehicle: any) => ({
+          id: vehicle.id,
+          name: `${vehicle.marque} ${vehicle.modele}`,
+          brand: vehicle.marque,
+          image: vehicle.photo_principale || vehicle.photos?.[0] || 'assets/images/car-1.jpg',
+          price: vehicle.prix,
+          mileage: vehicle.kilometrage,
+          transmission: vehicle.boite_vitesse,
+          seats: vehicle.nombre_places || 5,
+          luggage: vehicle.nombre_bagages || 0,
+          fuel: vehicle.carburant,
+          nombre_avis: vehicle.nombre_avis || 0,
+          rating: vehicle.rating || 0
+        }));
 
-    this.cars = [...this.allCars];
-    this.updatePagination();
+        // Initialiser les marques disponibles
+        this.brands = [...new Set(this.allCars.map((c) => c.brand))].sort();
+
+        // Calculer le kilométrage maximum
+        const mileages = this.allCars.map((c) => c.mileage).filter((m) => m > 0);
+        if (mileages.length > 0) {
+          this.maxAvailableMileage = Math.max(...mileages);
+          this.maxMileage = this.maxAvailableMileage;
+        }
+
+        this.totalItems = response.total || this.allCars.length;
+        this.filterCars();
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des véhicules:', error);
+        this.allCars = [];
+        this.cars = [];
+        this.isLoading = false;
+      }
+    });
   }
 
   updatePagination() {
@@ -70,6 +118,17 @@ export class CarsComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.displayedCars = this.cars.slice(startIndex, endIndex);
+  }
+
+  private mapFuelType(fuel: string): string {
+    const fuelMap: { [key: string]: string } = {
+      'essence': 'Essence',
+      'diesel': 'Diesel',
+      'electrique': 'Électrique',
+      'hybride': 'Hybride',
+      'hybride_rechargeable': 'Hybride Rechargeable'
+    };
+    return fuelMap[fuel?.toLowerCase()] || fuel || 'Essence';
   }
 
   goToPage(page: number) {
@@ -117,17 +176,6 @@ export class CarsComponent implements OnInit {
       'manual': 'Manuelle'
     };
     return transMap[transmission?.toLowerCase()] || transmission || 'Automatique';
-      }
-
-  private mapFuelType(fuel: string): string {
-    const fuelMap: { [key: string]: string } = {
-      'essence': 'Essence',
-      'diesel': 'Diesel',
-      'electrique': 'Électrique',
-      'hybride': 'Hybride',
-      'hybride_rechargeable': 'Hybride Rechargeable'
-    };
-    return fuelMap[fuel?.toLowerCase()] || fuel || 'Essence';
   }
 
   filterCars() {
@@ -147,8 +195,9 @@ export class CarsComponent implements OnInit {
       const matchLuggage =
         this.selectedLuggage === null || car.luggage === this.selectedLuggage;
 
+      const carFuelMapped = this.mapFuelType(car.fuel);
       const matchFuel =
-        this.selectedFuels.length === 0 || this.selectedFuels.includes(this.mapFuelType(car.fuel));
+        this.selectedFuels.length === 0 || this.selectedFuels.includes(carFuelMapped);
 
       return (
         matchBrand &&

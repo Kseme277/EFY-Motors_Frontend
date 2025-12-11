@@ -1,6 +1,8 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, ErrorHandler } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withDebugTracing } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withDebugTracing, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withRouterConfig, withViewTransitions } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { IconSetService } from '@coreui/icons-angular';
 
 import { routes } from './app.routes';
 
@@ -20,8 +22,19 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
+      withRouterConfig({
+        onSameUrlNavigation: 'reload'
+      }),
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'top',
+        anchorScrolling: 'enabled'
+      }),
+      withEnabledBlockingInitialNavigation(),
+      withViewTransitions(),
       withDebugTracing() // Activer le débogage du router
     ),
+    IconSetService,
+    provideAnimationsAsync(),
     { provide: ErrorHandler, useClass: CustomErrorHandler }
   ]
 };

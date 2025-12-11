@@ -23,9 +23,12 @@ export class ApiService {
     private authService: AuthService
   ) {}
 
-  // Contact
+  // Contact (endpoint public, pas besoin d'authentification)
   sendContactMessage(data: { name: string; email: string; subject: string; message: string }): Observable<any> {
-    return this.http.post(`${API_URL}/contact`, data, { headers: this.headers });
+    const publicHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(`${API_URL}/contact`, data, { headers: publicHeaders });
   }
 
   // Auth - Utilise AuthService maintenant
@@ -64,8 +67,8 @@ export class ApiService {
     });
   }
 
-  createReview(vehicleId: number, data: { name: string; rating: number; comment: string; avatar?: string }): Observable<any> {
-    return this.http.post(`${API_URL}/vehicules/${vehicleId}/reviews`, data, { headers: this.headers });
+  createReview(vehicleId: number, data: { nom_client: string; rating: number; comment: string; avatar_url?: string }): Observable<any> {
+    return this.http.post(`${API_URL}/vehicules/${vehicleId}/reviews`, data);
   }
 
   // Devis
@@ -128,6 +131,29 @@ export class ApiService {
 
   deleteReview(id: number): Observable<any> {
     return this.http.delete(`${API_URL}/reviews/${id}`, { headers: this.headers });
+  }
+
+  // Admin - Statistics
+  getVehicleStats(): Observable<any> {
+    // Récupère les statistiques des véhicules
+    return this.http.get(`${API_URL}/vehicules`, { 
+      params: { page: '1', size: '1' },
+      headers: this.headers 
+    });
+  }
+
+  getAvailableVehiclesCount(): Observable<any> {
+    return this.http.get(`${API_URL}/vehicules`, { 
+      params: { page: '1', size: '1', est_disponible: 'true' },
+      headers: this.headers 
+    });
+  }
+
+  getSoldVehiclesCount(): Observable<any> {
+    return this.http.get(`${API_URL}/vehicules`, { 
+      params: { page: '1', size: '1', est_disponible: 'false' },
+      headers: this.headers 
+    });
   }
 }
 

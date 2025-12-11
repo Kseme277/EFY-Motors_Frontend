@@ -1,0 +1,295 @@
+// Styles spécifiques pour le composant requests
+
+// Forcer les cartes à s'adapter au thème sombre
+::ng-deep {
+  // Cartes CoreUI en thème sombre
+  [data-coreui-theme="dark"] {
+    c-card,
+    .card {
+      background-color: var(--cui-card-bg) !important;
+      color: var(--cui-body-color) !important;
+      border-color: var(--cui-card-border-color) !important;
+    }
+    
+    c-card-header,
+    .card-header {
+      background-color: transparent !important;
+      color: var(--cui-body-color) !important;
+      border-bottom-color: var(--cui-border-color) !important;
+    }
+    
+    c-card-body,
+    .card-body {
+      background-color: transparent !important;
+      color: var(--cui-body-color) !important;
+    }
+    
+    // Inputs et selects dans les cartes
+    c-card-body input,
+    c-card-body select,
+    c-card-body .form-control,
+    c-card-body .form-select {
+      background-color: var(--cui-body-bg) !important;
+      color: var(--cui-body-color) !important;
+      border-color: var(--cui-border-color) !important;
+    }
+    
+    // Input group text
+    c-card-body .input-group-text {
+      background-color: var(--cui-tertiary-bg) !important;
+      color: var(--cui-body-color) !important;
+      border-color: var(--cui-border-color) !important;
+    }
+    
+    // Tableaux dans les cartes
+    c-card-body table,
+    c-card-body c-table {
+      background-color: transparent !important;
+      color: var(--cui-body-color) !important;
+    }
+    
+    c-card-body table th,
+    c-card-body table td,
+    c-card-body c-table th,
+    c-card-body c-table td {
+      color: var(--cui-body-color) !important;
+      border-color: var(--cui-border-color) !important;
+    }
+    
+    // Textes dans les cartes
+    c-card-body strong,
+    c-card-body p,
+    c-card-body span,
+    c-card-body div {
+      color: var(--cui-body-color) !important;
+    }
+  }
+  
+  // Forcer les icônes à être blanches (sauf dans le header)
+  c-card-body {
+    svg[cIcon] {
+      color: white !important;
+      fill: white !important;
+      --ci-primary-color: white !important;
+      
+      path,
+      rect,
+      circle,
+      polygon,
+      line {
+        fill: white !important;
+        stroke: white !important;
+        color: white !important;
+      }
+      
+      path.ci-primary,
+      rect.ci-primary,
+      path[fill*="var(--ci-primary-color"],
+      rect[fill*="var(--ci-primary-color"] {
+        fill: white !important;
+        stroke: white !important;
+      }
+    }
+    
+    // Pour les icônes dans les boutons
+    c-button svg[cIcon],
+    button svg[cIcon],
+    a[cButton] svg[cIcon] {
+      color: white !important;
+      fill: white !important;
+      --ci-primary-color: white !important;
+      
+      path,
+      rect,
+      circle,
+      polygon,
+      line {
+        fill: white !important;
+        stroke: white !important;
+        color: white !important;
+      }
+      
+      path.ci-primary,
+      rect.ci-primary,
+      path[fill*="var(--ci-primary-color"],
+      rect[fill*="var(--ci-primary-color"] {
+        fill: white !important;
+        stroke: white !important;
+      }
+    }
+    
+    // Pour les icônes dans le groupe d'input
+    c-input-group svg[cIcon] {
+      color: white !important;
+      fill: white !important;
+      --ci-primary-color: white !important;
+      
+      path,
+      rect,
+      circle,
+      polygon,
+      line {
+        fill: white !important;
+        stroke: white !important;
+        color: white !important;
+      }
+      
+      path.ci-primary,
+      rect.ci-primary,
+      path[fill*="var(--ci-primary-color"],
+      rect[fill*="var(--ci-primary-color"] {
+        fill: white !important;
+        stroke: white !important;
+      }
+    }
+  }
+  
+  // Styles pour le modal - adaptation au thème
+  [data-coreui-theme="dark"] {
+    c-modal,
+    .modal {
+      .modal-content {
+        background-color: var(--cui-body-bg) !important;
+        color: var(--cui-body-color) !important;
+        border-color: var(--cui-border-color) !important;
+      }
+      
+      .modal-header {
+        background-color: transparent !important;
+        color: var(--cui-body-color) !important;
+        border-bottom-color: var(--cui-border-color) !important;
+        
+        h5,
+        .modal-title {
+          color: var(--cui-body-color) !important;
+        }
+        
+        button[cButtonClose] {
+          color: var(--cui-body-color) !important;
+          opacity: 0.8;
+          
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+      
+      .modal-body {
+        background-color: transparent !important;
+        color: var(--cui-body-color) !important;
+        
+        strong,
+        span,
+        p,
+        div {
+          color: var(--cui-body-color) !important;
+        }
+        
+        hr {
+          border-color: var(--cui-border-color) !important;
+        }
+      }
+      
+      .modal-footer {
+        background-color: transparent !important;
+        border-top-color: var(--cui-border-color) !important;
+      }
+    }
+  }
+  
+  // Styles pour le modal en thème clair aussi
+  [data-coreui-theme="light"] {
+    c-modal,
+    .modal {
+      .modal-content {
+        background-color: var(--cui-body-bg) !important;
+        color: var(--cui-body-color) !important;
+        border-color: var(--cui-border-color) !important;
+      }
+      
+      .modal-header {
+        background-color: transparent !important;
+        color: var(--cui-body-color) !important;
+        border-bottom-color: var(--cui-border-color) !important;
+        
+        h5,
+        .modal-title {
+          color: var(--cui-body-color) !important;
+        }
+      }
+      
+      .modal-body {
+        background-color: transparent !important;
+        color: var(--cui-body-color) !important;
+        
+        strong,
+        span,
+        p,
+        div {
+          color: var(--cui-body-color) !important;
+        }
+        
+        hr {
+          border-color: var(--cui-border-color) !important;
+        }
+      }
+      
+      .modal-footer {
+        background-color: transparent !important;
+        border-top-color: var(--cui-border-color) !important;
+      }
+    }
+  }
+  
+  // Styles généraux pour le modal (tous thèmes)
+  c-modal {
+    .modal-content {
+      background-color: var(--cui-body-bg) !important;
+      color: var(--cui-body-color) !important;
+      border-color: var(--cui-border-color) !important;
+    }
+    
+    .modal-header {
+      background-color: transparent !important;
+      color: var(--cui-body-color) !important;
+      border-bottom-color: var(--cui-border-color) !important;
+      
+      h5,
+      c-modal-title,
+      [cModalTitle] {
+        color: var(--cui-body-color) !important;
+      }
+      
+      button[cButtonClose] {
+        color: var(--cui-body-color) !important;
+        opacity: 0.8;
+        
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    
+    .modal-body {
+      background-color: transparent !important;
+      color: var(--cui-body-color) !important;
+      
+      strong,
+      span,
+      p,
+      div {
+        color: var(--cui-body-color) !important;
+      }
+      
+      hr {
+        border-color: var(--cui-border-color) !important;
+      }
+    }
+    
+    .modal-footer {
+      background-color: transparent !important;
+      border-top-color: var(--cui-border-color) !important;
+    }
+  }
+}
+

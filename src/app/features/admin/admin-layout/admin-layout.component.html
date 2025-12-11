@@ -1,13 +1,21 @@
 <div class="admin-container">
+  <!-- Overlay pour mobile -->
+  <div class="sidebar-overlay" *ngIf="isMobileMenuOpen" (click)="closeSidebar()"></div>
+  
   <!-- Sidebar -->
   <aside class="admin-sidebar" [class.collapsed]="!isSidebarOpen" [class.open]="isMobileMenuOpen">
     <div class="sidebar-header">
       <div class="logo">
+        <div class="logo-circle">
+          <img src="assets/images/logo.png" alt="EFY Motors" class="logo-img">
+        </div>
+        <div class="logo-text">
         <h2>EFY Motors</h2>
         <span class="logo-subtitle">Admin Panel</span>
+        </div>
       </div>
-      <button class="sidebar-toggle" (click)="toggleSidebar()">
-        <span class="ion-ios-menu"></span>
+      <button class="sidebar-close-btn" (click)="closeSidebar()" *ngIf="isMobileMenuOpen" aria-label="Fermer le menu">
+        <span class="ion-ios-close"></span>
       </button>
     </div>
     
@@ -27,10 +35,10 @@
     </nav>
     
     <div class="sidebar-footer">
-      <a routerLink="/" class="back-to-site">
-        <span class="ion-ios-home"></span>
-        <span>Retour au site</span>
-      </a>
+      <button (click)="goToLogin()" class="login-button">
+        <span class="ion-ios-log-out"></span>
+        <span>Déconnexion</span>
+      </button>
     </div>
   </aside>
 
@@ -38,7 +46,7 @@
   <main class="admin-main">
     <header class="admin-header">
       <div class="header-left">
-        <button class="menu-toggle" (click)="toggleSidebar()">
+        <button class="sidebar-toggle-btn" (click)="toggleSidebar()" [attr.aria-label]="isSidebarOpen ? 'Réduire la sidebar' : 'Agrandir la sidebar'">
           <span class="ion-ios-menu"></span>
         </button>
         <h1 class="page-title">{{ getPageTitle() }}</h1>

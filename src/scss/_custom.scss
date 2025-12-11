@@ -1,0 +1,356 @@
+// Here you can add other styles
+
+// custom .chartjs-tooltip-body-item padding
+@use "charts";
+
+// custom tweaks for scrollbar styling (wip)
+@use "scrollbar";
+
+ // custom calendar today cell color
+.calendar-cell.today {
+  --cui-calendar-cell-today-color: var(--cui-info) !important;
+}
+
+// custom select week cursor pointer
+.select-week .calendar-row.current {
+  cursor: pointer;
+}
+
+// ============================================
+// COULEURS EFY MOTORS - Personnalisation CoreUI
+// ============================================
+
+// Couleurs principales EFY Motors
+$efy-primary: #005F9B;
+$efy-primary-hover: #004A7A;
+$efy-primary-light: rgba(0, 95, 155, 0.1);
+$efy-accent: #8B2E3D;
+$efy-accent-hover: #A03D4F;
+
+// Variables CSS pour le thème light
+:root,
+[data-coreui-theme="light"] {
+  --cui-body-bg: #fff;
+  --cui-body-color: #212529;
+  --cui-tertiary-bg: #f8f9fa;
+  
+  // Couleurs primaires EFY Motors
+  --cui-primary: #{$efy-primary};
+  --cui-primary-rgb: 0, 95, 155;
+  --cui-primary-text-emphasis: #{$efy-primary-hover};
+  --cui-primary-bg-subtle: #{$efy-primary-light};
+  --cui-primary-border-subtle: rgba(0, 95, 155, 0.2);
+  
+  // Couleurs des liens
+  --cui-link-color: #{$efy-primary};
+  --cui-link-hover-color: #{$efy-primary-hover};
+  
+  // Couleurs des boutons
+  --cui-btn-primary-bg: #{$efy-primary};
+  --cui-btn-primary-border-color: #{$efy-primary};
+  --cui-btn-primary-hover-bg: #{$efy-primary-hover};
+  --cui-btn-primary-hover-border-color: #{$efy-primary-hover};
+  --cui-btn-primary-active-bg: #{$efy-primary-hover};
+  --cui-btn-primary-active-border-color: #{$efy-primary-hover};
+  
+  // Couleurs des badges
+  --cui-badge-primary-bg: #{$efy-primary};
+  
+  // Couleurs des tableaux
+  --cui-table-active-bg: #{$efy-primary-light};
+  --cui-table-hover-bg: rgba(0, 95, 155, 0.05);
+  
+  // Couleurs des bordures
+  --cui-border-color: #dee2e6;
+  
+  // Couleurs des icônes dans la sidebar
+  --cui-sidebar-nav-link-color: rgba(255, 255, 255, 0.8);
+  --cui-sidebar-nav-link-hover-color: #fff;
+  --cui-sidebar-nav-link-active-color: #fff;
+  --cui-sidebar-nav-link-active-bg: rgba(255, 255, 255, 0.15);
+  
+  // Couleurs des cartes
+  --cui-card-bg: #fff;
+  --cui-card-border-color: rgba(0, 0, 0, 0.125);
+  
+  // Couleurs des inputs
+  --cui-form-control-focus-border-color: #{$efy-primary};
+  --cui-form-control-focus-box-shadow: 0 0 0 0.25rem rgba(0, 95, 155, 0.25);
+  
+  // Couleurs des dropdowns
+  --cui-dropdown-link-active-bg: #{$efy-primary};
+  --cui-dropdown-link-hover-bg: #{$efy-primary-light};
+  
+  // Couleurs des breadcrumbs
+  --cui-breadcrumb-item-active-color: #{$efy-primary};
+  
+  // Couleurs des progress bars
+  --cui-progress-bar-bg: #{$efy-primary};
+  
+  // Couleurs des alertes
+  --cui-alert-primary-bg: #{$efy-primary-light};
+  --cui-alert-primary-border-color: rgba(0, 95, 155, 0.3);
+  --cui-alert-primary-color: #{$efy-primary-hover};
+}
+
+// Variables CSS pour le thème dark
+[data-coreui-theme="dark"] {
+  --cui-body-bg: #212529;
+  --cui-body-color: #fff;
+  --cui-tertiary-bg: #1a1d20;
+  
+  // Couleurs primaires EFY Motors (plus claires en dark mode)
+  --cui-primary: #4da6ff;
+  --cui-primary-rgb: 77, 166, 255;
+  --cui-primary-text-emphasis: #6bb3ff;
+  --cui-primary-bg-subtle: rgba(77, 166, 255, 0.15);
+  --cui-primary-border-subtle: rgba(77, 166, 255, 0.3);
+  
+  // Couleurs des liens
+  --cui-link-color: #4da6ff;
+  --cui-link-hover-color: #6bb3ff;
+  
+  // Couleurs des boutons
+  --cui-btn-primary-bg: #{$efy-primary};
+  --cui-btn-primary-border-color: #{$efy-primary};
+  --cui-btn-primary-hover-bg: #4da6ff;
+  --cui-btn-primary-hover-border-color: #4da6ff;
+  --cui-btn-primary-active-bg: #4da6ff;
+  --cui-btn-primary-active-border-color: #4da6ff;
+  
+  // Couleurs des badges
+  --cui-badge-primary-bg: #{$efy-primary};
+  
+  // Couleurs des tableaux
+  --cui-table-active-bg: rgba(77, 166, 255, 0.15);
+  --cui-table-hover-bg: rgba(77, 166, 255, 0.1);
+  
+  // Couleurs des bordures
+  --cui-border-color: #495057;
+  
+  // Couleurs des icônes dans la sidebar
+  --cui-sidebar-nav-link-color: rgba(255, 255, 255, 0.8);
+  --cui-sidebar-nav-link-hover-color: #fff;
+  --cui-sidebar-nav-link-active-color: #fff;
+  --cui-sidebar-nav-link-active-bg: rgba(255, 255, 255, 0.15);
+  
+  // Couleurs des cartes
+  --cui-card-bg: #2b3035;
+  --cui-card-border-color: rgba(255, 255, 255, 0.125);
+  
+  // Couleurs des inputs
+  --cui-form-control-focus-border-color: #4da6ff;
+  --cui-form-control-focus-box-shadow: 0 0 0 0.25rem rgba(77, 166, 255, 0.25);
+  
+  // Couleurs des dropdowns
+  --cui-dropdown-link-active-bg: #{$efy-primary};
+  --cui-dropdown-link-hover-bg: rgba(77, 166, 255, 0.15);
+  
+  // Couleurs des breadcrumbs
+  --cui-breadcrumb-item-active-color: #4da6ff;
+  
+  // Couleurs des progress bars
+  --cui-progress-bar-bg: #{$efy-primary};
+  
+  // Couleurs des alertes
+  --cui-alert-primary-bg: rgba(77, 166, 255, 0.15);
+  --cui-alert-primary-border-color: rgba(77, 166, 255, 0.3);
+  --cui-alert-primary-color: #4da6ff;
+}
+
+// Personnalisation des icônes dans la sidebar - TOUJOURS BLANCHES
+.sidebar-nav {
+  .nav-link {
+    svg {
+      color: rgba(255, 255, 255, 0.8) !important;
+      transition: color 0.2s ease;
+    }
+    
+    &:hover svg,
+    &.active svg,
+    &[aria-expanded="true"] svg {
+      color: #fff !important;
+    }
+  }
+}
+
+// Personnalisation des icônes dans le header - TOUJOURS BLANCHES (en dark mode) ou NOIRES (en light mode)
+.header {
+  svg {
+    color: var(--cui-body-color) !important;
+  }
+  
+  .nav-link:hover svg,
+  button:hover svg {
+    color: var(--cui-body-color) !important;
+    opacity: 0.8;
+  }
+}
+
+// S'assurer que les icônes dans les dropdowns du header restent de la bonne couleur
+.header .dropdown-menu {
+  svg {
+    color: var(--cui-body-color) !important;
+  }
+}
+
+// Personnalisation des badges
+.badge {
+  &[class*="bg-primary"] {
+    background-color: var(--cui-primary) !important;
+  }
+}
+
+// S'assurer que les badges s'adaptent au thème sombre
+[data-coreui-theme="dark"] {
+  .badge {
+    // Badges avec fond coloré - texte blanc (normal)
+    &.bg-primary,
+    &.bg-success,
+    &.bg-info,
+    &.bg-danger,
+    &[class*="bg-primary"],
+    &[class*="bg-success"],
+    &[class*="bg-info"],
+    &[class*="bg-danger"] {
+      color: #fff !important;
+    }
+    
+    // Badge warning - fond jaune, texte sombre
+    &.bg-warning,
+    &[class*="bg-warning"] {
+      color: #212529 !important;
+      background-color: #ffc107 !important;
+    }
+    
+    // Badge secondary - fond gris, texte blanc
+    &.bg-secondary,
+    &[class*="bg-secondary"] {
+      color: #fff !important;
+      background-color: #6c757d !important;
+    }
+  }
+}
+
+// Personnalisation des boutons
+.btn-primary {
+  background-color: var(--cui-primary);
+  border-color: var(--cui-primary);
+  
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--cui-btn-primary-hover-bg);
+    border-color: var(--cui-btn-primary-hover-border-color);
+  }
+}
+
+// Personnalisation des liens
+a {
+  color: var(--cui-link-color);
+  
+  &:hover {
+    color: var(--cui-link-hover-color);
+  }
+}
+
+// Personnalisation des tableaux
+.table {
+  --cui-table-active-bg: var(--cui-primary-bg-subtle);
+  --cui-table-hover-bg: rgba(0, 95, 155, 0.05);
+}
+
+[data-coreui-theme="dark"] .table {
+  --cui-table-active-bg: var(--cui-primary-bg-subtle);
+  --cui-table-hover-bg: rgba(77, 166, 255, 0.1);
+  
+  // S'assurer que le texte dans les tableaux est visible en thème sombre
+  color: var(--cui-body-color) !important;
+  
+  th,
+  td {
+    color: var(--cui-body-color) !important;
+    border-color: var(--cui-border-color) !important;
+  }
+  
+  thead th {
+    color: var(--cui-body-color) !important;
+  }
+  
+  tbody {
+    color: var(--cui-body-color) !important;
+  }
+}
+
+// Personnalisation des cartes
+.card {
+  border-color: var(--cui-card-border-color);
+  
+  // S'assurer que le texte dans les cartes s'adapte au thème
+  color: var(--cui-body-color);
+  
+  .card-header,
+  .card-body,
+  .card-footer {
+    color: var(--cui-body-color);
+  }
+  
+  strong,
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--cui-body-color);
+  }
+}
+
+[data-coreui-theme="dark"] .card {
+  // S'assurer que tous les textes dans les cartes sont visibles en thème sombre
+  color: var(--cui-body-color) !important;
+  
+  .card-header,
+  .card-body,
+  .card-footer {
+    color: var(--cui-body-color) !important;
+  }
+  
+  strong,
+  h1, h2, h3, h4, h5, h6,
+  p, span, div {
+    color: var(--cui-body-color) !important;
+  }
+}
+
+// Personnalisation des inputs
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--cui-form-control-focus-border-color);
+  box-shadow: var(--cui-form-control-focus-box-shadow);
+}
+
+// Personnalisation des dropdowns
+.dropdown-item {
+  &:hover {
+    background-color: var(--cui-dropdown-link-hover-bg);
+  }
+  
+  &.active,
+  &:active {
+    background-color: var(--cui-dropdown-link-active-bg);
+  }
+}
+
+// Personnalisation des breadcrumbs
+.breadcrumb-item.active {
+  color: var(--cui-breadcrumb-item-active-color);
+}
+
+// Personnalisation des progress bars
+.progress-bar {
+  background-color: var(--cui-progress-bar-bg);
+}
+
+// Personnalisation des alertes
+.alert-primary {
+  background-color: var(--cui-alert-primary-bg);
+  border-color: var(--cui-alert-primary-border-color);
+  color: var(--cui-alert-primary-color);
+}
+

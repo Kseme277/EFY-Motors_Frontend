@@ -35,6 +35,7 @@
               }
             ],
             "styles": [
+              "src/scss/styles.scss",
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/animate.css",
               "src/assets/css/aos.css",
@@ -49,6 +50,7 @@
               "src/assets/css/magnific-popup.css",
               "src/assets/css/style.css",
               "src/assets/css/custom-theme.css",
+              "node_modules/sweetalert2/dist/sweetalert2.min.css",
               "src/styles.css"
             ],
             "scripts": [

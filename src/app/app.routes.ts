@@ -7,11 +7,13 @@ import { ServicesComponent } from './features/services/services.component';
 import { PricingComponent } from './features/pricing/pricing.component';
 import { BlogComponent } from './features/blog/blog.component';
 import { ContactComponent } from './features/contact/contact.component';
-import { AdminLayoutComponent } from './features/admin/admin-layout/admin-layout.component';
-import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-dashboard.component';
-import { AdminVehiclesComponent } from './features/admin/admin-vehicles/admin-vehicles.component';
-import { AdminVehicleFormComponent } from './features/admin/admin-vehicle-form/admin-vehicle-form.component';
-import { AdminRequestsComponent } from './features/admin/admin-requests/admin-requests.component';
+import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { AdminVehiclesComponent } from './views/admin/vehicles/vehicles.component';
+import { AdminVehicleFormComponent } from './views/admin/vehicle-form/vehicle-form.component';
+import { AdminRequestsComponent } from './views/admin/requests/requests.component';
+import { AdminLoginComponent } from './features/admin/admin-login/admin-login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -47,8 +49,13 @@ export const routes: Routes = [
     component: ContactComponent
   },
   {
+    path: 'admin/login',
+    component: AdminLoginComponent
+  },
+  {
     path: 'admin',
-    component: AdminLayoutComponent,
+    component: DefaultLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -57,35 +64,43 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: AdminDashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'vehicles',
-        component: AdminVehiclesComponent
+        component: AdminVehiclesComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'vehicles/add',
-        component: AdminVehicleFormComponent
+        component: AdminVehicleFormComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'vehicles/edit/:id',
-        component: AdminVehicleFormComponent
+        component: AdminVehicleFormComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'requests',
-        component: AdminRequestsComponent
+        component: AdminRequestsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'orders',
-        component: AdminDashboardComponent // Placeholder
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'users',
-        component: AdminDashboardComponent // Placeholder
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',
-        component: AdminDashboardComponent // Placeholder
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },

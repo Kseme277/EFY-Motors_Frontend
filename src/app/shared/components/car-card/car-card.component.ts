@@ -14,6 +14,8 @@ export interface CarCard {
   seats?: number;
   luggage?: number;
   fuel?: string;
+  nombre_avis?: number;
+  rating?: number;
 }
 
 @Component({
@@ -27,5 +29,15 @@ export class CarCardComponent {
   @Input() car!: CarCard;
   @Input() showPrice: boolean = true;
   @Input() showDetails: boolean = true;
+
+  getStarsArray(rating: number): number[] {
+    const roundedRating = Math.round(rating);
+    return Array(roundedRating).fill(0).map((x, i) => i);
+  }
+
+  getEmptyStars(rating: number): number[] {
+    const roundedRating = Math.round(rating);
+    return Array(5 - roundedRating).fill(0).map((x, i) => i);
+  }
 }
 

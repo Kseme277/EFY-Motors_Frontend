@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -16,7 +17,10 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   currentRoute: string = '';
   private routerSubscription?: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.updatePageTitle();
@@ -60,6 +64,17 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     } else {
       this.isSidebarOpen = !this.isSidebarOpen;
     }
+  }
+
+  closeSidebar() {
+    if (window.innerWidth <= 768) {
+      this.isMobileMenuOpen = false;
+    }
+  }
+
+  goToLogin() {
+    // Déconnexion et redirection vers la page de login
+    this.authService.logout();
   }
 }
 
