@@ -20,6 +20,12 @@
       }
     ]
   },
+  "overrides": {
+    "@fullcalendar/angular": {
+      "@angular/common": "^21.0.0",
+      "@angular/core": "^21.0.0"
+    }
+  },
   "private": true,
   "dependencies": {
     "@amcharts/amcharts5": "^5.14.4",
@@ -41,11 +47,11 @@
     "@coreui/icons-angular": "~5.6.0",
     "@coreui/utils": "^2.0.2",
     "@emailjs/browser": "^4.4.1",
-    "@fullcalendar/angular": "^6.1.19",
-    "@fullcalendar/core": "^6.1.19",
-    "@fullcalendar/daygrid": "^6.1.19",
-    "@fullcalendar/interaction": "^6.1.19",
-    "@fullcalendar/timegrid": "^6.1.19",
+    "@fullcalendar/angular": "7.0.0-rc.0",
+    "@fullcalendar/core": "7.0.0-rc.0",
+    "@fullcalendar/daygrid": "7.0.0-rc.0",
+    "@fullcalendar/interaction": "7.0.0-rc.0",
+    "@fullcalendar/timegrid": "7.0.0-rc.0",
     "@popperjs/core": "^2.11.8",
     "apexcharts": "^5.3.6",
     "chart.js": "^4.5.1",
