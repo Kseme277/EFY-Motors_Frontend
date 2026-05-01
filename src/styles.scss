@@ -321,6 +321,40 @@ router-outlet {
   padding: 0 !important;
 }
 
+/* Global Container Widening */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+  @media (min-width: 1400px) {
+    max-width: 1320px;
+  }
+  @media (min-width: 1600px) {
+    max-width: 1720px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  @media (min-width: 1800px) {
+    max-width: 1800px !important;
+  }
+}
+
 /* Dark mode support */
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -1611,18 +1645,18 @@ pre[class*="language-"].line-numbers {
 
 /* Typography Premium */
 .hero-title {
-  font-size: 3.5rem;
-  line-height: 1;
+  font-size: 2.8rem;
+  line-height: 1.1;
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   text-transform: none;
   
   @media (min-width: 768px) {
-    font-size: 5.5rem;
+    font-size: 4.5rem;
   }
   
   @media (min-width: 1280px) {
-    font-size: 7.5rem;
+    font-size: 6rem;
   }
 }
 

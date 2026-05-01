@@ -7,7 +7,7 @@ import { ThemeToggleButtonComponent } from '../theme-toggle/theme-toggle-button.
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, ThemeToggleButtonComponent],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

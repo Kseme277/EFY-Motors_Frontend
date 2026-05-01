@@ -10,10 +10,28 @@
 .contact-main {
   background: #f0f0f2;
   padding: 0 0 70px;
+  width: 100%;
 }
 
 .contact-main .container {
-  margin-top: -190px;
+  margin-top: 0px;
+  max-width: 1720px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+
+  @media (min-width: 768px) {
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+  }
+
+  @media (min-width: 1200px) {
+    padding-left: 120px !important;
+    padding-right: 120px !important;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 1800px !important;
+  }
 }
 
 .contact-card {
@@ -194,6 +212,11 @@
 
   .form-message {
     grid-column: span 1;
+  }
+
+  .contact-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
   }
 
   .submit-row {

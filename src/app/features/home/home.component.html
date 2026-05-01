@@ -7,11 +7,11 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center">
           <div class="col-lg-8">
-            <div class="text-center">
+            <div class="text-center w-100">
               <span class="hero-kicker">Concession EFY Motors</span>
               <h1 class="mb-4 hero-title">Conduisez l'avenir, dès aujourd'hui.</h1>
               <p>Découvrez des véhicules sélectionnés, inspectés et disponibles partout au Cameroun.</p>
-              <div class="hero-actions">
+              <div class="hero-actions d-flex justify-content-center gap-3">
                 <a routerLink="/cars" class="btn btn-primary py-3 px-4">Voir l'inventaire</a>
                 <a (click)="openVideoModal('dQw4w9WgXcQ'); $event.preventDefault()" class="btn btn-outline-light py-3 px-4">Voir la présentation</a>
               </div>
@@ -127,7 +127,7 @@
   </div>
 </section>
 <!-- SECTION 1 -->
-<section class="about-welcome-section py-5 bg-light ftco-section ftco-no-pt bg-light reveal-up home-search">
+<section class="about-welcome-section py-5 bg-light ftco-section ftco-no-pt bg-light">
   <div class="container">
     <div class="row align-items-stretch">
 
@@ -153,7 +153,7 @@
           </p>
 
           <div class="about-action pt-3">
-            <a routerLink="/about" class="btn btn-primary btn-lg">
+            <a routerLink="/about" class="btn btn-primary">
               En savoir plus
             </a>
           </div>
@@ -162,11 +162,12 @@
 
       <!-- Image -->
       <div class="col-md-6">
-        <div class="about-img-box h-100">
+        <div class="about-img-box d-flex justify-content-center">
           <img
             src="assets/images/car-2.jpg"
             alt="EFY Motors Welcome"
-            class="img-fluid w-100 h-100 rounded shadow object-fit-cover"
+            class="img-fluid w-100 rounded shadow object-fit-cover d-block mx-auto"
+            style="max-height: 300px;"
           >
         </div>
       </div>
@@ -177,17 +178,18 @@
 
 
 <!-- SECTION 2 -->
-<section class="about-welcome-section py-5 bg-light ftco-section ftco-no-pt bg-light reveal-up home-search">
+<section class="about-welcome-section py-5 bg-light ftco-section ftco-no-pt bg-light">
   <div class="container">
     <div class="row align-items-stretch">
 
       <!-- Image -->
       <div class="col-md-6 mb-4 mb-md-0">
-        <div class="about-img-box h-100">
+        <div class="about-img-box d-flex justify-content-center">
           <img
             src="assets/images/car-3.jpg"
             alt="EFY Motors Services"
-            class="img-fluid w-100 h-100 rounded shadow object-fit-cover"
+            class="img-fluid w-100 rounded shadow object-fit-cover d-block mx-auto"
+            style="max-height: 300px;"
           >
         </div>
       </div>
@@ -217,7 +219,7 @@
           </p>
 
           <div class="about-action pt-3">
-            <a routerLink="/contact" class="btn btn-dark btn-lg">
+            <a routerLink="/contact" class="btn btn-light">
               Nous contacter
             </a>
           </div>
@@ -300,16 +302,33 @@
     <div class="recent-grid" *ngIf="recentCars.length > 0; else noRecentCars">
       <a class="recent-card" *ngFor="let car of recentCars" [routerLink]="['/cars', car.id]">
         <div class="recent-image-wrap" (mousemove)="onRecentCardMove($event, car)" (mouseleave)="onRecentCardLeave(car)">
+          <div class="buy-now-ribbon">Acheter</div>
           <img [src]="getRecentCardImage(car)" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
-          <span class="recent-price">{{ car.price | number }} FCFA</span>
+          <div class="recent-price-badge">
+            <span class="new-price">{{ car.price | number }} FCFA</span>
+          </div>
         </div>
         <div class="recent-body">
+          <span class="brand-subtitle">{{ car.brand || 'VÉHICULE' | uppercase }}</span>
           <h3>{{ car.name }}</h3>
-          <ul>
-            <li>{{ car.mileage | number }} km</li>
-            <li>{{ car.fuel }}</li>
-            <li>{{ car.transmission }}</li>
-          </ul>
+          <div class="specs-grid">
+            <div class="spec-item">
+              <i class="ion-ios-speedometer"></i>
+              <span>{{ car.mileage | number }} km</span>
+            </div>
+            <div class="spec-item">
+              <i class="ion-ios-flask"></i>
+              <span>{{ car.fuel }}</span>
+            </div>
+            <div class="spec-item">
+              <i class="ion-ios-settings"></i>
+              <span>{{ car.transmission }}</span>
+            </div>
+            <div class="spec-item">
+              <i class="ion-ios-calendar"></i>
+              <span>{{ car.annee || '2024' }}</span>
+            </div>
+          </div>
         </div>
       </a>
     </div>
@@ -318,19 +337,6 @@
     </ng-template>
   </div>
 </section>
-
-<section class="blue-stats-band">
-  <div class="container">
-    <h2>DEPUIS PLUS DE 10 ANS, NOUS VENDONS DES VÉHICULES</h2>
-    <div class="stats-row">
-      <div><strong>15 514</strong><span>VÉHICULES VENDUS</span></div>
-      <div><strong>1 201</strong><span>VÉHICULES EN VENTE</span></div>
-      <div><strong>2 150</strong><span>AVIS CLIENTS</span></div>
-      <div><strong>3 800+</strong><span>VISITEURS PAR JOUR</span></div>
-    </div>
-  </div>
-</section>
-
 <section class="brands-info-band">
   <div class="overlay"></div>
   <div class="container position-relative">
@@ -353,6 +359,19 @@
     </div>
   </div>
 </section>
+<section class="blue-stats-band present-up">
+  <div class="container">
+    <h2>Depuis plus de 10 ans, nous vendons des véhicules</h2>
+    <div class="stats-row">
+      <div><strong>200+</strong><span>Véhicules vendus</span></div>
+      <div><strong>20</strong><span>Véhicules en vente</span></div>
+      <div><strong>50+</strong><span>Avis clients</span></div>
+      <div><strong>200+</strong><span>Visiteurs par jour</span></div>
+    </div>
+  </div>
+</section>
+
+
 
 <app-footer></app-footer>
 

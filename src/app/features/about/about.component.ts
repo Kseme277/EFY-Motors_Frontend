@@ -1,4 +1,5 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
@@ -13,10 +14,19 @@ declare var $: any;
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
-export class AboutComponent implements AfterViewInit, OnDestroy {
+export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
   private testimonyCarouselInstance: any;
 
-  constructor(private scrollAnimationService: ScrollAnimationService) {}
+  constructor(
+    private scrollAnimationService: ScrollAnimationService,
+    private titleService: Title,
+    private metaService: Meta
+  ) {}
+
+  ngOnInit() {
+    this.titleService.setTitle('À Propos | EFY Motors - Votre Partenaire Automobile au Cameroun');
+    this.metaService.updateTag({ name: 'description', content: 'En savoir plus sur EFY Motors, notre mission, nos valeurs et notre engagement à fournir les meilleurs véhicules au Cameroun.' });
+  }
 
   ngAfterViewInit() {
     // Initialiser le carousel des témoignages

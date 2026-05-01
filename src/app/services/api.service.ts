@@ -43,19 +43,19 @@ export class ApiService {
         }
       });
     }
-    return this.http.get(`${API_URL}/vehicules`, { params: httpParams });
+    return this.http.get(`${API_URL}/vehicles`, { params: httpParams });
   }
 
   getFeaturedVehicles(limit: number = 6): Observable<any> {
-    return this.http.get(`${API_URL}/vehicules/featured`, { params: { limit: limit.toString() } });
+    return this.http.get(`${API_URL}/vehicles/featured`, { params: { limit: limit.toString() } });
   }
 
   getVehicle(id: number): Observable<any> {
-    return this.http.get(`${API_URL}/vehicules/${id}`);
+    return this.http.get(`${API_URL}/vehicles/${id}`);
   }
 
   getSimilarVehicles(vehicleId: number, limit: number = 3): Observable<any> {
-    return this.http.get(`${API_URL}/vehicules/${vehicleId}/similar`, { 
+    return this.http.get(`${API_URL}/vehicles/${vehicleId}/similar`, { 
       params: { limit: limit.toString() }
     });
   }
@@ -68,13 +68,13 @@ export class ApiService {
   }
 
   getVehicleReviews(vehicleId: number, page: number = 1, size: number = 20): Observable<any> {
-    return this.http.get(`${API_URL}/vehicules/${vehicleId}/reviews`, { 
+    return this.http.get(`${API_URL}/vehicles/${vehicleId}/reviews`, { 
       params: { page: page.toString(), size: size.toString() }
     });
   }
 
   createReview(vehicleId: number, data: { nom_client: string; rating: number; comment: string; avatar_url?: string }): Observable<any> {
-    return this.http.post(`${API_URL}/vehicules/${vehicleId}/reviews`, data);
+    return this.http.post(`${API_URL}/vehicles/${vehicleId}/reviews`, data);
   }
 
   // Devis
@@ -86,15 +86,15 @@ export class ApiService {
 
   // Admin - Vehicles
   createVehicle(data: any): Observable<any> {
-    return this.http.post(`${API_URL}/vehicules`, data, { headers: this.headers });
+    return this.http.post(`${API_URL}/vehicles`, data, { headers: this.headers });
   }
 
   updateVehicle(id: number, data: any): Observable<any> {
-    return this.http.put(`${API_URL}/vehicules/${id}`, data, { headers: this.headers });
+    return this.http.put(`${API_URL}/vehicles/${id}`, data, { headers: this.headers });
   }
 
   deleteVehicle(id: number): Observable<any> {
-    return this.http.delete(`${API_URL}/vehicules/${id}`, { headers: this.headers });
+    return this.http.delete(`${API_URL}/vehicles/${id}`, { headers: this.headers });
   }
 
   // Admin - Devis
@@ -142,21 +142,21 @@ export class ApiService {
   // Admin - Statistics
   getVehicleStats(): Observable<any> {
     // Récupère les statistiques des véhicules
-    return this.http.get(`${API_URL}/vehicules`, { 
+    return this.http.get(`${API_URL}/vehicles`, { 
       params: { page: '1', size: '1' },
       headers: this.headers 
     });
   }
 
   getAvailableVehiclesCount(): Observable<any> {
-    return this.http.get(`${API_URL}/vehicules`, { 
+    return this.http.get(`${API_URL}/vehicles`, { 
       params: { page: '1', size: '1', est_disponible: 'true' },
       headers: this.headers 
     });
   }
 
   getSoldVehiclesCount(): Observable<any> {
-    return this.http.get(`${API_URL}/vehicules`, { 
+    return this.http.get(`${API_URL}/vehicles`, { 
       params: { page: '1', size: '1', est_disponible: 'false' },
       headers: this.headers 
     });

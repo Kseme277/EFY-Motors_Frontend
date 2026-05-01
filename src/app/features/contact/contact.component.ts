@@ -1,4 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,7 @@ import { ScrollAnimationService } from '../../core/services/scroll-animation.ser
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent implements AfterViewInit {
+export class ContactComponent implements OnInit, AfterViewInit {
   contactForm = {
     name: '',
     email: '',
@@ -50,8 +51,15 @@ export class ContactComponent implements AfterViewInit {
 
   constructor(
     private apiService: ApiService,
-    private scrollAnimationService: ScrollAnimationService
+    private scrollAnimationService: ScrollAnimationService,
+    private titleService: Title,
+    private metaService: Meta
   ) {}
+
+  ngOnInit() {
+    this.titleService.setTitle('Contactez-nous | EFY Motors Cameroun');
+    this.metaService.updateTag({ name: 'description', content: 'Contactez EFY Motors pour toute demande de renseignement, essai de véhicule ou devis. Notre équipe est à votre disposition à Yaoundé.' });
+  }
 
   ngAfterViewInit() {
     this.initializeScrollAnimations();

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../shared/components/header/header.component';
@@ -55,7 +56,7 @@ interface Review {
 @Component({
   selector: 'app-car-single',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, CarCardComponent, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, CarCardComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './car-single.component.html',
   styleUrl: './car-single.component.scss'
 })
@@ -91,7 +92,9 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
     private scrollAnimationService: ScrollAnimationService,
     private apiService: ApiService,
     private fb: FormBuilder,
-    private swal: SweetAlertService
+    private swal: SweetAlertService,
+    private titleService: Title,
+    private metaService: Meta
   ) {
     this.devisForm = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(2)]],
@@ -237,6 +240,7 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
 
         this.loadSimilarVehicles(id);
         this.loadReviews(id);
+        this.updateSEO();
 
         this.isLoading = false;
         this.hideLoader();
@@ -254,6 +258,18 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
         this.router.navigate(['/cars']);
       }
     });
+  }
+
+  private updateSEO() {
+    if (!this.car) return;
+    const title = `${this.car.brand} ${this.car.name} | EFY Motors Cameroun`;
+    const description = `Découvrez cette ${this.car.brand} ${this.car.name} d'exception chez EFY Motors. Prix: ${this.car.price} FCFA. Qualité certifiée et disponible dès maintenant.`;
+    
+    this.titleService.setTitle(title);
+    this.metaService.updateTag({ name: 'description', content: description });
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:image', content: this.car.image });
   }
 
   private loadSimilarVehicles(vehicleId: number) {

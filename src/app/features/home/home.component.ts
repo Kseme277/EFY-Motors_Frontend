@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,7 @@ declare var $: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, VideoModalComponent, FormsModule, CarCardComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, VideoModalComponent, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -46,7 +47,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     private scrollAnimationService: ScrollAnimationService,
     private apiService: ApiService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private titleService: Title,
+    private metaService: Meta
   ) {}
 
   onSearch() {
@@ -71,9 +74,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.setSEO();
     this.loadFeaturedVehicles();
     this.loadRecentVehicles();
     this.loadReviews();
+  }
+
+  private setSEO() {
+    this.titleService.setTitle('EFY Motors | Vente de voitures neuves et d\'occasion au Cameroun');
+    this.metaService.updateTag({ name: 'description', content: 'Découvrez les meilleures offres de voitures au Cameroun avec EFY Motors. Large choix de marques, prix compétitifs et service de qualité à Yaoundé.' });
+    this.metaService.updateTag({ property: 'og:title', content: 'EFY Motors | Votre expert automobile au Cameroun' });
   }
 
   private extractVehicles(response: any): any[] {

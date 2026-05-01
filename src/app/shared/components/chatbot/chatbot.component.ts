@@ -1,10 +1,11 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ApiService } from '../../../services/api.service';
 
 interface ChatMessage {
-  text: string;
+  text: string | SafeHtml;
   isBot: boolean;
   timestamp: Date;
 }
@@ -53,7 +54,7 @@ interface ChatMessage {
           <div class="messages">
             <ng-container *ngFor="let msg of messages">
               <div class="message" [ngClass]="msg.isBot ? 'reply' : ''">
-                <p class="text" style="margin: 0; font-size: 0.95em;">{{msg.text}}</p>
+                <p class="text" style="margin: 0; font-size: 0.95em;" [innerHTML]="msg.text"></p>
               </div>
             </ng-container>
             
@@ -280,6 +281,14 @@ interface ChatMessage {
       color: #141E30;
       transition: background-color 0.3s, color 0.3s;
     }
+    .chat-app_content .message.reply a {
+      color: #0f3bff;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .chat-app_content .message.reply a:hover {
+      color: #004A7A;
+    }
     :host-context(.dark) .chat-app_content .message.reply {
       background: #2a2a2a;
       color: #f2f4f7;
@@ -419,7 +428,7 @@ export class ChatbotComponent {
     }
   ];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private sanitizer: DomSanitizer) {}
 
   scrollToBottom(): void {
     try {
@@ -464,7 +473,7 @@ export class ChatbotComponent {
         }
         
         this.messages.push({
-          text: botText,
+          text: this.sanitizer.bypassSecurityTrustHtml(botText),
           isBot: true,
           timestamp: new Date()
         });
