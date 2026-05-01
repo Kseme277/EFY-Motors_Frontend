@@ -68,13 +68,13 @@ export class ApiService {
   }
 
   getVehicleReviews(vehicleId: number, page: number = 1, size: number = 20): Observable<any> {
-    return this.http.get(`${API_URL}/vehicles/${vehicleId}/reviews`, { 
+    return this.http.get(`${API_URL}/reviews/vehicules/${vehicleId}/reviews`, { 
       params: { page: page.toString(), size: size.toString() }
     });
   }
 
   createReview(vehicleId: number, data: { nom_client: string; rating: number; comment: string; avatar_url?: string }): Observable<any> {
-    return this.http.post(`${API_URL}/vehicles/${vehicleId}/reviews`, data);
+    return this.http.post(`${API_URL}/reviews/vehicules/${vehicleId}/reviews`, data);
   }
 
   // Devis

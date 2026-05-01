@@ -693,6 +693,7 @@
     .featured-top {
       position: relative;
       z-index: 3;
+      margin-top: 0 !important;
       
       @media (max-width: 768px) {
         .row {
