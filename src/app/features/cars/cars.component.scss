@@ -5,11 +5,15 @@
   background-color: #f9fafb;
   font-family: var(--font-outfit), sans-serif;
 }
-.container{
+.containers{
   height:300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  padding: 0 305px;
+  width: 100%;
+  max-width: 92%;
 }
 // Sidebar: Search Options
 .search-sidebar {

@@ -1,9 +1,13 @@
 /* Standardized Inner Page Hero is used */
-.container{
+.containers{
   height:300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 92%;
 }
 .brands-info-band {
   position: relative;

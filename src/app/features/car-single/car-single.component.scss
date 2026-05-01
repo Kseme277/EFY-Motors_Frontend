@@ -7,11 +7,15 @@
   margin: 0 !important;
   padding: 0 !important;
 }
-.container{
+.containers{
   height:300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 92%;
 }
 .vehicle-top {
   display: flex;
@@ -473,6 +477,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 92%;
 }
 
 // Wider containers to reduce screen margins

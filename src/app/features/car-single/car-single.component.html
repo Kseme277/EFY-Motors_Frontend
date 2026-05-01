@@ -1,8 +1,8 @@
 <app-header></app-header>
 <section class="inner-page-hero" style="background: #0c111d;">
-  <div class="container">
+  <div class="containers">
     <div class="row">
-      <div class="col-md-10 mt-20">
+      <div class="col-md-10">
         <h1 class="text-white hero-title">Detail</h1>
       </div>
     </div>
@@ -15,19 +15,6 @@
     <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#0f3bff"/>
   </svg>
 </div>
-
-<section class="inner-page-hero" style="background: #0c111d;" data-stellar-background-ratio="0.5">
-  <div class="containers">
-    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-      <div class="col-md-9 ftco-animate pb-5">
-        <p class="breadcrumbs">
-          <span>Détails du véhicule <i class="ion-ios-arrow-forward"></i></span>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Message de chargement -->
 <div *ngIf="isLoading" class="container mt-5 mb-5">
   <div class="row justify-content-center">
@@ -40,7 +27,7 @@
   </div>
 </div>
 
-<section class="ftco-section ftco-car-details" *ngIf="car && !isLoading">
+<section class="ftco-section ftco-car-details bg-light" *ngIf="car && !isLoading">
   <div class="container">
     <div class="vehicle-top">
       <div>
@@ -386,7 +373,7 @@
   </div>
 </section>
 
-<section class="ftco-section ftco-no-pt" *ngIf="!isLoading">
+<section class="ftco-section ftco-no-pt bg-light" *ngIf="!isLoading">
   <div class="container">
     <div class="row justify-content-center" *ngIf="isLoadingRelated">
       <div class="col-md-12 text-center mb-5">
