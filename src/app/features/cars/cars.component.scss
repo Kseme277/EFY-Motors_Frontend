@@ -5,7 +5,12 @@
   background-color: #f9fafb;
   font-family: var(--font-outfit), sans-serif;
 }
-
+.container{
+  height:300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 // Sidebar: Search Options
 .search-sidebar {
   background: #fff;

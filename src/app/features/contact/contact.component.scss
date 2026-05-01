@@ -6,7 +6,12 @@
   height: 260px;
   background: linear-gradient(180deg, #081c2f 0%, #072036 100%);
 }
-
+.containers{
+  height:300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .contact-main {
   background: #f0f0f2;
   padding: 0 0 70px;

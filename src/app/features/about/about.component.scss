@@ -1,4 +1,10 @@
 /* Standardized Inner Page Hero is used */
+.container{
+  height:300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .brands-info-band {
   position: relative;
   background-image: url('/assets/images/bg_2.jpg');
