@@ -1,8 +1,9 @@
-import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { CarCardComponent, CarCard } from '../../shared/components/car-card/car-card.component';
 import { VideoModalComponent } from '../../shared/components/video-modal/video-modal.component';
 import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
@@ -13,7 +14,7 @@ declare var $: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, VideoModalComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, VideoModalComponent, FormsModule, CarCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -23,14 +24,41 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private testimonyCarouselInstance: any;
 
   featuredCars: CarCard[] = [];
+  recentCars: CarCard[] = [];
+  recentHoveredImage: Record<number, string> = {};
   isVideoModalOpen = false;
   currentVideoId = '';
   isLoadingFeatured: boolean = true;
+  
+  searchParams: any = {
+    marque: '',
+    carburant: '',
+    prix_min: null,
+    prix_max: null,
+    ville: ''
+  };
+
+  reviews: any[] = [];
+  currentReviewIndex: number = 0;
+  private reviewInterval: any;
 
   constructor(
     private scrollAnimationService: ScrollAnimationService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
+
+  onSearch() {
+    // Filtrer les paramètres vides
+    const queryParams: any = {};
+    if (this.searchParams.marque) queryParams.brand = this.searchParams.marque;
+    if (this.searchParams.carburant) queryParams.fuel = this.searchParams.carburant;
+    if (this.searchParams.prix_min) queryParams.minPrice = this.searchParams.prix_min;
+    if (this.searchParams.prix_max) queryParams.maxPrice = this.searchParams.prix_max;
+    
+    this.router.navigate(['/cars'], { queryParams });
+  }
 
   openVideoModal(videoId: string) {
     this.currentVideoId = videoId;
@@ -44,43 +72,152 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.loadFeaturedVehicles();
+    this.loadRecentVehicles();
+    this.loadReviews();
+  }
+
+  private extractVehicles(response: any): any[] {
+    if (response && response.items) return response.items;
+    if (response && response.results) return response.results;
+    if (response && response.vehicules) return response.vehicules;
+    if (Array.isArray(response)) return response;
+    if (response && response.data) return response.data;
+    return [];
+  }
+
+  private mapVehicleToCarCard(vehicle: any): CarCard {
+    const photos = this.extractVehiclePhotos(vehicle);
+    return {
+      id: vehicle.id,
+      name: vehicle.marque && vehicle.modele ? `${vehicle.marque} ${vehicle.modele}` : (vehicle.nom || 'Véhicule sans nom'),
+      image: photos[0] || 'assets/images/car-1.jpg',
+      tags: vehicle.tags || (vehicle.marque ? [vehicle.marque] : []),
+      price: vehicle.prix || 0,
+      brand: vehicle.marque || 'Inconnu',
+      mileage: vehicle.kilometrage || 0,
+      transmission: vehicle.boite_vitesse || 'Automatique',
+      seats: vehicle.nombre_places || 5,
+      luggage: vehicle.nombre_bagages || 0,
+      fuel: vehicle.carburant || 'Essence',
+      nombre_avis: vehicle.nombre_avis || 0,
+      rating: vehicle.rating || 0,
+      annee: vehicle.annee,
+      photos: photos
+    } as CarCard;
+  }
+
+  private extractVehiclePhotos(vehicle: any): string[] {
+    const photos: string[] = [];
+    if (vehicle?.photo_principale) {
+      photos.push(vehicle.photo_principale);
+    }
+    if (vehicle?.photos && Array.isArray(vehicle.photos)) {
+      for (const photo of vehicle.photos) {
+        if (photo && !photos.includes(photo)) {
+          photos.push(photo);
+        }
+      }
+    }
+    return photos.length > 0 ? photos : ['assets/images/car-1.jpg'];
+  }
+
+  getRecentCardImage(car: CarCard): string {
+    return this.recentHoveredImage[car.id] || car.image;
+  }
+
+  onRecentCardMove(event: MouseEvent, car: CarCard) {
+    const photos = ((car as any).photos || []) as string[];
+    if (!photos || photos.length < 2) return;
+
+    const target = event.currentTarget as HTMLElement;
+    if (!target) return;
+    const rect = target.getBoundingClientRect();
+    const relativeX = Math.max(0, Math.min(event.clientX - rect.left, rect.width - 1));
+    const ratio = rect.width > 0 ? relativeX / rect.width : 0;
+    const photoIndex = Math.floor(ratio * photos.length);
+    this.recentHoveredImage[car.id] = photos[Math.min(photoIndex, photos.length - 1)];
+  }
+
+  onRecentCardLeave(car: CarCard) {
+    delete this.recentHoveredImage[car.id];
+  }
+
+  private loadRecentVehicles() {
+    this.apiService.getVehicles({ page: 1, size: 8, est_disponible: true }).subscribe({
+      next: (response) => {
+        const vehicles = this.extractVehicles(response);
+        const uniqueVehicles = vehicles.filter((vehicle: any, index: number, self: any[]) =>
+          vehicle && vehicle.id && index === self.findIndex((v: any) => v.id === vehicle.id)
+        );
+        this.recentCars = uniqueVehicles.slice(0, 8).map((vehicle: any) => this.mapVehicleToCarCard(vehicle));
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des véhicules récents:', error);
+        this.recentCars = [];
+      }
+    });
+  }
+
+  private loadReviews() {
+    this.apiService.getAllReviews(1, 10, 'approuve').subscribe({
+      next: (response) => {
+        if (response && response.items) {
+          this.reviews = response.items;
+          if (this.reviews.length > 0) {
+            this.startReviewRotation();
+          }
+        }
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des avis:', error);
+      }
+    });
+  }
+
+  private startReviewRotation() {
+    this.reviewInterval = setInterval(() => {
+      this.currentReviewIndex = (this.currentReviewIndex + 1) % this.reviews.length;
+    }, 2000);
+  }
+
+  getInitials(name: string): string {
+    if (!name) return 'U';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    return parts[0][0].toUpperCase();
   }
 
   private loadFeaturedVehicles() {
     this.isLoadingFeatured = true;
-    this.apiService.getFeaturedVehicles(6).subscribe({
+    // Utiliser getVehicles avec le filtre is_featured pour plus de fiabilité
+    this.apiService.getVehicles({ is_featured: true, limit: 10 }).subscribe({
       next: (response) => {
-        const vehicles = response.items || response || [];
+        console.log('API Response for featured vehicles:', response);
+        const vehicles: any[] = this.extractVehicles(response);
+        
         // Filtrer les doublons par ID
         const uniqueVehicles = vehicles.filter((vehicle: any, index: number, self: any[]) => 
-          index === self.findIndex((v: any) => v.id === vehicle.id)
+          vehicle && vehicle.id && index === self.findIndex((v: any) => v.id === vehicle.id)
         );
         
-        this.featuredCars = uniqueVehicles.map((vehicle: any) => ({
-          id: vehicle.id,
-          name: `${vehicle.marque} ${vehicle.modele}`,
-          image: vehicle.photo_principale || vehicle.photos?.[0] || 'assets/images/car-1.jpg',
-          tags: vehicle.tags || [vehicle.marque],
-          price: vehicle.prix,
-          brand: vehicle.marque,
-          mileage: vehicle.kilometrage,
-          transmission: vehicle.boite_vitesse,
-          seats: vehicle.nombre_places,
-          luggage: vehicle.nombre_bagages,
-          fuel: vehicle.carburant,
-          nombre_avis: vehicle.nombre_avis || 0,
-          rating: vehicle.rating || 0
-        }));
+        this.featuredCars = uniqueVehicles.map((vehicle: any) => this.mapVehicleToCarCard(vehicle));
         this.isLoadingFeatured = false;
-        // Réinitialiser le carousel après le chargement des données
+        
+        // Forcer la détection de changements pour Angular
+        this.cdr.detectChanges();
+        
+        // Réinitialiser le carousel après le chargement des données avec un délai plus robuste
         setTimeout(() => {
           this.initializeCarCarousel();
-        }, 500);
+        }, 1200);
       },
       error: (error) => {
         console.error('Erreur lors du chargement des véhicules en vedette:', error);
         this.featuredCars = [];
         this.isLoadingFeatured = false;
+        this.cdr.detectChanges();
       }
     });
   }
@@ -98,7 +235,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   
   private initializeScrollAnimations() {
     setTimeout(() => {
-      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
+      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .reveal-up, .reveal-fade, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
       this.scrollAnimationService.observeElements(elements);
     }, 100);
   }
@@ -202,59 +339,67 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 1500);
   }
 
-  private initializeCarCarousel() {
+  private initializeCarCarousel(retryCount: number = 0) {
     // Vérifier que jQuery et owlCarousel sont disponibles
     if (typeof $ === 'undefined' || typeof $.fn.owlCarousel === 'undefined') {
       // Réessayer après un court délai
-      setTimeout(() => this.initializeCarCarousel(), 200);
+      if (retryCount < 10) {
+        setTimeout(() => this.initializeCarCarousel(retryCount + 1), 300);
+      }
       return;
     }
 
-    if ($('.carousel-car').length && this.featuredCars.length > 0) {
-      try {
-        const $carCarousel = $('.carousel-car');
-        
-        // Détruire toutes les instances existantes
-        if ($carCarousel.hasClass('owl-loaded')) {
-          try {
-            $carCarousel.owlCarousel('destroy');
-            $carCarousel.removeClass('owl-loaded owl-drag');
-            $carCarousel.find('.owl-stage-outer').children().unwrap();
-          } catch (e) {
-            // Ignorer si déjà détruit
-          }
-        }
-        
-        // Réinitialiser complètement
-        $carCarousel.removeData();
-        
-        // Vérifier qu'il y a des items avant d'initialiser
-        if ($carCarousel.children('.item').length > 0) {
-          this.carCarouselInstance = $carCarousel.owlCarousel({
-            items: 2,
-            loop: this.featuredCars.length > 2,
-            margin: 30,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            autoplayHoverPause: true,
-            nav: true,
-            dots: true,
-            navText: ['<span class="ion-ios-arrow-back"></span>', '<span class="ion-ios-arrow-forward"></span>'],
-            slideBy: 1,
-            smartSpeed: 800,
-            responsive: {
-              0: { items: 1, margin: 20, nav: false },
-              768: { items: 2, margin: 30, nav: true }
-            },
-            onInitialized: () => {
-              // Afficher le carousel une fois initialisé
-              $carCarousel.css('opacity', '1');
-            }
+    const $carCarousel = $('.carousel-car');
+    
+    // Si le carousel n'est pas encore dans le DOM (Angular est encore en train de charger)
+    if ($carCarousel.length === 0 || $carCarousel.children('.item').length === 0) {
+      if (retryCount < 10 && this.featuredCars.length > 0) {
+        setTimeout(() => this.initializeCarCarousel(retryCount + 1), 300);
+      }
+      return;
+    }
+
+    try {
+      // Détruire toutes les instances existantes pour éviter les doublons
+      if ($carCarousel.hasClass('owl-loaded')) {
+        $carCarousel.owlCarousel('destroy');
+        $carCarousel.removeClass('owl-loaded owl-drag');
+        $carCarousel.find('.owl-stage-outer').children().unwrap();
+      }
+      
+      // Réinitialiser complètement les données jQuery
+      $carCarousel.removeData('owl.carousel');
+      
+      this.carCarouselInstance = $carCarousel.owlCarousel({
+        items: 3,
+        loop: this.featuredCars.length > 3,
+        margin: 20,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        nav: false,
+        dots: true,
+        smartSpeed: 800,
+        responsive: {
+          0: { items: 1 },
+          768: { items: 2 },
+          1200: { items: 3 }
+        },
+        onInitialized: () => {
+          // Afficher le carousel une fois initialisé
+          $carCarousel.css('opacity', '1');
+          
+          // Hook custom nav buttons
+          $('.featured-items-section .nav-btn.prev').off('click').on('click', () => {
+            $carCarousel.trigger('prev.owl.carousel');
+          });
+          $('.featured-items-section .nav-btn.next').off('click').on('click', () => {
+            $carCarousel.trigger('next.owl.carousel');
           });
         }
-      } catch (e) {
-        console.error('Error initializing car carousel:', e);
-      }
+      });
+    } catch (e) {
+      console.error('Error initializing car carousel:', e);
     }
   }
 

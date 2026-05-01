@@ -65,6 +65,10 @@ export class ScrollAnimationService {
       htmlElement.classList.add('present-delay-4-animated');
     } else if (htmlElement.classList.contains('present-delay-5')) {
       htmlElement.classList.add('present-delay-5-animated');
+    } else if (htmlElement.classList.contains('reveal-up')) {
+      htmlElement.classList.add('reveal-up-animated');
+    } else if (htmlElement.classList.contains('reveal-fade')) {
+      htmlElement.classList.add('reveal-fade-animated');
     }
 
     // Ne plus observer cet élément

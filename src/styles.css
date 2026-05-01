@@ -45,7 +45,7 @@
   --color-brand-200: #c2d6ff;
   --color-brand-300: #99c6e0;
   --color-brand-400: #4d8fbe;
-  --color-brand-500: #005f9b;
+  --color-brand-500: #0f3bff;
   --color-brand-600: #004f82;
   --color-brand-700: #003f69;
   --color-brand-800: #003053;
@@ -133,7 +133,7 @@
 
   --color-theme-pink-500: #ee46bc;
 
-  --color-theme-purple-500: #005f9b;
+  --color-theme-purple-500: #0f3bff;
 
   --shadow-theme-md: 0px 4px 8px -2px rgba(16, 24, 40, 0.1),
     0px 2px 4px -2px rgba(16, 24, 40, 0.06);
@@ -162,6 +162,16 @@
   --z-index-99999: 99999;
   --z-index-999999: 999999;
 }
+
+body {
+  font-family: "Outfit", sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Outfit", sans-serif !important;
+}
+
+
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -534,13 +544,13 @@ span.flatpickr-weekday,
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-  background: #005f9b;
+  background: #0f3bff;
   @apply !border-brand-500 !bg-brand-500 hover:!border-brand-500 hover:!bg-brand-500;
 }
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: -10px 0 0 #005f9b;
+  box-shadow: -10px 0 0 #0f3bff;
 }
 
 .flatpickr-months .flatpickr-prev-month svg,

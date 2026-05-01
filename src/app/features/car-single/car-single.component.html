@@ -4,21 +4,17 @@
 <div id="ftco-loader" class="fullscreen" [class.show]="isLoading" [class.hidden]="!isLoading">
   <svg class="circular" width="48px" height="48px">
     <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#005F9B"/>
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#0f3bff"/>
   </svg>
 </div>
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
+<section class="inner-page-hero" style="background: #0c111d;" data-stellar-background-ratio="0.5">
+  <div class="containers">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
       <div class="col-md-9 ftco-animate pb-5">
         <p class="breadcrumbs">
-          <span class="mr-2"><a routerLink="/">Accueil <i class="ion-ios-arrow-forward"></i></a></span> 
-          <span><a routerLink="/cars">Véhicules <i class="ion-ios-arrow-forward"></i></a></span> 
           <span>Détails du véhicule <i class="ion-ios-arrow-forward"></i></span>
         </p>
-        <h1 class="mb-3 bread">Détails du Véhicule</h1>
       </div>
     </div>
   </div>
@@ -28,7 +24,7 @@
 <div *ngIf="isLoading" class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-12 text-center">
-      <div class="spinner-border text-primary" role="status" style="color: #005F9B !important;">
+      <div class="spinner-border text-primary" role="status" style="color: #0f3bff !important;">
         <span class="sr-only">Chargement...</span>
       </div>
       <p class="mt-3">Chargement des détails du véhicule...</p>
@@ -38,94 +34,137 @@
 
 <section class="ftco-section ftco-car-details" *ngIf="car && !isLoading">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="car-details present-zoom">
-          <!-- Galerie de photos -->
-          <div class="car-gallery" *ngIf="car.photos && car.photos.length > 0">
-            <div class="main-image">
-              <img [src]="car.image" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
+    <div class="vehicle-top">
+      <div>
+        <p class="stock">Référence #{{ car.id }}</p>
+        <h1>{{ car.name }}</h1>
+      </div>
+      <div class="price-box">
+        <span>Notre prix</span>
+        <strong>{{ car.price | number }} FCFA</strong>
+      </div>
+    </div>
+
+    <div class="vehicle-actions">
+      <a class="action-btn">Calculateur de financement</a>
+      <a class="action-btn">Essai du véhicule</a>
+      <a class="action-btn">Recevoir la brochure</a>
+    </div>
+
+    <div class="vehicle-main-grid">
+      <div class="vehicle-gallery">
+        <div class="images-scroll-container" #scrollContainer>
+          <img *ngFor="let photo of car.photos" [src]="photo" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
+          <!-- Placeholder if no photos -->
+          <img *ngIf="!car.photos || car.photos.length === 0" src="assets/images/car-1.jpg" [alt]="car.name">
+        </div>
+      </div>
+
+      <aside class="vehicle-side">
+        <div class="quick-metrics">
+          <!-- Electric/Hybrid Specs -->
+          <ng-container *ngIf="car.fuel === 'electrique' || car.fuel === 'hybride_rechargeable'">
+            <div class="metric">
+              <span class="label">Autonomie</span>
+              <strong>{{ car.features?.electric_range || 'N/A' }} km</strong>
             </div>
-            <div class="thumbnail-images" *ngIf="car.photos.length > 1">
-              <div class="thumbnail" *ngFor="let photo of car.photos" (click)="car.image = photo" [class.active]="car.image === photo">
-                <img [src]="photo" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
-              </div>
+            <div class="metric">
+              <span class="label">Batterie</span>
+              <strong>{{ car.features?.battery_size || 'N/A' }} kWh</strong>
             </div>
+          </ng-container>
+
+          <!-- Thermal Specs -->
+          <ng-container *ngIf="car.fuel !== 'electrique' && car.fuel !== 'hybride_rechargeable'">
+            <div class="metric">
+              <span class="label">Consommation</span>
+              <strong>{{ car.consommation_mixte || 'N/A' }} L/100km</strong>
+            </div>
+            <div class="metric">
+              <span class="label">Émissions CO2</span>
+              <strong>{{ car.emissions_co2 || 'N/A' }} g/km</strong>
+            </div>
+          </ng-container>
+
+          <div class="metric">
+            <span class="label">Moteur</span>
+            <strong>{{ car.puissance || 'N/A' }} ch</strong>
           </div>
-          <div class="img rounded" *ngIf="!car.photos || car.photos.length === 0" [style.background-image]="'url(' + car.image + ')'"></div>
-          <div class="text text-center">
-            <span class="subheading">{{ car.brand }}</span>
-            <h2>{{ car.name }}</h2>
-            <p class="price-display">{{ car.price | number }} FCFA</p>
+          <div class="metric">
+            <span class="label">0-100 km/h</span>
+            <strong>{{ car.features?.acceleration || 'N/A' }} s</strong>
           </div>
+        </div>
+
+        <div class="contact-panel">
+          <h4>Contact rapide</h4>
+          <p>Intéressé par ce véhicule ? Demandez un devis personnalisé.</p>
+          <button class="btn btn-primary w-100" (click)="setActiveTab('devis')">Demander une offre</button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3>Résumé du véhicule</h3>
+        <div class="summary-rows">
+          <div><span>Catégorie</span><strong>{{ car.categorie || 'SUV' | titlecase }}</strong></div>
+          <div><span>Marque</span><strong>{{ car.brand }}</strong></div>
+          <div><span>Modèle</span><strong>{{ car.name }}</strong></div>
+          <div><span>Kilométrage</span><strong>{{ car.mileage | number }} km</strong></div>
+          <div><span>Année</span><strong>{{ car.annee || 'N/A' }}</strong></div>
+          <div><span>Boîte de vitesse</span><strong>{{ getTransmissionLabel(car.transmission) }}</strong></div>
+          <div><span>Transmission</span><strong>{{ car.drive_type || 'N/A' | titlecase }}</strong></div>
+          <div><span>Couleur</span><strong>{{ car.couleur || 'N/A' | titlecase }}</strong></div>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <h3>Faits rapides</h3>
+        <div class="summary-rows">
+          <div><span>VIN</span><strong style="font-size: 0.8rem;">{{ car.vin || 'N/A' }}</strong></div>
+          <div><span>Garantie</span><strong>{{ car.garantie_mois || '0' }} mois</strong></div>
+          <div><span>Puissance</span><strong>{{ car.puissance || 'N/A' }} ch</strong></div>
+          <div><span>Nombre de places</span><strong>{{ car.seats }}</strong></div>
+          <div><span>Nombre de portes</span><strong>{{ car.nombre_portes }}</strong></div>
+          <div><span>Bagages</span><strong>{{ car.luggage }}</strong></div>
+          <div><span>Carburant</span><strong>{{ getFuelLabel(car.fuel) }}</strong></div>
         </div>
       </div>
     </div>
-    <div class="row car-specs">
-      <div class="col-md d-flex align-self-stretch ftco-animate present-delay-1">
-        <div class="spec-item">
-          <div class="spec-icon">
-            <span class="flaticon-dashboard"></span>
-          </div>
-          <div class="spec-content">
-            <p class="spec-label">Kilométrage</p>
-            <p class="spec-value">{{ car.mileage | number }} km</p>
-          </div>
+
+    <div class="content-sections">
+      <div class="content-card">
+        <h3>Aperçu</h3>
+        <p *ngIf="car.description">{{ car.description }}</p>
+        <p *ngIf="!car.description">
+          Ce véhicule est sélectionné pour son excellent état général, son confort de conduite et ses performances adaptées aux trajets urbains et longue distance.
+          Il offre une expérience premium et une fiabilité idéale pour votre usage quotidien.
+        </p>
+      </div>
+
+      <div class="content-card" *ngIf="getFeatureGroups().length > 0">
+        <h3>Équipements</h3>
+        <div class="features-columns">
+          <ul *ngFor="let group of getFeatureGroups()">
+            <li *ngFor="let item of group">{{ item.available ? '✓' : '✗' }} {{ item.name }}</li>
+          </ul>
         </div>
       </div>
-      <div class="col-md d-flex align-self-stretch ftco-animate present-delay-2">
-        <div class="spec-item">
-          <div class="spec-icon">
-            <span class="flaticon-pistons"></span>
-          </div>
-          <div class="spec-content">
-            <p class="spec-label">Transmission</p>
-            <p class="spec-value">{{ getTransmissionLabel(car.transmission) }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md d-flex align-self-stretch ftco-animate present-delay-3">
-        <div class="spec-item">
-          <div class="spec-icon">
-            <span class="flaticon-car-seat"></span>
-          </div>
-          <div class="spec-content">
-            <p class="spec-label">Sièges</p>
-            <p class="spec-value">{{ car.seats }} personnes</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md d-flex align-self-stretch ftco-animate present-delay-4">
-        <div class="spec-item">
-          <div class="spec-icon">
-            <span class="flaticon-backpack"></span>
-          </div>
-          <div class="spec-content">
-            <p class="spec-label">Bagages</p>
-            <p class="spec-value">{{ car.luggage }} valise(s)</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md d-flex align-self-stretch ftco-animate present-delay-5">
-        <div class="spec-item">
-          <div class="spec-icon">
-            <span class="flaticon-diesel"></span>
-          </div>
-          <div class="spec-content">
-            <p class="spec-label">Carburant</p>
-            <p class="spec-value">{{ getFuelLabel(car.fuel) }}</p>
-          </div>
-        </div>
+
+      <div class="content-card">
+        <h3>Localisation & Contact</h3>
+        <p><strong>Adresse:</strong> Quartier Bastos, Rue de l'Ambassade, Yaoundé</p>
+        <p><strong>Téléphone:</strong> +237 697 364 696</p>
+        <p><strong>Email:</strong> contact@efymotors.com</p>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-12 pills">
         <div class="bd-example bd-example-tabs modern-tabs-container">
           <div class="d-flex justify-content-center">
             <ul class="nav nav-tabs mb-4" id="car-tabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" [class.active]="isActiveTab('description')" (click)="setActiveTab('description')" type="button">Description</button>
-              </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" [class.active]="isActiveTab('review')" (click)="setActiveTab('review')" type="button">Avis</button>
               </li>
@@ -136,48 +175,15 @@
           </div>
 
           <div class="tab-content" id="car-tab-content">
-            <div class="tab-pane" [class.show]="isActiveTab('description')" [class.active]="isActiveTab('description')" [hidden]="!isActiveTab('description')">
-              <div class="description-content">
-                <h4>Description du véhicule</h4>
-                <p class="description-text" *ngIf="car.description">{{ car.description }}</p>
-                <p class="description-text" *ngIf="!car.description">Une voiture exceptionnelle avec toutes les fonctionnalités modernes. Parfaite pour les longs trajets et le confort maximal.</p>
-                
-                <div *ngIf="car.annee || car.puissance || car.couleur || car.nombre_portes" class="additional-specs mt-4">
-                  <h5>Caractéristiques supplémentaires</h5>
-                  <div class="specs-grid">
-                    <div class="spec-item" *ngIf="car.annee">
-                      <strong>Année :</strong> {{ car.annee }}
-                    </div>
-                    <div class="spec-item" *ngIf="car.puissance">
-                      <strong>Puissance :</strong> {{ car.puissance }} CV
-                    </div>
-                    <div class="spec-item" *ngIf="car.couleur">
-                      <strong>Couleur :</strong> {{ car.couleur }}
-                    </div>
-                    <div class="spec-item" *ngIf="car.nombre_portes">
-                      <strong>Nombre de portes :</strong> {{ car.nombre_portes }}
-                    </div>
-                  </div>
-                </div>
-                
-                <h5>Caractéristiques principales</h5>
-                <p>Cette voiture offre une expérience de conduite exceptionnelle avec un design élégant et des performances remarquables. Idéale pour vos déplacements quotidiens ou vos voyages, elle combine confort, sécurité et style.</p>
-                
-                <h5>Confort et sécurité</h5>
-                <p>Équipée des dernières technologies de sécurité et de confort, cette voiture vous garantit une conduite agréable et sécurisée. Les sièges ergonomiques, la climatisation automatique et les systèmes d'assistance à la conduite rendent chaque trajet une expérience plaisante.</p>
-                
-                <h5>Performance</h5>
-                <p>Avec un moteur puissant et une transmission {{ getTransmissionLabel(car.transmission).toLowerCase() }}, cette voiture offre des performances optimales tout en maintenant une consommation de carburant raisonnable. Parfaite pour la ville comme pour les longues distances.</p>
-              </div>
-            </div>
-
             <div class="tab-pane" [class.show]="isActiveTab('review')" [class.active]="isActiveTab('review')" [hidden]="!isActiveTab('review')">
               <div class="row">
                 <div class="col-md-7">
                   <h3 class="reviews-heading">{{ reviews.length }} Avis</h3>
                   <div class="reviews-list">
                     <div class="review-item" *ngFor="let review of reviews">
-                      <div class="user-img" [style.background-image]="'url(' + (review.avatar_url || 'assets/images/testimonial1.jpg') + ')'"></div>
+                      <div class="initials-avatar">
+                        {{ getInitials(review.nom_client) }}
+                      </div>
                       <div class="review-content">
                         <div class="review-header">
                           <h4 class="reviewer-name">{{ review.nom_client }}</h4>
@@ -352,7 +358,7 @@
                           type="submit" 
                           class="btn btn-primary btn-lg py-3 px-5" 
                           [disabled]="devisForm.invalid || isLoadingDevis"
-                          style="background-color: #005F9B; border-color: #005F9B;">
+                          style="background-color: #0f3bff; border-color: #0f3bff;">
                           <span *ngIf="!isLoadingDevis">Envoyer la demande</span>
                           <span *ngIf="isLoadingDevis">
                             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
@@ -376,7 +382,7 @@
   <div class="container">
     <div class="row justify-content-center" *ngIf="isLoadingRelated">
       <div class="col-md-12 text-center mb-5">
-        <div class="spinner-border text-primary" role="status" style="color: #005F9B !important;">
+        <div class="spinner-border text-primary" role="status" style="color: #0f3bff !important;">
           <span class="sr-only">Chargement...</span>
         </div>
         <p class="mt-3">Chargement des véhicules similaires...</p>

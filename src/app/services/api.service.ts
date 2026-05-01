@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 
-const API_URL = environment.apiUrl || 'http://localhost:8000/api';
+const API_URL = environment.apiUrl || 'https://api.efymotors.com/api';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,12 @@ export class ApiService {
   }
 
   // Reviews
+  getAllReviews(page: number = 1, size: number = 20, statut: string = 'approuve'): Observable<any> {
+    return this.http.get(`${API_URL}/reviews`, { 
+      params: { page: page.toString(), size: size.toString(), statut: statut }
+    });
+  }
+
   getVehicleReviews(vehicleId: number, page: number = 1, size: number = 20): Observable<any> {
     return this.http.get(`${API_URL}/vehicules/${vehicleId}/reviews`, { 
       params: { page: page.toString(), size: size.toString() }
@@ -154,6 +160,21 @@ export class ApiService {
       params: { page: '1', size: '1', est_disponible: 'false' },
       headers: this.headers 
     });
+  }
+
+  // AI Chatbot & Advisor
+  askChatbot(message: string): Observable<any> {
+    return this.http.post(`${API_URL}/chat/ask`, { message }, { headers: this.headers });
+  }
+
+  getAdvisorRecommendations(params: { budget_max?: number; usage?: string; nb_places?: number }): Observable<any> {
+    let httpParams = new HttpParams();
+    if (params) {
+      if (params.budget_max) httpParams = httpParams.set('budget_max', params.budget_max.toString());
+      if (params.usage) httpParams = httpParams.set('usage', params.usage);
+      if (params.nb_places) httpParams = httpParams.set('nb_places', params.nb_places.toString());
+    }
+    return this.http.get(`${API_URL}/advisor/recommend`, { params: httpParams, headers: this.headers });
   }
 }
 

@@ -4,161 +4,246 @@
 <div id="ftco-loader" class="fullscreen" [class.show]="isLoading" [class.hidden]="!isLoading">
   <svg class="circular" width="48px" height="48px">
     <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#005F9B"/>
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#0f3bff"/>
   </svg>
 </div>
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/vehicule.jpg');" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-      <div class="col-md-9 ftco-animate pb-5">
-        <p class="breadcrumbs"><span class="mr-2"><a routerLink="/">Accueil <i class="ion-ios-arrow-forward"></i></a></span> <span>Véhicules <i class="ion-ios-arrow-forward"></i></span></p>
-        <h1 class="mb-3 bread">Choisissez Votre Voiture</h1>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ftco-section bg-light cars-section" *ngIf="!isLoading">
-  <div class="container-fluid px-3 px-md-4">
-    <div class="row g-3">
-      <!-- Filtres à gauche -->
-      <div class="col-md-3 mb-4">
-        <div class="filter-panel bg-white p-4 rounded shadow-sm">
-          <h3 class="mb-4">Filtres</h3>
+<section class="ftco-section bg-light main-content" *ngIf="!isLoading">
+  <div class="container-fluid px-lg-5">
+    <div class="row">
+      <!-- Sidebar: Search Options -->
+      <div class="col-lg-3">
+        <div class="search-sidebar">
+          <div class="sidebar-header">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Filtres de recherche</span>
+          </div>
           
-          <!-- Marques -->
-          <div class="filter-group mb-4">
-            <h5 class="mb-3">Marques</h5>
-            <div class="form-check mb-2" *ngFor="let brand of brands">
-              <input class="form-check-input" type="checkbox" [id]="'brand-' + brand" [checked]="selectedBrands.includes(brand)" (change)="toggleBrand(brand)">
-              <label class="form-check-label" [for]="'brand-' + brand">
-                {{ brand }}
-              </label>
+          <div class="filter-accordion">
+            <!-- Condition -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('condition')">
+                État <svg class="chevron" [class.rotated]="expandedSections['condition']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['condition']">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="cond-new">
+                  <label class="form-check-label" for="cond-new">Neuf</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="cond-used">
+                  <label class="form-check-label" for="cond-used">Occasion</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Make -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('make')">
+                Marque <svg class="chevron" [class.rotated]="expandedSections['make']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['make']">
+                <div class="form-check mb-2" *ngFor="let brand of brands">
+                  <input class="form-check-input" type="checkbox" [id]="'brand-' + brand" [checked]="selectedBrands.includes(brand)" (change)="toggleBrand(brand)">
+                  <label class="form-check-label" [for]="'brand-' + brand">{{ brand }}</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Model -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('model')">
+                Modèle <svg class="chevron" [class.rotated]="expandedSections['model']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['model']">
+                <p class="text-muted small">Sélectionnez d'abord une marque</p>
+              </div>
+            </div>
+
+            <!-- Max Power -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('power')">
+                Puissance max <svg class="chevron" [class.rotated]="expandedSections['power']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['power']">
+                <input type="range" class="custom-range" min="0" max="1000" step="50">
+              </div>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-item range-filter px-3 py-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="filter-label">Prix</span>
+                <span class="filter-value">0 – 50M FCFA</span>
+              </div>
+              <input type="range" class="custom-range" min="0" max="50000000" step="500000">
+            </div>
+
+            <!-- 0-60 mph Range -->
+            <div class="filter-item range-filter px-3 py-3">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="filter-label">0-100 km/h</span>
+                <span class="filter-value">0s – 20s</span>
+              </div>
+              <input type="range" class="custom-range" min="0" max="20" step="0.5">
+            </div>
+
+            <!-- Max Mileage -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('mileage')">
+                Kilométrage Max <svg class="chevron" [class.rotated]="expandedSections['mileage']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['mileage']">
+                <input type="range" class="custom-range" min="0" [max]="maxAvailableMileage" step="5000" [(ngModel)]="maxMileage" (input)="onMileageChange()">
+                <div class="d-flex justify-content-between mt-1">
+                  <span class="small text-muted">0 km</span>
+                  <span class="small fw-bold">{{ maxMileage | number }} km</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Year -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('year')">
+                Année <svg class="chevron" [class.rotated]="expandedSections['year']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['year']">
+                <select class="form-select form-select-sm">
+                  <option value="">Toutes les années</option>
+                  <option *ngFor="let y of [2024, 2023, 2022, 2021, 2020, 2019, 2018]" [value]="y">{{ y }}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Transmission -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('transmission')">
+                Transmission <svg class="chevron" [class.rotated]="expandedSections['transmission']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['transmission']">
+                <div class="form-check mb-2" *ngFor="let trans of transmissions">
+                  <input class="form-check-input" type="checkbox" [id]="'trans-' + trans" [checked]="selectedTransmissions.includes(trans)" (change)="toggleTransmission(trans)">
+                  <label class="form-check-label" [for]="'trans-' + trans">{{ trans }}</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Exterior Color -->
+            <div class="filter-item">
+              <button class="filter-trigger" (click)="toggleSection('color')">
+                Couleur Extérieure <svg class="chevron" [class.rotated]="expandedSections['color']" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="filter-content px-3 pb-3" *ngIf="expandedSections['color']">
+                <div class="d-flex flex-wrap gap-2">
+                  <div class="color-swatch" style="background: #000;" title="Noir"></div>
+                  <div class="color-swatch" style="background: #fff; border: 1px solid #ddd;" title="Blanc"></div>
+                  <div class="color-swatch" style="background: #808080;" title="Gris"></div>
+                  <div class="color-swatch" style="background: #0000ff;" title="Bleu"></div>
+                  <div class="color-swatch" style="background: #ff0000;" title="Rouge"></div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!-- Kilométrage -->
-          <div class="filter-group mb-4">
-            <h5 class="mb-3">Kilométrage maximum</h5>
-            <input type="range" class="form-range" min="0" [max]="maxAvailableMileage" step="5000" [(ngModel)]="maxMileage" (input)="onMileageChange()">
-            <div class="d-flex justify-content-between">
-              <small>0 km</small>
-              <small>{{ maxMileage | number }} km</small>
-              <small>{{ maxAvailableMileage | number }} km</small>
-            </div>
-          </div>
-
-          <!-- Transmission -->
-          <div class="filter-group mb-4">
-            <h5 class="mb-3">Transmission</h5>
-            <div class="form-check mb-2" *ngFor="let transmission of transmissions">
-              <input class="form-check-input" type="checkbox" [id]="'transmission-' + transmission" [checked]="selectedTransmissions.includes(transmission)" (change)="toggleTransmission(transmission)">
-              <label class="form-check-label" [for]="'transmission-' + transmission">
-                {{ transmission }}
-              </label>
-            </div>
-          </div>
-
-          <!-- Sièges -->
-          <div class="filter-group mb-4">
-            <h5 class="mb-3">Nombre de sièges</h5>
-            <select class="form-select" [(ngModel)]="selectedSeats" (change)="onSeatsChange()">
-              <option [value]="null">Tous</option>
-              <option [value]="seat" *ngFor="let seat of seats">{{ seat }} sièges</option>
-            </select>
-          </div>
-
-          <!-- Bagages -->
-          <div class="filter-group mb-4">
-            <h5 class="mb-3">Capacité bagages</h5>
-            <select class="form-select" [(ngModel)]="selectedLuggage" (change)="onLuggageChange()">
-              <option [value]="null">Tous</option>
-              <option [value]="lug" *ngFor="let lug of luggage">{{ lug }} valise(s)</option>
-            </select>
-          </div>
-
-          <!-- Carburant -->
-          <div class="filter-group mb-4">
-            <h5 class="mb-3">Type de carburant</h5>
-            <div class="form-check mb-2" *ngFor="let fuel of fuels">
-              <input class="form-check-input" type="checkbox" [id]="'fuel-' + fuel" [checked]="selectedFuels.includes(fuel)" (change)="toggleFuel(fuel)">
-              <label class="form-check-label" [for]="'fuel-' + fuel">
-                {{ fuel }}
-              </label>
-            </div>
-          </div>
-
-          <!-- Bouton réinitialiser -->
-          <button class="btn btn-secondary w-100" (click)="resetFilters()">Réinitialiser les filtres</button>
+          
+          <button class="btn btn-outline-primary w-100 mt-4" (click)="resetFilters()">Réinitialiser les filtres</button>
         </div>
       </div>
 
-      <!-- Liste des voitures à droite -->
-      <div class="col-md-9">
-        <!-- Skeleton Loader -->
-        <div *ngIf="isLoading" class="skeleton-grid">
-          <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6]">
-            <div class="skeleton-card-image"></div>
-            <div class="skeleton-card-content">
-              <div class="skeleton-card-title"></div>
-              <div class="skeleton-card-text"></div>
-              <div class="skeleton-card-footer">
-                <div class="skeleton-card-price"></div>
-                <div class="skeleton-card-button"></div>
-              </div>
+      <!-- Main Content: Cars Grid -->
+      <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="section-title mb-0">Véhicules disponibles</h2>
+          <div class="view-options d-flex align-items-center gap-3">
+            <div class="sort-by d-flex align-items-center gap-2">
+              <span class="text-muted small text-uppercase fw-bold">Trier par :</span>
+              <select class="form-select form-select-sm sort-select">
+                <option>Date : plus récent</option>
+                <option>Prix : croissant</option>
+                <option>Prix : décroissant</option>
+              </select>
+            </div>
+            <div class="layout-toggle btn-group">
+              <button class="btn btn-sm btn-light active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></button>
+              <button class="btn btn-sm btn-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></button>
             </div>
           </div>
         </div>
-        
-        <!-- Message si aucun résultat -->
-        <div *ngIf="!isLoading && cars.length === 0" class="text-center py-5">
-          <p class="text-muted">Aucun véhicule ne correspond à vos critères de recherche.</p>
-        </div>
-        
-        <div class="cars-grid" *ngIf="!isLoading && displayedCars.length > 0">
-          <div class="car-card" *ngFor="let car of displayedCars">
-            <div class="car-image">
-              <img [src]="car.image" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
-              <div class="car-badge">{{car.brand}}</div>
-            </div>
-            <div class="car-content">
-              <h3 class="car-title">{{car.name}}</h3>
-              <p class="car-description">Véhicule {{car.transmission.toLowerCase()}} avec {{car.seats}} places, idéal pour vos déplacements.</p>
-              <div class="car-rating">
-                <div class="stars">
-                  <span class="star filled" *ngFor="let i of [1,2,3,4,5]">★</span>
+
+        <hr class="mb-4">
+
+        <div class="cars-premium-grid">
+          <div class="car-premium-card" *ngFor="let car of displayedCars">
+            <a [routerLink]="['/cars', car.id]" class="car-card-link">
+              <div class="car-img-wrapper">
+                <div class="images-scroll-container" #scrollContainer>
+                  <img *ngFor="let photo of car.photos" [src]="photo" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
+                  <!-- Placeholder if no photos -->
+                  <img *ngIf="car.photos.length === 0" src="assets/images/car-1.jpg" [alt]="car.name">
                 </div>
-                <span class="rating-value">4.5</span>
-                <span class="reviews">({{car.reviews?.length || 0}} avis)</span>
-              </div>
-              <div class="car-footer">
-                <div class="car-price">
-                  <span class="price-label">Prix</span>
-                  <span class="price-value">{{car.price | number}} FCFA</span>
+                
+                <!-- Overlays -->
+                <div class="image-overlays">
+                  <div class="overlay-badge photo-count">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    <span>{{ car.photosCount }}</span>
+                  </div>
+                  <div class="overlay-badge video-count" *ngIf="car.hasVideo">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    <span>1</span>
+                  </div>
                 </div>
-                <a [routerLink]="['/cars', car.id]" class="btn-view-details">Voir détails</a>
+
+                <!-- Sold Sash -->
+                <div class="sold-sash" *ngIf="car.isSold">
+                  <span>VENDU</span>
+                </div>
               </div>
-            </div>
+
+              <div class="car-info-content">
+                <div class="car-card-header">
+                  <h3 class="car-title-text">{{ car.name | uppercase }}</h3>
+                  <div class="price-badge-container">
+                    <span class="price-badge">{{ car.price | number }} FCFA</span>
+                  </div>
+                </div>
+
+                <div class="price-strikethrough-row" *ngIf="car.oldPrice">
+                  <span class="old-price">{{ car.oldPrice | number }} FCFA</span>
+                </div>
+
+                <div class="car-specs-grid">
+                  <div class="spec-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    <span>{{ car.mileage | number }} km</span>
+                  </div>
+                  <div class="spec-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>{{ car.energy }}</span>
+                  </div>
+                  <div class="spec-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <span>{{ car.power }} ch</span>
+                  </div>
+                  <div class="spec-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>{{ car.acceleration || 'N/A' }} s</span>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- Pagination -->
-    <div class="row mt-5" *ngIf="!isLoading && cars.length > 0">
-      <div class="col text-center">
-        <div class="block-27">
-          <ul>
-            <li><a (click)="previousPage()" [class.disabled]="currentPage === 1" style="cursor: pointer;">&lt;</a></li>
-            <li *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage">
-              <a *ngIf="page !== currentPage" (click)="goToPage(page)" style="cursor: pointer;">{{ page }}</a>
-              <span *ngIf="page === currentPage">{{ page }}</span>
+
+        <!-- Pagination -->
+        <div class="pagination-premium mt-5" *ngIf="cars.length > 0">
+          <ul class="pagination-list">
+            <li><button class="page-nav" (click)="previousPage()" [disabled]="currentPage === 1">&lt;</button></li>
+            <li *ngFor="let page of getPageNumbers()">
+              <button class="page-num" [class.active]="page === currentPage" (click)="goToPage(page)">{{ page }}</button>
             </li>
-            <li><a (click)="nextPage()" [class.disabled]="currentPage === totalPages" style="cursor: pointer;">&gt;</a></li>
+            <li><button class="page-nav" (click)="nextPage()" [disabled]="currentPage === totalPages">&gt;</button></li>
           </ul>
         </div>
-        <p class="mt-3 text-muted">Page {{ currentPage }} sur {{ totalPages }} ({{ cars.length }} véhicule(s))</p>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
 /* Note: Ces styles s'appliquent uniquement aux pages publiques, pas à l'admin CoreUI */
 
 :root {
-  --efy-primary: #005F9B; /* Bleu foncé du logo "EFY MOTORS" - teal foncé */
+  --efy-primary: #0f3bff; /* Bleu foncé du logo "EFY MOTORS" - teal foncé */
   --efy-accent: #8B2E3D; /* Marron/rouge foncé de la voiture */
   --efy-primary-hover: #004A7A; /* Version plus claire pour le hover */
   --efy-accent-hover: #A03D4F; /* Version plus claire pour le hover */
@@ -75,7 +75,7 @@
 /* Sections avec fond primaire - IMPORTANT : assurez-vous que tout le texte est blanc */
 .ftco-section.ftco-about .heading-section-white,
 .ftco-section.ftco-about .wrap-about {
-  background-color: #005F9B !important; /* Bleu EFY Motors */
+  background-color: #0f3bff !important; /* Bleu EFY Motors */
   padding: 10px 0px !important; /* Padding augmenté entre le texte et les bords */
 }
 
@@ -108,7 +108,7 @@
 
 /* Section des services offerts */
 .services-list {
-  background-color: #005F9B !important; /* Bleu EFY Motors */
+  background-color: #0f3bff !important; /* Bleu EFY Motors */
   padding: 60px 80px !important;
   border-radius: 8px;
   text-align: center;
@@ -495,7 +495,7 @@ app-root, router-outlet {
 
 /* Dark mode variables */
 .dark {
-  --efy-primary: #005F9B;
+  --efy-primary: #0f3bff;
   --efy-primary-hover: #0070b8;
   --efy-accent: #8B2E3D;
   --efy-accent-hover: #A03D4F;
@@ -546,7 +546,7 @@ app-root, router-outlet {
 }
 
 .dark .ftco-footer a:hover {
-  color: #005F9B;
+  color: #0f3bff;
 }
 
 /* Dark mode cards */
@@ -589,7 +589,7 @@ app-root, router-outlet {
 .dark select:focus {
   background-color: #2a2a2a;
   color: #e5e5e5;
-  border-color: #005F9B;
+  border-color: #0f3bff;
   box-shadow: 0 0 0 0.2rem rgba(0, 95, 155, 0.25) !important;
 }
 
@@ -623,13 +623,13 @@ app-root, router-outlet {
 }
 
 .dark a:hover {
-  color: #005F9B;
+  color: #0f3bff;
 }
 
 /* Dark mode buttons - keep primary color */
 .dark .btn-primary {
-  background-color: #005F9B;
-  border-color: #005F9B;
+  background-color: #0f3bff;
+  border-color: #0f3bff;
   color: #fff;
 }
 
@@ -639,13 +639,13 @@ app-root, router-outlet {
 }
 
 .dark .btn-outline-primary {
-  color: #005F9B;
-  border-color: #005F9B;
+  color: #0f3bff;
+  border-color: #0f3bff;
 }
 
 .dark .btn-outline-primary:hover {
-  background-color: #005F9B;
-  border-color: #005F9B;
+  background-color: #0f3bff;
+  border-color: #0f3bff;
   color: #fff;
 }
 
@@ -660,7 +660,7 @@ app-root, router-outlet {
 }
 
 .dark .breadcrumbs a:hover {
-  color: #005F9B;
+  color: #0f3bff;
 }
 
 /* Dark mode hero sections - keep overlay dark */
@@ -670,12 +670,12 @@ app-root, router-outlet {
 
 /* Dark mode price */
 .dark .price {
-  color: #005F9B;
+  color: #0f3bff;
 }
 
 /* Dark mode icons */
 .dark .icon {
-  color: #005F9B;
+  color: #0f3bff;
 }
 
 /* Dark mode - keep white text sections white */
@@ -695,11 +695,11 @@ app-root, router-outlet {
 /* Dark mode - sections with blue background keep white text */
 .dark .ftco-section.ftco-about .heading-section-white,
 .dark .ftco-section.ftco-about .wrap-about {
-  background-color: #005F9B !important;
+  background-color: #0f3bff !important;
 }
 
 .dark .services-list {
-  background-color: #005F9B !important;
+  background-color: #0f3bff !important;
 }
 
 .dark .services-list li {
@@ -729,7 +729,7 @@ app-root, router-outlet {
 .dark .request-form .form-control:focus {
   background-color: #1a1a1a !important;
   color: #e5e5e5 !important;
-  border-color: #005F9B !important;
+  border-color: #0f3bff !important;
 }
 
 .dark .contact-form label,
@@ -761,14 +761,14 @@ app-root, router-outlet {
 }
 
 .dark .modern-tabs-container .nav-link:hover {
-  color: #005F9B !important;
-  border-bottom-color: #005F9B !important;
+  color: #0f3bff !important;
+  border-bottom-color: #0f3bff !important;
   background-color: rgba(0, 95, 155, 0.1) !important;
 }
 
 .dark .modern-tabs-container .nav-link.active {
-  color: #005F9B !important;
-  border-bottom-color: #005F9B !important;
+  color: #0f3bff !important;
+  border-bottom-color: #0f3bff !important;
   background-color: rgba(0, 95, 155, 0.15) !important;
 }
 
@@ -808,7 +808,7 @@ app-root, router-outlet {
 
 .dark .modern-tabs-container .devis-form-container .form-control:focus,
 .dark .modern-tabs-container .review-form-section .form-control:focus {
-  border-color: #005F9B !important;
+  border-color: #0f3bff !important;
   background-color: #444 !important;
 }
 
@@ -845,7 +845,7 @@ app-root, router-outlet {
 }
 
 .dark .modern-tabs-container .rating-number {
-  color: #005F9B !important;
+  color: #0f3bff !important;
 }
 
 .dark .modern-tabs-container .rating-label {
@@ -862,7 +862,7 @@ app-root, router-outlet {
 }
 
 .dark .modern-tabs-container .specs-grid .spec-item strong {
-  color: #005F9B !important;
+  color: #0f3bff !important;
 }
 
 /* Dark mode pour la section car-details */
@@ -887,7 +887,7 @@ app-root, router-outlet {
 }
 
 .dark .ftco-car-details .car-details .price-display {
-  color: #005F9B !important;
+  color: #0f3bff !important;
 }
 
 /* Dark mode pour car-specs */
@@ -905,7 +905,7 @@ app-root, router-outlet {
 }
 
 .dark .car-specs .spec-item .spec-icon {
-  color: #005F9B !important;
+  color: #0f3bff !important;
 }
 
 /* Dark mode pour bd-example-tabs */
@@ -938,7 +938,7 @@ app-root, router-outlet {
 }
 
 .dark .additional-specs h5 {
-  color: #005F9B !important;
+  color: #0f3bff !important;
 }
 
 .dark .additional-specs .specs-grid .spec-item {
@@ -947,7 +947,7 @@ app-root, router-outlet {
 }
 
 .dark .additional-specs .specs-grid .spec-item strong {
-  color: #005F9B !important;
+  color: #0f3bff !important;
 }
 
 /* Dark mode pour reviews-list */
@@ -991,7 +991,7 @@ app-root, router-outlet {
 }
 
 .dark .rating-summary .rating-number {
-  color: #005F9B !important;
+  color: #0f3bff !important;
 }
 
 .dark .rating-summary .rating-label {
@@ -1007,7 +1007,7 @@ app-root, router-outlet {
 }
 
 .dark .rating-summary .rating-bar-fill {
-  background-color: #005F9B !important;
+  background-color: #0f3bff !important;
 }
 
 /* Dark mode pour no-reviews */
@@ -1025,7 +1025,7 @@ app-root, router-outlet {
 }
 
 .dark .car-gallery .thumbnail.active {
-  border-color: #005F9B !important;
+  border-color: #0f3bff !important;
 }
 
 /* Dark mode pour pills et bd-example-tabs */
@@ -1120,8 +1120,8 @@ app-root, router-outlet {
 
 /* Dark mode pour les boutons dans les onglets */
 .dark .tab-content .btn-primary {
-  background-color: #005F9B !important;
-  border-color: #005F9B !important;
+  background-color: #0f3bff !important;
+  border-color: #0f3bff !important;
   color: #fff !important;
 }
 
@@ -1187,7 +1187,7 @@ app-root, router-outlet {
 }
 
 .dark .breadcrumbs a:hover {
-  color: #005F9B;
+  color: #0f3bff;
 }
 
 /* Dark mode pour les media-custom */
@@ -1196,7 +1196,7 @@ app-root, router-outlet {
 }
 
 .dark .media-custom .media-body .name {
-  color: #005F9B;
+  color: #0f3bff;
 }
 
 .dark .media-custom .media-body .position {

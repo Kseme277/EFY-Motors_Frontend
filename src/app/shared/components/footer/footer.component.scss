@@ -1,48 +1,127 @@
-// Footer styles are in the global style.css
-
-.logo {
-  display: inline-block;
-  
-  .footer-logo-img {
-    height: 80px;
-    width: auto;
-    max-width: 320px;
-    object-fit: contain;
-    filter: brightness(0) invert(1); // Rend le logo blanc pour le footer sombre
-    transition: filter 0.3s ease;
-  }
+:host {
+  display: block;
 }
 
-/* Dark mode pour le footer */
-:host-context(.dark) .ftco-footer {
-  background-color: #1a1a1a !important;
-  color: #e5e5e5;
-  
-  .ftco-heading-2,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: #e5e5e5;
+.footer-cta {
+  background: radial-gradient(circle at top right, #001f36 0%, #101828 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   }
-  
-  p,
-  span,
-  .text {
-    color: #b0b0b0;
+
+  .cta-badge {
+    background: rgba(0, 149, 255, 0.15);
+    color: #4d8fbe; // Lighter blue for better visibility
+    border: 1px solid rgba(0, 149, 255, 0.3);
   }
-  
-  a {
-    color: #e5e5e5;
-    
+
+  .cta-button {
+    background-color: #0f3bff;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+
     &:hover {
-      color: #005F9B;
+      background-color: #007ccb;
+      box-shadow: 0 15px 40px rgba(0, 95, 155, 0.4);
     }
   }
+}
+
+.main-footer {
+  background-color: var(--color-gray-950);
+  color: var(--color-white);
+  border-top: 1px solid var(--color-gray-900);
   
-  .logo .footer-logo-img {
+  .footer-logo {
+    height: 60px;
+    width: auto;
     filter: brightness(0) invert(1);
   }
+
+  .footer-brand p {
+    color: var(--color-gray-400);
+    line-height: 1.6;
+  }
+
+  .social-icon {
+    border: 1px solid var(--color-gray-800);
+    color: var(--color-white) !important;
+    background: rgba(255, 255, 255, 0.03);
+    
+    &:hover {
+      transform: translateY(-5px);
+      background-color: var(--color-brand-600);
+      border-color: var(--color-brand-600);
+      box-shadow: 0 10px 20px rgba(0, 95, 155, 0.3);
+    }
+  }
+
+  h3 {
+    color: var(--color-brand-300);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    position: relative;
+    padding-bottom: 12px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-brand-500), transparent);
+    }
+  }
+
+  ul li a {
+    color: var(--color-gray-300) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+
+    &:hover {
+      color: var(--color-brand-400) !important;
+      transform: translateX(5px);
+    }
+  }
+
+  .footer-contact {
+    p {
+      color: var(--color-gray-400);
+    }
+    .text-white {
+      color: var(--color-white) !important;
+    }
+    a {
+      color: var(--color-gray-300) !important;
+      &:hover {
+        color: var(--color-brand-400) !important;
+      }
+    }
+  }
+
+  .border-gray-800 {
+    border-color: var(--color-gray-900);
+  }
 }
+
+/* Dark mode refinements */
+.dark {
+  .main-footer {
+    background-color: var(--color-gray-dark);
+  }
+}
+
 

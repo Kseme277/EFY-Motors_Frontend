@@ -16,6 +16,7 @@ export interface CarCard {
   fuel?: string;
   nombre_avis?: number;
   rating?: number;
+  annee?: number;
 }
 
 @Component({

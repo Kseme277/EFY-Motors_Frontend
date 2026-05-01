@@ -22,7 +22,7 @@ export class ServicesComponent implements AfterViewInit {
   
   private initializeScrollAnimations() {
     setTimeout(() => {
-      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
+      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .reveal-up, .reveal-fade, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
       this.scrollAnimationService.observeElements(elements);
     }, 100);
   }

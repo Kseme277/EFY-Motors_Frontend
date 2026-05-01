@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,6 +34,12 @@ interface Car {
   puissance?: number;
   couleur?: string;
   nombre_portes?: number;
+  consommation_mixte?: number;
+  emissions_co2?: number;
+  categorie?: string;
+  vin?: string;
+  drive_type?: string;
+  garantie_mois?: number;
 }
 
 interface Review {
@@ -54,10 +60,13 @@ interface Review {
   styleUrl: './car-single.component.scss'
 })
 export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('scrollContainer') scrollContainer!: ElementRef;
+  private autoScrollInterval: any;
+  private currentImageIndex: number = 0;
   car: Car | null = null;
   relatedCars: CarCard[] = [];
   reviews: Review[] = [];
-  activeTab: string = 'description';
+  activeTab: string = 'review';
   isLoading: boolean = false;
   isLoadingRelated: boolean = false;
   isLoadingDevis: boolean = false;
@@ -113,17 +122,40 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     // Écouter les changements de paramètres de route
     this.routeSubscription = this.route.params.subscribe(params => {
+      console.log('Route params changed:', params);
       const carId = params['id'];
       if (carId) {
         this.loadVehicle(parseInt(carId, 10));
+      } else {
+        console.warn('No car ID in route params');
       }
     });
+    this.startAutoScroll();
   }
 
   ngOnDestroy() {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+    if (this.autoScrollInterval) {
+      clearInterval(this.autoScrollInterval);
+    }
+  }
+
+  private startAutoScroll() {
+    this.autoScrollInterval = setInterval(() => {
+      if (!this.car || !this.car.photos || this.car.photos.length <= 1 || !this.scrollContainer) return;
+
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.car.photos.length;
+      
+      const element = this.scrollContainer.nativeElement;
+      const scrollAmount = element.clientWidth * this.currentImageIndex;
+      
+      element.scrollTo({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }, 5000);
   }
 
   private showLoader() {
@@ -157,6 +189,13 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.apiService.getVehicle(id).subscribe({
       next: (vehicle: any) => {
+        console.log('Vehicle data received from API:', vehicle);
+        if (!vehicle) {
+          console.error('API returned null/undefined for vehicle ID:', id);
+          this.isLoading = false;
+          this.hideLoader();
+          return;
+        }
         // Construire la liste des photos (photo principale en premier, puis les autres)
         const allPhotos: string[] = [];
         if (vehicle.photo_principale) {
@@ -185,9 +224,15 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
           description: vehicle.description,
           features: vehicle.features || {},
           annee: vehicle.annee,
-          puissance: vehicle.puissance,
-          couleur: vehicle.couleur,
-          nombre_portes: vehicle.nombre_portes
+          puissance: vehicle.puissance_din || vehicle.puissance,
+          couleur: vehicle.couleur_exterieure || vehicle.couleur,
+          nombre_portes: vehicle.nombre_portes,
+          consommation_mixte: vehicle.consommation_mixte,
+          emissions_co2: vehicle.emissions_co2,
+          categorie: vehicle.categorie,
+          vin: vehicle.vin,
+          drive_type: vehicle.transmission, // traction, propulsion, 4x4
+          garantie_mois: vehicle.garantie_mois
         };
 
         this.loadSimilarVehicles(id);
@@ -202,10 +247,11 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
         }, 200);
       },
       error: (error) => {
-        console.error('Erreur lors du chargement du véhicule:', error);
-        this.router.navigate(['/cars']);
-        this.hideLoader();
+        console.error('Error loading vehicle details:', error);
         this.isLoading = false;
+        this.hideLoader();
+        this.swal.error('Erreur', 'Impossible de charger les détails du véhicule.');
+        this.router.navigate(['/cars']);
       }
     });
   }
@@ -442,6 +488,15 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
         this.swal.error('Erreur', error.error?.detail || 'Une erreur est survenue lors de l\'envoi de votre avis. Veuillez réessayer.');
       }
     });
+  }
+
+  getInitials(name: string): string {
+    if (!name) return 'U';
+    const parts = name.split(' ');
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return name[0].toUpperCase();
   }
 }
 

@@ -14,7 +14,7 @@ export class SweetAlertService {
       icon: 'success',
       title: title,
       text: message,
-      confirmButtonColor: '#005F9B',
+      confirmButtonColor: '#0f3bff',
       confirmButtonText: 'OK'
     });
   }
@@ -40,7 +40,7 @@ export class SweetAlertService {
       icon: 'info',
       title: title,
       text: message,
-      confirmButtonColor: '#005F9B',
+      confirmButtonColor: '#0f3bff',
       confirmButtonText: 'OK'
     });
   }
@@ -67,7 +67,7 @@ export class SweetAlertService {
       text: message,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#005F9B',
+      confirmButtonColor: '#0f3bff',
       cancelButtonColor: '#6c757d',
       confirmButtonText: confirmText,
       cancelButtonText: cancelText

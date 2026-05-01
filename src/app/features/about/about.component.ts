@@ -2,7 +2,6 @@ import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
 
 declare var $: any;
@@ -10,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink],
+  imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
@@ -29,7 +28,7 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
   
   private initializeScrollAnimations() {
     setTimeout(() => {
-      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
+      const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .reveal-up, .reveal-fade, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
       this.scrollAnimationService.observeElements(elements);
     }, 100);
   }

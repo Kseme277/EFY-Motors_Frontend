@@ -2,7 +2,6 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter, withComponentInputBinding, withDebugTracing, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withRouterConfig, withViewTransitions } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { IconSetService } from '@coreui/icons-angular';
 
 import { routes } from './app.routes';
 
@@ -33,8 +32,8 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
       withDebugTracing() // Activer le débogage du router
     ),
-    IconSetService,
     provideAnimationsAsync(),
     { provide: ErrorHandler, useClass: CustomErrorHandler }
   ]
 };
+

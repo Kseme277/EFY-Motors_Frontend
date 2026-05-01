@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 
@@ -10,14 +10,27 @@ interface Car {
   id: number;
   name: string;
   brand: string;
+  model: string;
+  year: number;
   image: string;
   price: number;
+  oldPrice?: number;
   mileage: number;
   transmission: string;
   seats: number;
   luggage: number;
   fuel: string;
-  reviews?: any[];
+  power: number; // ch / kW
+  energy: string; // L/100km or kWh
+  acceleration?: string; // 0-100 km/h
+  photos: string[];
+  photosCount: number;
+  hasVideo: boolean;
+  isSold: boolean;
+  isPromo: boolean;
+  color: string;
+  rating?: number;
+  nombre_avis?: number;
 }
 
 @Component({
@@ -27,9 +40,13 @@ interface Car {
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.scss'
 })
-export class CarsComponent implements OnInit {
+export class CarsComponent implements OnInit, OnDestroy {
+  @ViewChildren('scrollContainer') scrollContainers!: QueryList<ElementRef>;
+  private autoScrollInterval: any;
+  private currentImageIndices: { [key: number]: number } = {};
   allCars: Car[] = [];
   isLoading: boolean = true;
+  showFilters: boolean = false;
 
   cars: Car[] = [];
   displayedCars: Car[] = [];
@@ -58,10 +75,67 @@ export class CarsComponent implements OnInit {
   luggage: number[] = [1, 2, 3, 4];
   fuels: string[] = ['Essence', 'Diesel', 'Hybride', 'Électrique', 'Hybride Rechargeable'];
 
-  constructor(private apiService: ApiService) {}
+  // Expanded sections state
+  expandedSections: { [key: string]: boolean } = {
+    condition: true,
+    make: true,
+    model: true,
+    power: true,
+    mileage: false,
+    year: false,
+    transmission: false,
+    color: false
+  };
+
+  toggleSection(section: string) {
+    this.expandedSections[section] = !this.expandedSections[section];
+  }
+
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.loadVehicles();
+    this.route.queryParams.subscribe(params => {
+      if (params['brand']) this.selectedBrands = [params['brand']];
+      if (params['fuel']) this.selectedFuels = [this.mapFuelType(params['fuel'])];
+      // On pourrait aussi ajouter la logique pour prix min/max, 
+      // mais le composant actuel filtre en local après chargement.
+      this.loadVehicles();
+    });
+    this.startAutoScroll();
+  }
+
+  ngOnDestroy() {
+    if (this.autoScrollInterval) {
+      clearInterval(this.autoScrollInterval);
+    }
+  }
+
+  private startAutoScroll() {
+    this.autoScrollInterval = setInterval(() => {
+      if (this.displayedCars.length === 0 || !this.scrollContainers) return;
+
+      this.displayedCars.forEach((car, index) => {
+        if (car.photos && car.photos.length > 1) {
+          const container = this.scrollContainers.toArray()[index];
+          if (container) {
+            const currentIndex = this.currentImageIndices[car.id] || 0;
+            const nextIndex = (currentIndex + 1) % car.photos.length;
+            this.currentImageIndices[car.id] = nextIndex;
+            
+            const element = container.nativeElement;
+            const scrollAmount = element.clientWidth * nextIndex;
+            
+            element.scrollTo({
+              left: scrollAmount,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    }, 2000);
   }
 
   private loadVehicles() {
@@ -74,21 +148,54 @@ export class CarsComponent implements OnInit {
 
     this.apiService.getVehicles(params).subscribe({
       next: (response) => {
-        const vehicles = response.items || [];
-        this.allCars = vehicles.map((vehicle: any) => ({
-          id: vehicle.id,
-          name: `${vehicle.marque} ${vehicle.modele}`,
-          brand: vehicle.marque,
-          image: vehicle.photo_principale || vehicle.photos?.[0] || 'assets/images/car-1.jpg',
-          price: vehicle.prix,
-          mileage: vehicle.kilometrage,
-          transmission: vehicle.boite_vitesse,
-          seats: vehicle.nombre_places || 5,
-          luggage: vehicle.nombre_bagages || 0,
-          fuel: vehicle.carburant,
-          nombre_avis: vehicle.nombre_avis || 0,
-          rating: vehicle.rating || 0
-        }));
+        let vehicles: any[] = [];
+        if (response && response.items) {
+          vehicles = response.items;
+        } else if (response && response.results) {
+          vehicles = response.results;
+        } else if (response && response.vehicules) {
+          vehicles = response.vehicules;
+        } else if (Array.isArray(response)) {
+          vehicles = response;
+        } else if (response && response.data) {
+          vehicles = response.data;
+        }
+        
+        console.log('CarsComponent - Vehicles extracted:', vehicles);
+        this.allCars = vehicles.map((vehicle: any) => {
+          const isElectric = vehicle.carburant === 'electrique' || vehicle.carburant === 'HYBRIDE_RECHARGEABLE';
+          let energyLabel = 'N/A';
+          if (vehicle.consommation_mixte) {
+            energyLabel = isElectric ? `${vehicle.consommation_mixte} kWh` : `${vehicle.consommation_mixte} L/100km`;
+          }
+
+          return {
+            id: vehicle.id,
+            name: `${vehicle.marque} ${vehicle.annee} ${vehicle.modele}`,
+            brand: vehicle.marque,
+            model: vehicle.modele,
+            year: vehicle.annee,
+            image: vehicle.photo_principale || (vehicle.photos && vehicle.photos.length > 0 ? vehicle.photos[0] : 'assets/images/car-1.jpg'),
+            price: vehicle.est_en_promotion && vehicle.prix_promotionnel ? vehicle.prix_promotionnel : vehicle.prix,
+            oldPrice: vehicle.est_en_promotion ? vehicle.prix : undefined,
+            mileage: vehicle.kilometrage,
+            transmission: vehicle.boite_vitesse,
+            seats: vehicle.nombre_places || 5,
+            luggage: vehicle.nombre_bagages || 0,
+            fuel: vehicle.carburant,
+            power: vehicle.puissance_din || 0,
+            energy: energyLabel,
+            acceleration: vehicle.features?.acceleration || 'N/A',
+            photos: vehicle.photos || (vehicle.photo_principale ? [vehicle.photo_principale] : []),
+            photosCount: vehicle.photos ? vehicle.photos.length : (vehicle.photo_principale ? 1 : 0),
+            hasVideo: !!vehicle.features?.video_url,
+            isSold: vehicle.est_vendu || !vehicle.est_disponible,
+            isPromo: vehicle.est_en_promotion,
+            color: vehicle.couleur_exterieure || 'N/A',
+            nombre_avis: vehicle.nombre_avis || 0,
+            rating: vehicle.rating || 0
+          };
+        });
 
         // Initialiser les marques disponibles
         this.brands = [...new Set(this.allCars.map((c) => c.brand))].sort();
@@ -183,17 +290,22 @@ export class CarsComponent implements OnInit {
       const matchBrand =
         this.selectedBrands.length === 0 || this.selectedBrands.includes(car.brand);
 
-      const matchMileage = car.mileage <= this.maxMileage;
+      const maxM = Number(this.maxMileage);
+      const matchMileage = isNaN(maxM) || car.mileage <= maxM;
 
       const matchTransmission =
         this.selectedTransmissions.length === 0 ||
         this.selectedTransmissions.includes(this.mapTransmission(car.transmission));
 
       const matchSeats =
-        this.selectedSeats === null || car.seats === this.selectedSeats;
+        this.selectedSeats === null || 
+        String(this.selectedSeats) === 'null' || 
+        car.seats === Number(this.selectedSeats);
 
       const matchLuggage =
-        this.selectedLuggage === null || car.luggage === this.selectedLuggage;
+        this.selectedLuggage === null || 
+        String(this.selectedLuggage) === 'null' || 
+        car.luggage === Number(this.selectedLuggage);
 
       const carFuelMapped = this.mapFuelType(car.fuel);
       const matchFuel =
@@ -262,5 +374,17 @@ export class CarsComponent implements OnInit {
     this.selectedLuggage = null;
     this.selectedFuels = [];
     this.filterCars();
+  }
+
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
+  }
+
+  getStarsArray(rating: number = 0): number[] {
+    return Array(Math.floor(rating)).fill(0);
+  }
+
+  getEmptyStarsArray(rating: number = 0): number[] {
+    return Array(5 - Math.floor(rating)).fill(0);
   }
 }

@@ -1,80 +1,115 @@
 <app-header></app-header>
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/bg_3.jpg');" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
+<section class="inner-page-hero" style="background-image: url('assets/images/bg_3.jpg'); background-size: cover; background-position: center;">
   <div class="container">
-    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-      <div class="col-md-9 ftco-animate pb-5">
-        <p class="breadcrumbs"><span class="mr-2"><a routerLink="/">Accueil <i class="ion-ios-arrow-forward"></i></a></span> <span>Tarifs <i class="ion-ios-arrow-forward"></i></span></p>
-        <h1 class="mb-3 bread">Nos Tarifs</h1>
+    <div class="row">
+      <div class="col-md-10 mt-20">
+        <h1 class="text-white hero-title">Nos Tarifs</h1>
+        <p class="text-white/80 text-xl max-w-2xl mt-4">Des solutions de location et d'achat flexibles, adaptées à votre budget et à vos ambitions.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="ftco-section ftco-cart">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 ftco-animate">
-        <div class="car-list">
-          <table class="table">
-            <thead class="thead-primary">
-              <tr class="text-center">
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th class="bg-primary heading">Tarif horaire</th>
-                <th class="bg-dark heading">Tarif journalier</th>
-                <th class="bg-black heading">Location longue durée</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let car of cars">
-                <td class="car-image"><div class="img" [style.background-image]="'url(' + car.image + ')'"></div></td>
-                <td class="product-name">
-                  <h3>{{car.name}}</h3>
-                  <p class="mb-0 rated">
-                    <span>rated:</span>
-                    <span class="ion-ios-star" *ngFor="let star of [1,2,3,4,5]"></span>
-                  </p>
-                </td>
-                <td class="price">
-                  <p class="btn-custom"><a href="#">Louer une voiture</a></p>
-                  <div class="price-rate">
-                    <h3>
-                      <span class="num"><small class="currency">$</small> {{car.hourlyRate}}</span>
-                      <span class="per">/par heure</span>
-                    </h3>
-                    <span class="subheading">$3/heure de carburant</span>
+<!-- Pricing Introduction -->
+<section class="py-24 px-6 bg-white dark:bg-gray-950">
+  <div class="max-w-[1600px] mx-auto">
+    <div class="text-center mb-20">
+      <span class="text-brand-500 font-bold uppercase tracking-widest text-sm block mb-4">Flexibilité Maximale</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Choisissez la Formule qui vous Convient</h2>
+    </div>
+
+    <!-- Pricing Table -->
+    <div class="overflow-x-auto rounded-[32px] border border-gray-100 dark:border-gray-800 shadow-2xl">
+      <table class="w-full text-left border-collapse min-w-[1000px]">
+        <thead>
+          <tr class="bg-gray-900 text-white">
+            <th class="p-8 text-xl font-bold rounded-tl-[32px]">Véhicule</th>
+            <th class="p-8 text-xl font-bold text-center">Tarif Horaire</th>
+            <th class="p-8 text-xl font-bold text-center">Tarif Journalier</th>
+            <th class="p-8 text-xl font-bold text-center rounded-tr-[32px]">Location Longue Durée</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+          <tr *ngFor="let car of cars" class="group hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors">
+            <td class="p-8">
+              <div class="flex items-center gap-6">
+                <div class="w-32 h-20 rounded-xl overflow-hidden shadow-md">
+                  <img [src]="car.image" [alt]="car.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{car.name}}</h3>
+                  <div class="flex text-brand-500 mt-1">
+                    <span class="icon-star-full" *ngFor="let star of [1,2,3,4,5]"></span>
                   </div>
-                </td>
-                <td class="price">
-                  <p class="btn-custom"><a href="#">Louer une voiture</a></p>
-                  <div class="price-rate">
-                    <h3>
-                      <span class="num"><small class="currency">€</small> {{car.dailyRate}}</span>
-                      <span class="per">/par jour</span>
-                    </h3>
-                    <span class="subheading">€3/heure de carburant</span>
-                  </div>
-                </td>
-                <td class="price">
-                  <p class="btn-custom"><a href="#">Louer une voiture</a></p>
-                  <div class="price-rate">
-                    <h3>
-                      <span class="num"><small class="currency">€</small> {{car.monthlyRate}}</span>
-                      <span class="per">/par mois</span>
-                    </h3>
-                    <span class="subheading">€3/heure de carburant</span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                </div>
+              </div>
+            </td>
+            <td class="p-8 text-center">
+              <div class="space-y-1">
+                <span class="text-3xl font-black text-gray-900 dark:text-white">{{car.hourlyRate}} €</span>
+                <span class="block text-sm text-gray-500">/ heure</span>
+              </div>
+            </td>
+            <td class="p-8 text-center">
+              <div class="space-y-1">
+                <span class="text-3xl font-black text-brand-500">{{car.dailyRate}} €</span>
+                <span class="block text-sm text-gray-500">/ jour</span>
+              </div>
+            </td>
+            <td class="p-8 text-center">
+              <div class="space-y-1">
+                <span class="text-3xl font-black text-gray-900 dark:text-white">{{car.monthlyRate}} €</span>
+                <span class="block text-sm text-gray-500">/ mois</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Features section -->
+<section class="py-24 px-6 bg-gray-50 dark:bg-gray-900">
+  <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div class="space-y-6">
+      <div class="text-4xl text-brand-500"><span class="icon-shield"></span></div>
+      <h3 class="text-2xl font-bold dark:text-white">Assurance Incluse</h3>
+      <p class="text-gray-500 dark:text-gray-400">Tous nos tarifs incluent une assurance tous risques pour une tranquillité d'esprit totale lors de vos déplacements.</p>
+    </div>
+    <div class="space-y-6">
+      <div class="text-4xl text-brand-500"><span class="icon-clock-o"></span></div>
+      <h3 class="text-2xl font-bold dark:text-white">Assistance 24/7</h3>
+      <p class="text-gray-500 dark:text-gray-400">Bénéficiez d'un support technique et d'une assistance routière à tout moment, où que vous soyez au Cameroun.</p>
+    </div>
+    <div class="space-y-6">
+      <div class="text-4xl text-brand-500"><span class="icon-car"></span></div>
+      <h3 class="text-2xl font-bold dark:text-white">Véhicules de Courtoisie</h3>
+      <p class="text-gray-500 dark:text-gray-400">En cas d'immobilisation pour entretien, nous vous fournissons un véhicule de remplacement gratuitement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Preview for Pricing -->
+<section class="py-24 px-6 bg-white dark:bg-gray-950">
+  <div class="max-w-[1000px] mx-auto space-y-12">
+    <div class="text-center">
+      <h2 class="text-4xl font-bold dark:text-white">Questions Fréquentes</h2>
+    </div>
+    <div class="space-y-8">
+      <div class="p-8 rounded-2xl border border-gray-100 dark:border-gray-800">
+        <h4 class="text-xl font-bold mb-4 dark:text-white">Quels sont les documents requis ?</h4>
+        <p class="text-gray-500 dark:text-gray-400">Pour une location, une pièce d'identité valide et un permis de conduire de plus de 2 ans sont nécessaires. Pour un achat, nos conseillers vous accompagneront pour les formalités administratives.</p>
+      </div>
+      <div class="p-8 rounded-2xl border border-gray-100 dark:border-gray-800">
+        <h4 class="text-xl font-bold mb-4 dark:text-white">Le carburant est-il inclus ?</h4>
+        <p class="text-gray-500 dark:text-gray-400">Le carburant n'est pas inclus dans le tarif de base. Le véhicule est fourni avec le plein et doit être restitué dans le même état, ou un forfait pourra être appliqué.</p>
       </div>
     </div>
   </div>
 </section>
 
 <app-footer></app-footer>
+
 

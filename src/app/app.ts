@@ -5,14 +5,13 @@ import { Title } from '@angular/platform-browser';
 import { delay, filter, map, tap } from 'rxjs/operators';
 
 import { ColorModeService } from '@coreui/angular';
-import { IconSetService } from '@coreui/icons-angular';
-import { iconSubset } from './icons/icon-subset';
 import { ThemeService } from './shared/services/theme.service';
+import { ChatbotComponent } from './shared/components/chatbot/chatbot.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ChatbotComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -24,14 +23,13 @@ export class App implements OnInit {
   readonly #router = inject(Router);
   readonly #titleService = inject(Title);
   readonly #colorModeService = inject(ColorModeService);
-  readonly #iconSetService = inject(IconSetService);
   readonly themeService = inject(ThemeService);
 
   constructor() {
     // Ne pas changer le titre ici - le garder tel quel depuis index.html
     // Le titre sera géré par les composants individuels si nécessaire
     // iconSet singleton
-    this.#iconSetService.icons = { ...iconSubset };
+    // removed iconSubset
     this.#colorModeService.localStorageItemName.set('efy-motors-admin-theme-default');
     this.#colorModeService.eventName.set('ColorSchemeChange');
   }

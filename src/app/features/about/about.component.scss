@@ -1,415 +1,130 @@
-// About component styles are in the global style.css
+/* Standardized Inner Page Hero is used */
 
-/* Forcer l'affichage du composant */
-:host {
-  display: block !important;
-  position: relative !important;
-  z-index: 1 !important;
-  min-height: 100px !important;
-  width: 100% !important;
-  background: white !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  transition: background-color 0.3s ease;
-}
 
-/* Dark mode */
-:host-context(.dark) {
-  background: #1a1a1a !important;
-}
 
-app-header {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-.hero-wrap {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  
-  &.hero-wrap-2 {
-    min-height: auto !important;
-    height: auto !important;
-    padding: 120px 0 60px 0 !important;
-    position: relative !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    
-    &.js-fullheight {
-      min-height: auto !important;
-      height: auto !important;
-      padding: 120px 0 60px 0 !important;
-    }
-  }
-  
-  .overlay {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-  }
-  
-  .slider-text {
-    position: relative;
-    z-index: 2;
-    
-    &.js-fullheight {
-      min-height: auto !important;
-      height: auto !important;
-    }
-  }
-  
-  .slider-text {
-    position: relative;
-    z-index: 2;
+.icon-check {
+  &::before {
+    content: "\f00c"; // icomoon check icon
+    font-family: 'icomoon' !important;
   }
 }
 
-// Styles pour garantir l'affichage des images
-.img {
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  min-height: 200px;
-  
-  &.img-2 {
-    min-height: 500px;
+.icon-handshake {
+  &::before {
+    content: "\f2b5"; // font-awesome or icomoon handshake
+    font-family: 'icomoon' !important;
   }
 }
 
-// Styles pour la section des témoignages
-.testimony-section {
-  .testimony-wrap {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    margin: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, color 0.3s ease;
-    
-    .user-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin: 0 auto 1rem;
-      background-size: cover !important;
-      background-position: center !important;
-      background-repeat: no-repeat !important;
-      border: 3px solid #005F9B;
-    }
-    
-    .text {
-      .name {
-        font-weight: 700;
-        color: #005F9B;
-        font-size: 1.1rem;
-        transition: color 0.3s ease;
-      }
-      
-      .position {
-        color: #6c757d;
-        font-size: 0.9rem;
-        transition: color 0.3s ease;
-      }
-    }
+.icon-shield {
+  &::before {
+    content: "\f132"; // shield
+    font-family: 'icomoon' !important;
+  }
+}
+.container{
+  height:300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-intro h2 {
+  margin-bottom: 1rem;
+}
+
+.about-stat,
+.value-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 1px solid #e9ecef;
+  height: 100%;
+}
+
+.about-stat h3 {
+  color: #0f3bff;
+  font-weight: 800;
+}
+
+.value-card h4 {
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.icon-users {
+  &::before {
+    content: "\f0c0"; // users
+    font-family: 'icomoon' !important;
   }
 }
 
-/* Dark mode pour témoignages */
-:host-context(.dark) .testimony-section {
-  .testimony-wrap {
-    background: #2a2a2a;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    
-    .text {
-      .name {
-        color: #005F9B;
-      }
-      
-      .position {
-        color: #b0b0b0;
-      }
-    }
+.icon-map-marker {
+  &::before {
+    content: "\f041"; // map-marker
+    font-family: 'icomoon' !important;
   }
 }
 
-.carousel-testimony {
-  position: relative;
+/* Animations support */
+.present {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   
-  .owl-nav {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
-    
-    .owl-prev,
-    .owl-next {
-      position: absolute;
-      background: #005F9B !important;
-      color: #fff !important;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      &:hover {
-        background: #004A7A !important;
-      }
-    }
-    
-    .owl-prev {
-      left: -50px;
-    }
-    
-    .owl-next {
-      right: -50px;
-    }
-  }
-  
-  .owl-dots {
-    text-align: center;
-    margin-top: 20px;
-    
-    .owl-dot {
-      span {
-        width: 12px;
-        height: 12px;
-        margin: 5px;
-        background: #ddd;
-        display: inline-block;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-      }
-      
-      &.active span,
-      &:hover span {
-        background: #005F9B;
-      }
-    }
-  }
-}
-
-// Bouton blanc avec texte bleu
-// Surcharge les styles de heading-section-white qui forcent le texte en blanc
-.heading-section-white .btn-white-blue,
-.ftco-section.ftco-about .heading-section-white .btn-white-blue,
-.wrap-about .btn-white-blue {
-  background-color: #fff !important;
-  border-color: #005F9B !important;
-  color: #005F9B !important;
-  transition: all 0.3s ease !important;
-  text-decoration: none !important;
-  
-  &:hover,
-  &:focus {
-    background-color: #005F9B !important;
-    border-color: #fff !important;
-    color: #fff !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 95, 155, 0.3) !important;
-    opacity: 1 !important;
-  }
-  
-  &:active {
-    background-color: #004A7A !important;
-    border-color: #004A7A !important;
-    color: #fff !important;
+  &.active {
+    opacity: 1;
     transform: translateY(0);
   }
 }
 
-// Règle générale pour le bouton (au cas où)
-.btn-white-blue {
-  background-color: #fff !important;
-  border-color: #005F9B !important;
-  color: #005F9B !important;
-  transition: all 0.3s ease !important;
-  text-decoration: none !important;
+.present-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   
-  &:hover,
-  &:focus {
-    background-color: #005F9B !important;
-    border-color: #fff !important;
-    color: #fff !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 95, 155, 0.3) !important;
-  }
-  
-  &:active {
-    background-color: #004A7A !important;
-    border-color: #004A7A !important;
-    color: #fff !important;
-    transform: translateY(0);
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-// Section À propos responsive
-section.ftco-about {
-  @media (max-width: 768px) {
-    .row {
-      flex-direction: column;
-    }
-    
-    .col-md-6 {
-      width: 100%;
-      max-width: 100%;
-    }
-    
-    .img.img-2 {
-      min-height: 300px !important;
-      margin-bottom: 2rem;
-    }
-    
-    .heading-section-white {
-      padding-left: 1.5rem !important;
-      padding-right: 1.5rem !important;
-      padding-top: 2rem !important;
-      padding-bottom: 2rem !important;
-      
-      h2 {
-        font-size: 1.75rem !important;
-        margin-bottom: 1rem !important;
-      }
-      
-      p {
-        font-size: 0.95rem !important;
-        line-height: 1.6 !important;
-        margin-bottom: 1rem !important;
-        text-align: justify !important;
-      }
-      
-      .subheading {
-        font-size: 0.85rem !important;
-        margin-bottom: 0.5rem !important;
-      }
-    }
-  }
+.present-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   
-  @media (max-width: 576px) {
-    .img.img-2 {
-      min-height: 250px !important;
-    }
-    
-    .heading-section-white {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
-      padding-top: 1.5rem !important;
-      padding-bottom: 1.5rem !important;
-      
-      h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.75rem !important;
-      }
-      
-      p {
-        font-size: 0.9rem !important;
-        line-height: 1.6 !important;
-        margin-bottom: 0.75rem !important;
-        text-align: justify !important;
-      }
-      
-      .subheading {
-        font-size: 0.8rem !important;
-        margin-bottom: 0.5rem !important;
-      }
-      
-      .btn {
-        padding: 0.75rem 1rem !important;
-        font-size: 0.9rem !important;
-        width: 100%;
-        display: block;
-      }
-    }
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-// Section ftco-intro responsive
-section.ftco-intro {
-  @media (max-width: 768px) {
-    padding: 3rem 0 !important;
-    
-    .heading-section-white {
-      padding-left: 1.5rem !important;
-      padding-right: 1.5rem !important;
-      
-      h2 {
-        font-size: 1.75rem !important;
-      }
-      
-      p {
-        font-size: 0.95rem !important;
-        text-align: justify !important;
-      }
-    }
-  }
+.present-zoom {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   
-  @media (max-width: 576px) {
-    padding: 2rem 0 !important;
-    
-    .heading-section-white {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
-      
-      h2 {
-        font-size: 1.5rem !important;
-      }
-      
-      p {
-        font-size: 0.9rem !important;
-        text-align: justify !important;
-      }
-      
-      .btn {
-        padding: 0.75rem 1rem !important;
-        font-size: 0.9rem !important;
-        width: 100%;
-      }
-    }
+  &.active {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-// Centrer le contenu en responsive
+.present-delay-1 { transition-delay: 0.1s; }
+.present-delay-2 { transition-delay: 0.2s; }
+.present-delay-3 { transition-delay: 0.3s; }
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .container {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  section.ftco-section {
-    .container {
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
+  .about-hero {
+    min-height: 50vh;
+    h1 {
+      font-size: 4rem;
     }
   }
   
-  // Centrer les sections spécifiques
-  section.ftco-about,
-  section.ftco-intro,
-  section.ftco-section {
-    .container {
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
+  .text-7xl {
+    font-size: 3.5rem;
   }
 }
-
-@media (max-width: 576px) {
-  .container {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-

@@ -1,158 +1,209 @@
-// Contact component styles are in the global style.css
-
 :host {
-  display: block !important;
-  position: relative !important;
-  z-index: 1 !important;
-  min-height: 100px !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: block;
 }
 
-app-header {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+.contact-top-band {
+  height: 260px;
+  background: linear-gradient(180deg, #081c2f 0%, #072036 100%);
 }
 
-.hero-wrap {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  
-  &.hero-wrap-2 {
-    min-height: auto !important;
-    height: auto !important;
-    padding: 120px 0 60px 0 !important;
-    position: relative !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    
-    &.js-fullheight {
-      min-height: auto !important;
-      height: auto !important;
-      padding: 120px 0 60px 0 !important;
-    }
+.contact-main {
+  background: #f0f0f2;
+  padding: 0 0 70px;
+}
+
+.contact-main .container {
+  margin-top: -190px;
+}
+
+.contact-card {
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  padding: 2rem 2.2rem;
+  margin-bottom: 2.2rem;
+}
+
+.contact-card h2 {
+  font-size: 2.1rem;
+  margin-bottom: 1.4rem;
+  color: #1b1f27;
+  font-weight: 800;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-message {
+  grid-column: span 1;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  color: #333a46;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid #e1e4ea;
+  background: #f6f7fb;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.9rem;
+  color: #1d2430;
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.submit-row {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  background: #0f3bff;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 0.65rem 1.9rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.submit-btn:disabled {
+  opacity: 0.65;
+}
+
+.alert-message {
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.alert-message.success {
+  background: #e9f9ef;
+  color: #13643a;
+}
+
+.alert-message.error {
+  background: #ffecec;
+  color: #9d2222;
+}
+
+.contact-bottom-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 18px;
+}
+
+.contact-infos {
+  background: #fff;
+  border: 1px solid #d6d9df;
+  padding: 1rem 1rem 0.4rem;
+}
+
+.info-tabs {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.info-tabs button {
+  border: none;
+  background: #0c1f30;
+  color: #cfd8ea;
+  padding: 0.6rem 1rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.info-tabs .active {
+  background: #0f3bff;
+  color: #fff;
+}
+
+.info-item {
+  border-bottom: 1px solid #eceef3;
+  padding: 0.8rem 0.3rem;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-item h4 {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1f2734;
+}
+
+.info-item p,
+.info-item a {
+  margin: 0;
+  color: #657081;
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+.map-wrap {
+  min-height: 380px;
+  border: 1px solid #d6d9df;
+  overflow: hidden;
+}
+
+@media (max-width: 991px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
   }
-  
-  .overlay {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
+
+  .form-message {
+    grid-column: span 2;
   }
-  
-  .slider-text {
-    position: relative;
-    z-index: 2;
-    
-    &.js-fullheight {
-      min-height: auto !important;
-      height: auto !important;
-    }
+
+  .contact-bottom-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Dark mode pour la page contact */
-:host-context(.dark) {
-  .contact-section {
-    background-color: #1a1a1a;
-    color: #fff;
+@media (max-width: 576px) {
+  .contact-main .container {
+    margin-top: -160px;
   }
-  
-  .contact-info {
-    .border {
-      background-color: #2a2a2a !important;
-      border-color: #3a3a3a !important;
-      color: #fff !important;
-      
-      p {
-        color: #fff !important;
-        
-        span {
-          color: #fff !important;
-          font-weight: 600;
-        }
-        
-        a {
-          color: #005F9B !important;
-          
-          &:hover {
-            color: #0070b8 !important;
-          }
-        }
-      }
-      
-      .icon {
-        color: #005F9B;
-      }
-    }
+
+  .contact-card {
+    padding: 1.2rem;
   }
-  
-  .contact-form {
-    background-color: #2a2a2a !important;
-    color: #fff !important;
-    
-    .form-group {
-      label {
-        color: #fff !important;
-      }
-      
-      .form-control {
-        background-color: #1a1a1a !important;
-        color: #fff !important;
-        border-color: #3a3a3a !important;
-        
-        &::placeholder {
-          color: #b0b0b0 !important;
-        }
-        
-        &:focus {
-          background-color: #1a1a1a !important;
-          color: #fff !important;
-          border-color: #005F9B !important;
-          box-shadow: 0 0 0 0.2rem rgba(0, 95, 155, 0.25) !important;
-        }
-      }
-      
-      textarea.form-control {
-        background-color: #1a1a1a !important;
-        color: #fff !important;
-        border-color: #3a3a3a !important;
-        
-        &::placeholder {
-          color: #b0b0b0 !important;
-        }
-      }
-    }
-    
-    .btn-primary {
-      background-color: #005F9B !important;
-      border-color: #005F9B !important;
-      color: #fff !important;
-      
-      &:hover {
-        background-color: #004d7a !important;
-        border-color: #004d7a !important;
-      }
-    }
+
+  .form-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .breadcrumbs {
-    a,
-    span {
-      color: #fff !important;
-    }
-    
-    .ion-ios-arrow-forward {
-      color: #fff !important;
-    }
+
+  .form-message {
+    grid-column: span 1;
   }
-  
-  .bread {
-    color: #fff !important;
+
+  .submit-row {
+    justify-content: stretch;
+  }
+
+  .submit-btn {
+    width: 100%;
   }
 }
+
+
 
