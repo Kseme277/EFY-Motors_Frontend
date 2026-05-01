@@ -41,11 +41,12 @@
   margin: 0;
 
   .logo-img {
-    height: 70px;
+    height: 90px;
     width: auto;
     object-fit: contain;
     transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+    /* Transformation en noir puis application du filtre bleu #0f3bff */
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2)) brightness(0) saturate(100%) invert(18%) sepia(87%) saturate(5185%) hue-rotate(233deg) brightness(96%) contrast(106%);
   }
   
   &:hover .logo-img {

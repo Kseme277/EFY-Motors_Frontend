@@ -44,7 +44,7 @@
   .footer-logo {
     height: 60px;
     width: auto;
-    filter: brightness(0) invert(1);
+    filter: brightness(0) saturate(100%) invert(18%) sepia(87%) saturate(5185%) hue-rotate(233deg) brightness(96%) contrast(106%);
   }
 
   .footer-brand p {
