@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   isVideoModalOpen = false;
   currentVideoId = '';
   isLoadingFeatured: boolean = true;
+  brands: string[] = [];
   
   searchParams: any = {
     marque: '',
@@ -78,6 +79,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loadFeaturedVehicles();
     this.loadRecentVehicles();
     this.loadReviews();
+    this.loadBrands();
   }
 
   private setSEO() {
@@ -230,6 +232,69 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  private loadBrands() {
+    // Liste complète des marques majeures pour assurer un affichage riche
+    const majorBrands = [
+      'Toyota', 'Mercedes-Benz', 'BMW', 'Audi', 'Honda', 
+      'Ford', 'Nissan', 'Volkswagen', 'Hyundai', 'Kia', 
+      'Lexus', 'Mazda', 'Land Rover', 'Porsche', 'Jeep',
+      'Chevrolet', 'Tesla', 'Peugeot', 'Renault', 'Mitsubishi'
+    ];
+
+    this.apiService.getVehicles({ size: 100 }).subscribe({
+      next: (response) => {
+        const vehicles = this.extractVehicles(response);
+        const inventoryBrands = [...new Set(vehicles.map((v: any) => v.marque))].filter(b => !!b);
+        
+        // Fusionner les marques de l'inventaire avec les marques majeures
+        const allBrands = [...new Set([...inventoryBrands, ...majorBrands])];
+        this.brands = allBrands.sort();
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des marques:', error);
+        // Fallback sur les marques majeures en cas d'erreur API
+        this.brands = majorBrands.sort();
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  getBrandLogo(brand: string): string {
+    const domainMap: { [key: string]: string } = {
+      'mercedes': 'mercedes-benz.com',
+      'mercedes-benz': 'mercedes-benz.com',
+      'toyota': 'toyota.com',
+      'bmw': 'bmw.com',
+      'audi': 'audi.com',
+      'honda': 'honda.com',
+      'ford': 'ford.com',
+      'nissan': 'nissan.com',
+      'volkswagen': 'volkswagen.com',
+      'hyundai': 'hyundai.com',
+      'kia': 'kia.com',
+      'lexus': 'lexus.com',
+      'mazda': 'mazda.com',
+      'land rover': 'landrover.com',
+      'range rover': 'landrover.com',
+      'porsche': 'porsche.com',
+      'jeep': 'jeep.com',
+      'chevrolet': 'chevrolet.com',
+      'tesla': 'tesla.com',
+      'peugeot': 'peugeot.com',
+      'renault': 'renault.com',
+      'mitsubishi': 'mitsubishi-motors.com',
+      'suzuki': 'suzuki.com',
+      'land-rover': 'landrover.com',
+      'fiat': 'fiat.com',
+      'opel': 'opel.com'
+    };
+
+    const domain = domainMap[brand.toLowerCase()] || `${brand.toLowerCase().replace(/\s+/g, '')}.com`;
+    // Utilisation de logo.dev avec la clé d'API fournie
+    return `https://img.logo.dev/${domain}?size=128&token=pk_To-NEdD0RECzBcrEiO3Pww`;
   }
 
   ngAfterViewInit() {

@@ -353,53 +353,17 @@
         <p>Un large choix de marques et modèles adaptés au marché local.</p>
       </div>
     </div>
-    <div class="brands-marquee-section">
+    <div class="brands-marquee-section" *ngIf="brands.length > 0">
       <div class="marquee-container">
         <span class="text">
-            <img src="https://static.wixstatic.com/media/a3b24b_0a6f7e71a4ce4ce69c50e06d56ef3765~mv2.png" style="height: calc(var(--HauteurDimage) * 1.5)"/><!-- Aibrus -->
-            <img src="https://static.wixstatic.com/media/a3b24b_d566a396652348b99d02cf2eabfb2a81~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- Nation Unies -->
-            <img src="https://static.wixstatic.com/media/a3b24b_c58073dfc3e34b338ab8e0fc0ac33ca1~mv2.png" style="height: calc(var(--HauteurDimage) * 0.9)"/><!-- blues (NoteAilée) -->
-            <img src="https://static.wixstatic.com/media/a3b24b_d5dbb74529ea48b39c18d514d7d235ce~mv2.png" style="height: calc(var(--HauteurDimage) * 1.3)"/><!-- Banque National -->
-            <img src="https://static.wixstatic.com/media/a3b24b_c6e535011c5146179d28d66b560dd1d9~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- Nokian Tyres -->
-            <img src="https://static.wixstatic.com/media/a3b24b_4a0b4ebfe3f1420392ba042db325670f~mv2.png" style="height: calc(var(--HauteurDimage) * 0.9)"/><!-- UBISOFT -->
-            <img src="https://static.wixstatic.com/media/a3b24b_10416e506e9845c495f9173396680b13~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- WLA -->
-            <img src="https://static.wixstatic.com/media/a3b24b_847a3e3f90ce4420a1ed5f59ef2a7c7d~mv2.png" style="height: calc(var(--HauteurDimage) * 1.5)"/><!-- Culture et com Quebec -->
-            <img src="https://static.wixstatic.com/media/a3b24b_1c73ce6a1784425cbf3e28627fc10b25~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- IAS -->
-            <img src="https://static.wixstatic.com/media/a3b24b_3979b21f636543b1ba018ec468368904~mv2.png" style="height: calc(var(--HauteurDimage) * 0.8)"/><!-- Palais des congrès -->
-            <img src="https://static.wixstatic.com/media/a3b24b_20aac76d1b574533b225a8b323aa8286~mv2.png" style="height: calc(var(--HauteurDimage) * 1.3)"/><!-- RONA -->
-            <img src="https://static.wixstatic.com/media/a3b24b_0d00e00e54a043e48d78d02bf7955344~mv2.png" style="height: calc(var(--HauteurDimage) * 0.9)"/><!-- P -->
-            <img src="https://static.wixstatic.com/media/a3b24b_2adb8b55789146afa932d5eb4d54f5d0~mv2.png" style="height: calc(var(--HauteurDimage) * 0.8)"/><!-- Centre de sciences -->
-            <img src="https://static.wixstatic.com/media/a3b24b_3eb7d3ed62ca4deb9d10655047f6485c~mv2.png" style="height: calc(var(--HauteurDimage) * 2.5)"/><!-- Patromoine canadien -->
-            <img src="https://static.wixstatic.com/media/a3b24b_5f889d54056c44aaae44a80c9eb70e9b~mv2.png" style="height: calc(var(--HauteurDimage) * 1.3)"/><!-- SOBEYS -->
-            <img src="https://static.wixstatic.com/media/a3b24b_7f4e4c041cab457dad074be59b260fc2~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- Warner -->
-            <img src="https://static.wixstatic.com/media/a3b24b_27359d6e606442718f034db8fb53d7cb~mv2.png" style="height: calc(var(--HauteurDimage) * 2)"/><!-- Point A Callière -->
-            <img src="https://static.wixstatic.com/media/a3b24b_9f3908615eb6449585e2507df629b8ea~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- intact -->
-            <img src="https://static.wixstatic.com/media/a3b24b_d2eda575fad04756b6a433420216f0f7~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/> <!-- senateurs-ottawa (hermes) -->
-            <img src="https://static.wixstatic.com/media/a3b24b_ae911dc40381414c989a9e7e3328bd5d~mv2.png" style="height: calc(var(--HauteurDimage) * 1.4)"/><!-- Fondation espace pour la vie -->
-            <img src="https://static.wixstatic.com/media/a3b24b_23eaadb96c8941218de1eb823459dc28~mv2.png" style="height: calc(var(--HauteurDimage) * 2)"/><!-- Raymond Chabot -->
+            <ng-container *ngFor="let brand of brands">
+                <img [src]="getBrandLogo(brand)" [alt]="brand" [title]="brand" (error)="$event.target.src='assets/images/logo.png'"/>
+            </ng-container>
         </span>
         <span class="text">
-            <img src="https://static.wixstatic.com/media/a3b24b_0a6f7e71a4ce4ce69c50e06d56ef3765~mv2.png" style="height: calc(var(--HauteurDimage) * 1.5)"/><!-- Aibrus -->
-            <img src="https://static.wixstatic.com/media/a3b24b_d566a396652348b99d02cf2eabfb2a81~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- Nation Unies -->
-            <img src="https://static.wixstatic.com/media/a3b24b_c58073dfc3e34b338ab8e0fc0ac33ca1~mv2.png" style="height: calc(var(--HauteurDimage) * 0.9)"/><!-- blues (NoteAilée) -->
-            <img src="https://static.wixstatic.com/media/a3b24b_d5dbb74529ea48b39c18d514d7d235ce~mv2.png" style="height: calc(var(--HauteurDimage) * 1.3)"/><!-- Banque National -->
-            <img src="https://static.wixstatic.com/media/a3b24b_c6e535011c5146179d28d66b560dd1d9~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- Nokian Tyres -->
-            <img src="https://static.wixstatic.com/media/a3b24b_4a0b4ebfe3f1420392ba042db325670f~mv2.png" style="height: calc(var(--HauteurDimage) * 0.9)"/><!-- UBISOFT -->
-            <img src="https://static.wixstatic.com/media/a3b24b_10416e506e9845c495f9173396680b13~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- WLA -->
-            <img src="https://static.wixstatic.com/media/a3b24b_847a3e3f90ce4420a1ed5f59ef2a7c7d~mv2.png" style="height: calc(var(--HauteurDimage) * 1.5)"/><!-- Culture et com Quebec -->
-            <img src="https://static.wixstatic.com/media/a3b24b_1c73ce6a1784425cbf3e28627fc10b25~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- IAS -->
-            <img src="https://static.wixstatic.com/media/a3b24b_3979b21f636543b1ba018ec468368904~mv2.png" style="height: calc(var(--HauteurDimage) * 0.8)"/><!-- Palais des congrès -->
-            <img src="https://static.wixstatic.com/media/a3b24b_20aac76d1b574533b225a8b323aa8286~mv2.png" style="height: calc(var(--HauteurDimage) * 1.3)"/><!-- RONA -->
-            <img src="https://static.wixstatic.com/media/a3b24b_0d00e00e54a043e48d78d02bf7955344~mv2.png" style="height: calc(var(--HauteurDimage) * 0.9)"/><!-- P -->
-            <img src="https://static.wixstatic.com/media/a3b24b_2adb8b55789146afa932d5eb4d54f5d0~mv2.png" style="height: calc(var(--HauteurDimage) * 0.8)"/><!-- Centre de sciences -->
-            <img src="https://static.wixstatic.com/media/a3b24b_3eb7d3ed62ca4deb9d10655047f6485c~mv2.png" style="height: calc(var(--HauteurDimage) * 2.5)"/><!-- Patromoine canadien -->
-            <img src="https://static.wixstatic.com/media/a3b24b_5f889d54056c44aaae44a80c9eb70e9b~mv2.png" style="height: calc(var(--HauteurDimage) * 1.3)"/><!-- SOBEYS -->
-            <img src="https://static.wixstatic.com/media/a3b24b_7f4e4c041cab457dad074be59b260fc2~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- Warner -->
-            <img src="https://static.wixstatic.com/media/a3b24b_27359d6e606442718f034db8fb53d7cb~mv2.png" style="height: calc(var(--HauteurDimage) * 2)"/><!-- Point A Callière -->
-            <img src="https://static.wixstatic.com/media/a3b24b_9f3908615eb6449585e2507df629b8ea~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/><!-- intact -->
-            <img src="https://static.wixstatic.com/media/a3b24b_d2eda575fad04756b6a433420216f0f7~mv2.png" style="height: calc(var(--HauteurDimage) * 1)"/> <!-- senateurs-ottawa (hermes) -->
-            <img src="https://static.wixstatic.com/media/a3b24b_ae911dc40381414c989a9e7e3328bd5d~mv2.png" style="height: calc(var(--HauteurDimage) * 1.4)"/><!-- Fondation espace pour la vie -->
-            <img src="https://static.wixstatic.com/media/a3b24b_23eaadb96c8941218de1eb823459dc28~mv2.png" style="height: calc(var(--HauteurDimage) * 2)"/><!-- Raymond Chabot -->
+            <ng-container *ngFor="let brand of brands">
+                <img [src]="getBrandLogo(brand)" [alt]="brand" [title]="brand" (error)="$event.target.src='assets/images/logo.png'"/>
+            </ng-container>
         </span>
       </div>
     </div>
