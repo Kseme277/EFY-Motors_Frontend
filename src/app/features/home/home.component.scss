@@ -21,7 +21,7 @@
       @media (min-width: 1600px) {
         max-width: 1600px;
       }
-      
+
       @media (max-width: 991px) {
         max-width: 100%;
         padding-left: 15px;
@@ -46,13 +46,13 @@
   :host-context(.dark) {
     background: #1a1a1a;
   }
-  
+
   /* Supprimer les espaces en haut */
   app-header {
     margin-top: 0 !important;
     padding-top: 0 !important;
   }
-  
+
   // Skeleton Loader
 .skeleton-container {
   padding: 20px 0;
@@ -121,14 +121,14 @@
     width: 3rem;
     height: 3rem;
     border-width: 0.3em;
-    
+
     &.text-primary {
       color: #0f3bff !important;
       border-color: #0f3bff;
       border-right-color: transparent;
     }
   }
-  
+
   .hero-wrap {
     margin-top: 0 !important;
     padding-top: 0 !important;
@@ -136,21 +136,21 @@
     height: 100vh;
     min-height: 700px;
     z-index: 1;
-    
+
     @media (max-width: 768px) {
       height: 80vh;
       min-height: 500px;
     }
-    
+
     @media (max-width: 576px) {
       height: 70vh;
       min-height: 400px;
     }
   }
-  
+
   .hero-carousel {
     height: 100%;
-    
+
     .hero-slide {
       height: 100vh;
       min-height: 700px;
@@ -159,37 +159,37 @@
       position: relative;
       display: flex;
       align-items: center;
-      
+
       @media (max-width: 768px) {
         height: 80vh;
         min-height: 500px;
       }
-      
+
       @media (max-width: 576px) {
         height: 70vh;
         min-height: 400px;
       }
-      
+
       .container {
         position: relative;
         z-index: 2;
-        
+
         .text {
           h1 {
             @media (max-width: 768px) {
               font-size: 2rem !important;
             }
-            
+
             @media (max-width: 576px) {
               font-size: 1.5rem !important;
             }
           }
-          
+
           p {
             @media (max-width: 768px) {
               font-size: 16px !important;
             }
-            
+
             @media (max-width: 576px) {
               font-size: 14px !important;
             }
@@ -197,7 +197,7 @@
         }
       }
     }
-    
+
     .overlay {
       position: absolute;
       top: 0;
@@ -207,12 +207,27 @@
       background: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
-    
+
     .container {
       position: relative;
       z-index: 2;
+
+      .btn-inventaire {
+        background-color: #0f3bff !important;
+        border-color: #0f3bff !important;
+        color: #fff !important;
+        font-weight: 700;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #002841 !important;
+          border-color: #002841 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(15, 59, 255, 0.4);
+        }
+      }
     }
-    
+
     // Style des dots
     .owl-dots {
       position: absolute;
@@ -220,11 +235,11 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
-      
+
       @media (max-width: 576px) {
         bottom: 20px;
       }
-      
+
       .owl-dot {
         span {
           width: 12px;
@@ -234,20 +249,20 @@
           display: block;
           border-radius: 50%;
           transition: all 0.3s ease;
-          
+
           @media (max-width: 576px) {
             width: 10px;
             height: 10px;
             margin: 3px;
           }
         }
-        
+
         &.active span,
         &:hover span {
           background: #0f3bff;
           width: 30px;
           border-radius: 15px;
-          
+
           @media (max-width: 576px) {
             width: 25px;
           }
@@ -255,7 +270,7 @@
       }
     }
   }
-  
+
 .featured-items-section {
   background-color: #0c111d;
   padding: 3rem 0;
@@ -325,7 +340,7 @@
     .img-wrapper {
       width: 100%;
       height: 100%;
-      
+
       img {
         width: 100%;
         height: 100%;
@@ -390,7 +405,7 @@
     }
   }
 }
-  
+
   // Styles pour les cartes de voitures dans le carousel (ancien design)
   .car-wrap {
     background: #fff;
@@ -405,37 +420,37 @@
     margin-bottom: 2rem;
     margin-left: 15px;
     margin-right: 15px;
-    
+
     &:hover {
       transform: translateY(-6px);
       box-shadow: 0 8px 24px rgba(0, 94, 155, 0.2);
     }
-    
+
     @media (max-width: 768px) {
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 1.75rem;
-      
+
       &:hover {
         transform: translateY(-3px);
       }
     }
-    
+
     .img {
       height: 220px;
       background-size: cover;
       background-position: center;
       position: relative;
       transition: transform 0.3s ease;
-      
+
       @media (max-width: 768px) {
         height: 180px;
       }
-      
+
       @media (max-width: 576px) {
         height: 160px;
       }
-      
+
       .cat {
         position: absolute;
         top: 1rem;
@@ -450,7 +465,7 @@
         display: inline-block;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         white-space: nowrap;
-        
+
         @media (max-width: 576px) {
           font-size: 0.7rem;
           padding: 0.25rem 0.6rem;
@@ -459,40 +474,40 @@
         }
       }
     }
-    
+
     &:hover .img {
       transform: scale(1.05);
-      
+
       @media (max-width: 768px) {
         transform: scale(1.02);
       }
     }
-    
+
     .text {
       padding: 1.5rem;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      
+
       @media (max-width: 768px) {
         padding: 1.25rem;
       }
-      
+
       @media (max-width: 576px) {
         padding: 1rem;
       }
-      
+
       .d-flex.justify-content-between {
         margin-bottom: 1rem;
         flex-wrap: nowrap !important;
         gap: 0.75rem;
         align-items: center;
         min-height: 1.5rem;
-        
+
         @media (max-width: 576px) {
           gap: 0.5rem;
         }
-        
+
         h2 {
           font-size: 0.95rem;
           font-weight: 700;
@@ -506,17 +521,17 @@
           margin-right: 0;
           min-width: 0;
           max-width: 60%;
-          
+
           @media (max-width: 768px) {
             font-size: 0.9rem;
             max-width: 55%;
           }
-          
+
           @media (max-width: 576px) {
             font-size: 0.85rem;
             max-width: 50%;
           }
-          
+
           a {
             color: #0f3bff !important;
             text-decoration: none;
@@ -528,13 +543,13 @@
             visibility: visible;
             opacity: 1;
             width: 100%;
-            
+
             &:hover {
               color: #004A7A !important;
             }
           }
         }
-        
+
         .price {
           font-size: 0.95rem;
           font-weight: 700;
@@ -548,17 +563,17 @@
           visibility: visible;
           opacity: 1;
           min-width: fit-content;
-          
+
           @media (max-width: 768px) {
             font-size: 0.9rem;
           }
-          
+
           @media (max-width: 576px) {
             font-size: 0.85rem;
           }
         }
       }
-      
+
       .btn {
         border-radius: 6px;
         font-weight: 600;
@@ -573,31 +588,31 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        
+
         @media (max-width: 576px) {
           padding: 0.55rem 1rem;
           font-size: 0.75rem;
         }
       }
-      
+
       .btn-secondary {
         background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%) !important;
         border: none !important;
         color: #fff !important;
       }
-      
+
       .btn-secondary:hover {
         background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-        
+
         @media (max-width: 768px) {
           transform: none;
         }
       }
     }
   }
-  
+
   // Section des véhicules en vedette - marges externes augmentées
   section.ftco-section.ftco-no-pt {
     display: block !important;
@@ -607,7 +622,7 @@
     padding-bottom: 5rem !important;
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
-    
+
     @media (max-width: 1200px) {
       padding-left: 1rem !important;
       padding-right: 1rem !important;
@@ -619,94 +634,94 @@
       padding-left: 1rem !important;
       padding-right: 1rem !important;
     }
-    
+
     @media (max-width: 576px) {
       padding-top: 2rem !important;
       padding-bottom: 2rem !important;
       padding-left: 0.5rem !important;
       padding-right: 0.5rem !important;
     }
-    
+
     .container {
       display: block !important;
       visibility: visible !important;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
       max-width: 100%;
-      
+
       @media (max-width: 1200px) {
         padding-left: 1rem;
         padding-right: 1rem;
       }
-      
+
       @media (max-width: 768px) {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
-      
+
       @media (max-width: 576px) {
         padding-left: 1rem;
         padding-right: 1rem;
       }
     }
-    
+
     .heading-section {
       display: block !important;
       visibility: visible !important;
       margin-bottom: 3rem !important;
       padding-left: 0;
       padding-right: 0;
-      
+
       @media (max-width: 768px) {
         margin-bottom: 2rem !important;
-        
+
         h2 {
           font-size: 1.75rem !important;
         }
       }
-      
+
       @media (max-width: 576px) {
         margin-bottom: 1.5rem !important;
-        
+
         h2 {
           font-size: 1.5rem !important;
         }
-        
+
         .subheading {
           font-size: 0.9rem !important;
         }
       }
     }
-    
+
     .row {
       display: flex !important;
       visibility: visible !important;
     }
-    
+
   }
   // Correction pour que la section suivante ne soit pas masquée
   section.ftco-section {
     position: relative;
     z-index: 2;
     background: #f8f9fa;
-    
+
     .featured-top {
       position: relative;
       z-index: 3;
       margin-top: 0 !important;
-      
+
       @media (max-width: 768px) {
         .row {
           flex-direction: column;
         }
-        
+
         .col-md-4,
         .col-md-8 {
           width: 100%;
           max-width: 100%;
         }
       }
-      
+
       // Styles pour le bouton "Rechercher un véhicule" dans le formulaire
       .request-form {
         @media (max-width: 768px) {
@@ -715,70 +730,70 @@
           float: none;
           display: block;
         }
-        
+
         @media (max-width: 576px) {
           padding: 1rem !important;
-          
+
           h2 {
             font-size: 1.25rem !important;
             text-align: center;
           }
         }
-        
+
         .btn-secondary {
           background-color: #0f3bff !important;
           border-color: #0f3bff !important;
           color: #fff !important;
           transition: all 0.3s ease;
-          
+
           @media (max-width: 576px) {
             padding: 0.75rem 1rem !important;
             font-size: 0.9rem !important;
           }
-          
+
           &:hover {
             background-color: #004A7A !important;
             border-color: #004A7A !important;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 95, 155, 0.4);
-            
+
             @media (max-width: 768px) {
               transform: none;
             }
           }
         }
       }
-      
+
       /* Dark mode pour le formulaire de recherche */
       :host-context(.dark) .request-form {
         background-color: #2a2a2a !important;
-        
+
         h2 {
           color: #e5e5e5;
         }
-        
+
         .label {
           color: #e5e5e5;
         }
-        
+
         .form-control {
           background-color: #1a1a1a !important;
           color: #e5e5e5 !important;
           border-color: #3a3a3a !important;
         }
-        
+
         .form-control:focus {
           background-color: #1a1a1a !important;
           color: #e5e5e5 !important;
           border-color: #0f3bff !important;
         }
-        
+
         select.form-control option {
           background-color: #2a2a2a;
           color: #e5e5e5;
         }
       }
-      
+
       .services-wrap {
         position: relative;
         z-index: 1;
@@ -786,74 +801,74 @@
         padding: 2rem;
         border-radius: 10px;
         transition: background-color 0.3s ease, color 0.3s ease;
-        
+
         // Dark mode inline pour forcer l'application
         :host-context(.dark) & {
           background: #2a2a2a !important;
         }
-        
+
         @media (max-width: 768px) {
           padding: 1.5rem;
         }
-        
+
         @media (max-width: 576px) {
           padding: 1rem;
         }
-        
+
         .heading-section {
           color: #0f3bff;
           font-weight: 700;
           font-size: 1.8rem;
           transition: color 0.3s ease;
-          
+
           @media (max-width: 768px) {
             font-size: 1.5rem;
           }
-          
+
           @media (max-width: 576px) {
             font-size: 1.25rem;
           }
         }
-        
+
         .services {
           @media (max-width: 768px) {
             margin-bottom: 1.5rem;
           }
-          
+
           h3.heading {
             transition: color 0.3s ease;
-            
+
             @media (max-width: 576px) {
               font-size: 1rem !important;
             }
           }
-          
+
           p.text-muted {
             transition: color 0.3s ease;
-            
+
             @media (max-width: 576px) {
               font-size: 0.85rem !important;
             }
           }
         }
-        
+
         // Centrer le bouton en responsive
         p {
           text-align: center;
-          
+
           @media (max-width: 768px) {
             text-align: center !important;
             margin-bottom: 0;
           }
-          
+
           @media (max-width: 576px) {
             text-align: center !important;
             margin-bottom: 0;
           }
-          
+
           .btn-primary {
             display: inline-block;
-            
+
             @media (max-width: 576px) {
               width: 100%;
               max-width: 100%;
@@ -862,43 +877,43 @@
           }
         }
       }
-      
+
       /* Dark mode pour services-wrap */
       :host-context(.dark) .services-wrap,
       .dark .services-wrap {
         background: #2a2a2a !important;
-        
+
         .heading-section {
           color: #fff !important;
         }
-        
+
         .services {
           h3.heading {
             color: #fff !important;
           }
-          
+
           p.text-muted {
             color: #e5e5e5 !important;
           }
-          
+
           .icon {
             color: #0f3bff;
           }
-          
+
           .text {
             color: #fff !important;
-            
+
             h3.heading {
               color: #fff !important;
             }
-            
+
             p {
               color: #e5e5e5 !important;
             }
           }
         }
       }
-      
+
       // Styles pour le bouton "Voir tous nos véhicules"
       .services-wrap .btn-primary {
         background-color: #0f3bff !important;
@@ -907,13 +922,13 @@
         transition: all 0.3s ease;
         text-align: center;
         margin: 0 auto;
-        
+
         @media (max-width: 768px) {
           display: block;
           margin: 0 auto;
           text-align: center;
         }
-        
+
         @media (max-width: 576px) {
           padding: 0.75rem 1rem !important;
           font-size: 0.9rem !important;
@@ -923,13 +938,13 @@
           margin: 0 auto;
           text-align: center;
         }
-        
+
         &:hover {
           background-color: #004A7A !important;
           border-color: #004A7A !important;
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0, 95, 155, 0.4);
-          
+
           @media (max-width: 768px) {
             transform: none;
           }
@@ -937,36 +952,36 @@
       }
     }
   }
-  
+
   // Styles pour garantir l'affichage des images
   .img {
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     min-height: 200px;
-    
+
     &.img-2 {
       min-height: 500px;
     }
   }
-  
+
   // Styles pour le carousel des véhicules
-  
+
   // Styles pour la section des témoignages
   .testimony-section {
     padding-top: 4rem !important;
     padding-bottom: 4rem !important;
-    
+
     @media (max-width: 768px) {
       padding-top: 3rem !important;
       padding-bottom: 3rem !important;
     }
-    
+
     @media (max-width: 576px) {
       padding-top: 2rem !important;
       padding-bottom: 2rem !important;
     }
-    
+
     .testimony-wrap {
       background: #fff;
       padding: 2rem;
@@ -974,17 +989,17 @@
       margin: 15px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-      
+
       @media (max-width: 768px) {
         padding: 1.5rem;
         margin: 10px;
       }
-      
+
       @media (max-width: 576px) {
         padding: 1rem;
         margin: 5px;
       }
-      
+
       .user-img {
         width: 80px;
         height: 80px;
@@ -994,97 +1009,97 @@
         background-position: center !important;
         background-repeat: no-repeat !important;
         border: 3px solid #0f3bff;
-        
+
         @media (max-width: 576px) {
           width: 60px;
           height: 60px;
           border-width: 2px;
         }
       }
-      
+
       .text {
         p {
           transition: color 0.3s ease;
-          
+
           @media (max-width: 576px) {
             font-size: 0.9rem !important;
           }
         }
-        
+
         .name {
           font-weight: 700;
           color: #0f3bff;
           font-size: 1.1rem;
           transition: color 0.3s ease;
-          
+
           @media (max-width: 576px) {
             font-size: 1rem;
           }
         }
-        
+
         .position {
           color: #6c757d;
           font-size: 0.9rem;
           transition: color 0.3s ease;
-          
+
           @media (max-width: 576px) {
             font-size: 0.85rem;
           }
         }
       }
     }
-    
+
     /* Dark mode pour les témoignages */
     :host-context(.dark) .testimony-wrap {
       background: #2a2a2a;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      
+
       .text {
         p {
           color: #e5e5e5;
         }
-        
+
         .name {
           color: #0f3bff;
         }
-        
+
         .position {
           color: #b0b0b0;
         }
       }
     }
-    
+
     /* Dark mode pour la section light (voitures en vedette) */
     :host-context(.dark) .light {
       background-color: #2a2a2a;
-      
+
       h2 {
         color: #0f3bff;
       }
-      
+
       .car h3 {
         color: #0f3bff;
       }
-      
+
       .car li {
         color: #b0b0b0;
       }
     }
   }
-  
+
   .carousel-testimony {
     position: relative;
-    
+
     .owl-nav {
       position: absolute;
       top: 50%;
       width: 100%;
       transform: translateY(-50%);
-      
+
       @media (max-width: 768px) {
         display: none;
       }
-      
+
       .owl-prev,
       .owl-next {
         position: absolute;
@@ -1096,42 +1111,42 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        
+
         @media (max-width: 992px) {
           width: 35px;
           height: 35px;
         }
-        
+
         &:hover {
           background: #004A7A !important;
         }
       }
-      
+
       .owl-prev {
         left: -50px;
-        
+
         @media (max-width: 1200px) {
           left: -30px;
         }
       }
-      
+
       .owl-next {
         right: -50px;
-        
+
         @media (max-width: 1200px) {
           right: -30px;
         }
       }
     }
-    
+
     .owl-dots {
       text-align: center;
       margin-top: 20px;
-      
+
       @media (max-width: 576px) {
         margin-top: 15px;
       }
-      
+
       .owl-dot {
         span {
           width: 12px;
@@ -1141,14 +1156,14 @@
           display: inline-block;
           border-radius: 50%;
           transition: all 0.3s ease;
-          
+
           @media (max-width: 576px) {
             width: 10px;
             height: 10px;
             margin: 3px;
           }
         }
-        
+
         &.active span,
         &:hover span {
           background: #0f3bff;
@@ -1156,23 +1171,23 @@
       }
     }
   }
-  
+
   // Section À propos responsive
   section.ftco-about {
     transition: background-color 0.3s ease;
-    
+
     .heading-section-white {
       p {
         text-align: justify !important;
         line-height: 1.8;
         margin-bottom: 1.5rem;
-        
+
         @media (max-width: 768px) {
           text-align: justify !important;
           line-height: 1.7;
           margin-bottom: 1.25rem;
         }
-        
+
         @media (max-width: 576px) {
           text-align: justify !important;
           line-height: 1.6;
@@ -1181,67 +1196,67 @@
           word-spacing: 0.1em;
         }
       }
-      
+
       .btn {
         text-align: center;
-        
+
         @media (max-width: 576px) {
           width: 100%;
           display: block;
         }
       }
     }
-    
+
     @media (max-width: 768px) {
       .row {
         flex-direction: column;
       }
-      
+
       .col-md-6 {
         width: 100%;
         max-width: 100%;
       }
-      
+
       .img.img-2 {
         min-height: 300px !important;
         margin-bottom: 2rem;
       }
-      
+
       .heading-section-white {
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
-        
+
         h2 {
           font-size: 1.75rem !important;
           text-align: left !important;
         }
-        
+
         p {
           font-size: 0.95rem !important;
           text-align: justify !important;
         }
       }
     }
-    
+
     @media (max-width: 576px) {
       .img.img-2 {
         min-height: 250px !important;
       }
-      
+
       .heading-section-white {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
-        
+
         h2 {
           font-size: 1.5rem !important;
           text-align: left !important;
         }
-        
+
         p {
           font-size: 0.9rem !important;
           text-align: justify !important;
         }
-        
+
         .btn {
           padding: 0.75rem 1rem !important;
           font-size: 0.9rem !important;
@@ -1250,18 +1265,18 @@
       }
     }
   }
-  
+
   /* Dark mode pour la section À propos */
   :host-context(.dark) section.ftco-about {
     background-color: #1a1a1a;
-    
+
     .wrap-about {
       background-color: #0f3bff !important;
     }
-    
+
     .heading-section-white {
       background-color: #0f3bff !important;
-      
+
       h2,
       p,
       span {
@@ -1269,19 +1284,19 @@
       }
     }
   }
-  
+
   // Section des compteurs/statistiques
   .ftco-counter {
     position: relative;
     z-index: 1;
     background: #f8f9fa;
     transition: background-color 0.3s ease;
-    
+
     .overlay {
       background: rgba(0, 95, 155, 0.95) !important;
       opacity: 1 !important;
     }
-    
+
     .block-18 {
       .text {
         span {
@@ -1294,16 +1309,16 @@
           display: block;
           margin-top: 0.5rem;
           transition: color 0.3s ease;
-          
+
           @media (max-width: 768px) {
             font-size: 1rem;
           }
-          
+
           @media (max-width: 576px) {
             font-size: 0.9rem;
           }
         }
-        
+
         strong.number {
           font-size: 3.5rem;
           font-weight: 700;
@@ -1312,21 +1327,21 @@
           margin-bottom: 0.5rem;
           line-height: 1.2;
           transition: color 0.3s ease;
-          
+
           @media (max-width: 768px) {
             font-size: 3rem;
           }
-          
+
           @media (max-width: 576px) {
             font-size: 2.5rem;
           }
         }
-        
+
         &.text-border {
           border-right: 1px solid rgba(0, 0, 0, 0.8);
           padding-right: 2rem;
           transition: border-color 0.3s ease;
-          
+
           @media (max-width: 991px) {
             border-right: none;
             border-bottom: 1px solid rgba(0, 0, 0, 0.8);
@@ -1337,173 +1352,173 @@
         }
       }
     }
-    
+
     .counter-wrap {
       margin-bottom: 2rem;
-      
+
       @media (max-width: 991px) {
         margin-bottom: 0;
       }
     }
   }
-  
+
   /* Dark mode pour la section compteur */
   :host-context(.dark) .ftco-counter {
     background: #2a2a2a;
-    
+
     .block-18 .text {
       span {
         color: #fff !important;
       }
-      
+
       strong.number {
         color: #fff !important;
       }
-      
+
       &.text-border {
         border-right-color: #fff;
-        
+
         @media (max-width: 991px) {
           border-bottom-color: #fff;
         }
       }
     }
   }
-  
+
   // Section Services responsive
   section.ftco-section {
     &:not(.ftco-no-pt):not(.ftco-about):not(.testimony-section) {
       padding-top: 4rem !important;
       padding-bottom: 4rem !important;
-      
+
       @media (max-width: 768px) {
         padding-top: 3rem !important;
         padding-bottom: 3rem !important;
       }
-      
+
       @media (max-width: 576px) {
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
       }
-      
+
       .heading-section {
         @media (max-width: 768px) {
           h2 {
             font-size: 1.75rem !important;
           }
         }
-        
+
         @media (max-width: 576px) {
           h2 {
             font-size: 1.5rem !important;
           }
-          
+
           .subheading {
             font-size: 0.9rem !important;
           }
         }
       }
-      
+
       .services-2 {
         transition: background-color 0.3s ease, color 0.3s ease;
-        
+
         @media (max-width: 768px) {
           margin-bottom: 2rem;
         }
-        
+
         @media (max-width: 576px) {
           margin-bottom: 1.5rem;
-          
+
           .icon {
             width: 60px !important;
             height: 60px !important;
           }
-          
+
           h3.heading {
             font-size: 1.1rem !important;
           }
-          
+
           p {
             font-size: 0.9rem !important;
           }
         }
-        
+
         h3.heading {
           transition: color 0.3s ease;
         }
-        
+
         p {
           transition: color 0.3s ease;
         }
       }
     }
   }
-  
+
   /* Dark mode pour la section Services */
   :host-context(.dark) section.ftco-section {
     background-color: #1a1a1a;
-    
+
     .heading-section {
       h2 {
         color: #e5e5e5;
       }
-      
+
       .subheading {
         color: #b0b0b0;
       }
     }
-    
+
     .services-2 {
       h3.heading {
         color: #e5e5e5;
       }
-      
+
       p {
         color: #b0b0b0;
       }
-      
+
       .icon {
         color: #0f3bff;
       }
     }
   }
-  
+
   // Section ftco-intro responsive
   section.ftco-intro {
     padding: 4rem 0 !important;
-    
+
     @media (max-width: 768px) {
       padding: 3rem 0 !important;
-      
+
       .heading-section-white {
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
-        
+
         h2 {
           font-size: 1.75rem !important;
         }
-        
+
         p {
           font-size: 0.95rem !important;
         }
       }
     }
-    
+
     @media (max-width: 576px) {
       padding: 2rem 0 !important;
-      
+
       .heading-section-white {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
-        
+
         h2 {
           font-size: 1.5rem !important;
         }
-        
+
         p {
           font-size: 0.9rem !important;
         }
-        
+
         .btn {
           padding: 0.75rem 1rem !important;
           font-size: 0.9rem !important;
@@ -1512,7 +1527,7 @@
       }
     }
   }
-  
+
   // Bouton blanc avec texte bleu
   // Surcharge les styles de heading-section-white qui forcent le texte en blanc
   .heading-section-white .btn-white-blue,
@@ -1523,7 +1538,7 @@
     color: #0f3bff !important;
     transition: all 0.3s ease !important;
     text-decoration: none !important;
-    
+
     &:hover,
     &:focus {
       background-color: #0f3bff !important;
@@ -1533,7 +1548,7 @@
       box-shadow: 0 4px 8px rgba(0, 95, 155, 0.3) !important;
       opacity: 1 !important;
     }
-    
+
     &:active {
       background-color: #004A7A !important;
       border-color: #004A7A !important;
@@ -1541,7 +1556,7 @@
       transform: translateY(0);
     }
   }
-  
+
   // Règle générale pour le bouton (au cas où)
   .btn-white-blue {
     background-color: #fff !important;
@@ -1549,7 +1564,7 @@
     color: #0f3bff !important;
     transition: all 0.3s ease !important;
     text-decoration: none !important;
-    
+
     &:hover,
     &:focus {
       background-color: #0f3bff !important;
@@ -1558,7 +1573,7 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 95, 155, 0.3) !important;
     }
-    
+
     &:active {
       background-color: #004A7A !important;
       border-color: #004A7A !important;
@@ -1566,35 +1581,35 @@
       transform: translateY(0);
     }
   }
-  
+
   // Styles dark mode globaux pour services-wrap (fallback)
   .dark .services-wrap {
     background: #2a2a2a !important;
-    
+
     .heading-section {
       color: #fff !important;
     }
-    
+
     .services {
       h3.heading {
         color: #fff !important;
       }
-      
+
       p.text-muted {
         color: #e5e5e5 !important;
       }
-      
+
       .icon {
         color: #0f3bff;
       }
-      
+
       .text {
         color: #fff !important;
-        
+
         h3.heading {
           color: #fff !important;
         }
-        
+
         p {
           color: #e5e5e5 !important;
         }
@@ -1636,7 +1651,7 @@
 .dark {
   .expertise-section {
     background-color: var(--color-gray-dark);
-    
+
     .text-gray-900 {
       color: var(--color-white);
     }
@@ -1644,7 +1659,7 @@
     .text-gray-600 {
       color: var(--color-gray-400);
     }
-    
+
     .border-gray-100 {
       border-color: var(--color-gray-800);
     }
@@ -1794,7 +1809,6 @@
     border: 1px solid rgba(255, 255, 255, 0.55);
     color: #fff;
     text-decoration: none;
-    border-radius: 999px;
     padding: 0.35rem 0.85rem;
     font-size: 0.66rem;
     font-weight: 800;
@@ -1918,7 +1932,7 @@
   .recent-body {
     padding: 1.25rem;
     min-height: 140px;
-    
+
     .brand-subtitle {
       color: #0f3bff;
       font-size: 0.75rem;
@@ -1940,7 +1954,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      
+
       .spec-item {
         display: flex;
         align-items: center;
@@ -2072,17 +2086,16 @@
     }
 
     .btn-primary {
-      padding: 15px 35px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-radius: 50px;
+
       box-shadow: 0 10px 20px rgba(15, 59, 255, 0.2);
       transition: all 0.3s ease;
 
       &:hover {
         transform: translateY(-3px);
         box-shadow: 0 15px 30px rgba(15, 59, 255, 0.3);
+        background-color: #0f3bff;
+        color: #fff;
+
       }
     }
   }
@@ -2227,9 +2240,60 @@ app-footer {
     .grid-cols-1 {
       gap: 3rem;
     }
-    
+
     .text-4xl {
       font-size: 2.5rem;
     }
   }
+}
+
+/* <!------------------------------- variable ---------------------------------------->    */
+.brands-marquee-section {
+    --Couleur_de_fond: transparent;
+    --HauteurDimage: 60px; 
+    --EspacementDimage : 50px;
+    --Vitesse: 40s; 
+    
+    margin: 0;
+    padding:0;
+    overflow: hidden;
+    background-color: var(--Couleur_de_fond);
+    cursor: default; 
+    
+    @media screen and (max-width: 700px) {
+        --HauteurDimage: 40px;
+        --EspacementDimage : 30px;
+        --Vitesse : 30s;
+    }
+
+    img {
+        height : var(--HauteurDimage) !important;
+        width: auto !important;
+        padding-right: var(--EspacementDimage);
+        vertical-align: middle;
+        object-fit: contain;
+        display: inline-block;
+    }
+        
+    .marquee-container {
+        height: auto;
+        padding: 40px 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+        
+    .text {
+        white-space: nowrap;
+        animation : Scroll var(--Vitesse) linear infinite;
+        display: inline-block;
+        flex-shrink: 0;
+    }
+        
+    @keyframes Scroll {
+        0% {transform: translateX(0%); }
+        100% {transform: translateX(-100%); }
+    }
 }

@@ -370,6 +370,52 @@ body {
   color: #f2f4f7;
 }
 
+/* Global Button Styles to standardize across the app */
+.btn {
+  border-radius: 4px !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0f3bff !important;
+  border-color: #0f3bff !important;
+  color: #fff !important;
+  
+  &:hover {
+    background-color: #002841 !important;
+    border-color: #002841 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(15, 59, 255, 0.4);
+  }
+}
+
+.btn-outline-primary {
+  color: #0f3bff !important;
+  border-color: #0f3bff !important;
+  background-color: transparent !important;
+  
+  &:hover {
+    background-color: #0f3bff !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-search-white {
+  background-color: #ffffff !important;
+  color: #0f3bff !important;
+  font-weight: 700;
+  border: 1px solid #ffffff !important;
+  
+  &:hover {
+    background-color: #f8f9fa !important;
+    color: #002841 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
 
 /* Dark mode pour les sections principales */
 .dark .ftco-section {

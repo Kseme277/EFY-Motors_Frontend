@@ -61,8 +61,15 @@ export class CarsComponent implements OnInit, OnDestroy {
   maxAvailableMileage: number = 100000;
 
   // Filtres
+  selectedConditions: string[] = [];
   selectedBrands: string[] = [];
+  selectedModels: string[] = [];
   maxMileage: number = this.maxAvailableMileage;
+  maxPower: number = 1000;
+  maxPrice: number = 50000000;
+  maxAcceleration: number = 20;
+  selectedYear: string = '';
+  selectedColors: string[] = [];
   selectedTransmissions: string[] = [];
   selectedSeats: number | null = null;
   selectedLuggage: number | null = null;
@@ -70,6 +77,9 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   // Options disponibles
   brands: string[] = [];
+  models: string[] = [];
+  years: number[] = [];
+  colors: string[] = [];
   transmissions: string[] = ['Manuelle', 'Automatique'];
   seats: number[] = [2, 4, 5, 7];
   luggage: number[] = [1, 2, 3, 4];
@@ -86,6 +96,10 @@ export class CarsComponent implements OnInit, OnDestroy {
     transmission: false,
     color: false
   };
+
+  // Tri et Affichage
+  currentSort: string = 'date-desc';
+  viewMode: 'grid' | 'list' = 'grid';
 
   toggleSection(section: string) {
     this.expandedSections[section] = !this.expandedSections[section];
@@ -197,14 +211,26 @@ export class CarsComponent implements OnInit, OnDestroy {
           };
         });
 
-        // Initialiser les marques disponibles
+        // Initialiser les options de filtre
         this.brands = [...new Set(this.allCars.map((c) => c.brand))].sort();
+        this.years = [...new Set(this.allCars.map((c) => c.year))].sort((a, b) => b - a);
+        this.colors = [...new Set(this.allCars.map((c) => c.color).filter(c => c && c !== 'N/A'))].sort();
 
-        // Calculer le kilométrage maximum
+        // Calculer les maximums
         const mileages = this.allCars.map((c) => c.mileage).filter((m) => m > 0);
         if (mileages.length > 0) {
           this.maxAvailableMileage = Math.max(...mileages);
           this.maxMileage = this.maxAvailableMileage;
+        }
+        
+        const prices = this.allCars.map((c) => c.price).filter(p => p > 0);
+        if (prices.length > 0) {
+          this.maxPrice = Math.max(...prices);
+        }
+
+        const powers = this.allCars.map(c => c.power).filter(p => p > 0);
+        if (powers.length > 0) {
+          this.maxPower = Math.max(...powers);
         }
 
         this.totalItems = response.total || this.allCars.length;
@@ -285,43 +311,114 @@ export class CarsComponent implements OnInit, OnDestroy {
     return transMap[transmission?.toLowerCase()] || transmission || 'Automatique';
   }
 
+  parseAcceleration(acc: string | undefined): number {
+    if (!acc || acc === 'N/A') return 999;
+    const parsed = parseFloat(acc);
+    return isNaN(parsed) ? 999 : parsed;
+  }
+
   filterCars() {
-    this.cars = this.allCars.filter((car) => {
-      const matchBrand =
-        this.selectedBrands.length === 0 || this.selectedBrands.includes(car.brand);
+    this.isLoading = true;
+    setTimeout(() => {
+      this.cars = this.allCars.filter((car) => {
+        const carCondition = car.mileage === 0 ? 'Neuf' : 'Occasion';
+        const matchCondition = this.selectedConditions.length === 0 || this.selectedConditions.includes(carCondition);
 
-      const maxM = Number(this.maxMileage);
-      const matchMileage = isNaN(maxM) || car.mileage <= maxM;
+        const matchBrand =
+          this.selectedBrands.length === 0 || this.selectedBrands.includes(car.brand);
+          
+        const matchModel =
+          this.selectedModels.length === 0 || this.selectedModels.includes(car.model);
 
-      const matchTransmission =
-        this.selectedTransmissions.length === 0 ||
-        this.selectedTransmissions.includes(this.mapTransmission(car.transmission));
+        const maxM = Number(this.maxMileage);
+        const matchMileage = isNaN(maxM) || car.mileage <= maxM;
+        
+        const maxPwr = Number(this.maxPower);
+        const matchPower = isNaN(maxPwr) || car.power <= maxPwr;
 
-      const matchSeats =
-        this.selectedSeats === null || 
-        String(this.selectedSeats) === 'null' || 
-        car.seats === Number(this.selectedSeats);
+        const maxPrc = Number(this.maxPrice);
+        const matchPrice = isNaN(maxPrc) || car.price <= maxPrc;
 
-      const matchLuggage =
-        this.selectedLuggage === null || 
-        String(this.selectedLuggage) === 'null' || 
-        car.luggage === Number(this.selectedLuggage);
+        const maxAcc = Number(this.maxAcceleration);
+        const carAcc = this.parseAcceleration(car.acceleration);
+        // Inclure les véhicules sans accélération définie, ou s'ils respectent le max
+        const matchAcceleration = carAcc === 999 ? true : carAcc <= maxAcc;
 
-      const carFuelMapped = this.mapFuelType(car.fuel);
-      const matchFuel =
-        this.selectedFuels.length === 0 || this.selectedFuels.includes(carFuelMapped);
+        const matchYear = !this.selectedYear || String(car.year) === String(this.selectedYear);
 
-      return (
-        matchBrand &&
-        matchMileage &&
-        matchTransmission &&
-        matchSeats &&
-        matchLuggage &&
-        matchFuel
-      );
-    });
-    this.currentPage = 1; // Reset à la première page après filtrage
+        const matchColor = this.selectedColors.length === 0 || this.selectedColors.includes(car.color);
+
+        const matchTransmission =
+          this.selectedTransmissions.length === 0 ||
+          this.selectedTransmissions.includes(this.mapTransmission(car.transmission));
+
+        const matchSeats =
+          this.selectedSeats === null || 
+          String(this.selectedSeats) === 'null' || 
+          car.seats === Number(this.selectedSeats);
+
+        const matchLuggage =
+          this.selectedLuggage === null || 
+          String(this.selectedLuggage) === 'null' || 
+          car.luggage === Number(this.selectedLuggage);
+
+        const carFuelMapped = this.mapFuelType(car.fuel);
+        const matchFuel =
+          this.selectedFuels.length === 0 || this.selectedFuels.includes(carFuelMapped);
+
+        return (
+          matchCondition &&
+          matchBrand &&
+          matchModel &&
+          matchMileage &&
+          matchPower &&
+          matchPrice &&
+          matchAcceleration &&
+          matchYear &&
+          matchColor &&
+          matchTransmission &&
+          matchSeats &&
+          matchLuggage &&
+          matchFuel
+        );
+      });
+      this.currentPage = 1; // Reset à la première page après filtrage
+      this.sortCars();
+      this.isLoading = false;
+    }, 400);
+  }
+
+  sortCars() {
+    if (this.currentSort === 'price-asc') {
+      this.cars.sort((a, b) => a.price - b.price);
+    } else if (this.currentSort === 'price-desc') {
+      this.cars.sort((a, b) => b.price - a.price);
+    } else if (this.currentSort === 'date-desc') {
+      this.cars.sort((a, b) => b.id - a.id);
+    }
     this.updatePagination();
+  }
+
+  onSortChange() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.sortCars();
+      this.isLoading = false;
+    }, 400);
+  }
+
+  setViewMode(mode: 'grid' | 'list') {
+    this.viewMode = mode;
+  }
+
+  updateAvailableModels() {
+    if (this.selectedBrands.length === 0) {
+      this.models = [];
+      this.selectedModels = [];
+    } else {
+      this.models = [...new Set(this.allCars.filter(c => this.selectedBrands.includes(c.brand)).map(c => c.model))].sort();
+      this.selectedModels = this.selectedModels.filter(m => this.models.includes(m));
+    }
   }
 
   toggleBrand(brand: string) {
@@ -331,6 +428,7 @@ export class CarsComponent implements OnInit, OnDestroy {
     } else {
       this.selectedBrands.push(brand);
     }
+    this.updateAvailableModels();
     this.filterCars();
   }
 
@@ -354,6 +452,71 @@ export class CarsComponent implements OnInit, OnDestroy {
     this.filterCars();
   }
 
+  toggleCondition(condition: string) {
+    const index = this.selectedConditions.indexOf(condition);
+    if (index > -1) {
+      this.selectedConditions.splice(index, 1);
+    } else {
+      this.selectedConditions.push(condition);
+    }
+    this.filterCars();
+  }
+
+  toggleModel(model: string) {
+    const index = this.selectedModels.indexOf(model);
+    if (index > -1) {
+      this.selectedModels.splice(index, 1);
+    } else {
+      this.selectedModels.push(model);
+    }
+    this.filterCars();
+  }
+
+  onPowerChange() {
+    this.filterCars();
+  }
+
+  onPriceChange() {
+    this.filterCars();
+  }
+
+  onAccelerationChange() {
+    this.filterCars();
+  }
+
+  onYearChange() {
+    this.filterCars();
+  }
+
+  toggleColor(color: string) {
+    const index = this.selectedColors.indexOf(color);
+    if (index > -1) {
+      this.selectedColors.splice(index, 1);
+    } else {
+      this.selectedColors.push(color);
+    }
+    this.filterCars();
+  }
+
+  getColorHex(color: string): string {
+    const map: { [key: string]: string } = {
+      'noir': '#000000',
+      'blanc': '#ffffff',
+      'gris': '#808080',
+      'bleu': '#0000ff',
+      'rouge': '#ff0000',
+      'vert': '#008000',
+      'jaune': '#ffff00',
+      'orange': '#ffa500',
+      'marron': '#a52a2a',
+      'argent': '#c0c0c0',
+      'beige': '#f5f5dc',
+      'rose': '#ffc0cb',
+      'violet': '#ee82ee'
+    };
+    return map[color.toLowerCase()] || '#ccc';
+  }
+
   onMileageChange() {
     this.filterCars();
   }
@@ -367,12 +530,20 @@ export class CarsComponent implements OnInit, OnDestroy {
   }
 
   resetFilters() {
+    this.selectedConditions = [];
     this.selectedBrands = [];
+    this.selectedModels = [];
     this.maxMileage = this.maxAvailableMileage;
+    this.maxPower = 1000;
+    this.maxPrice = 50000000;
+    this.maxAcceleration = 20;
+    this.selectedYear = '';
+    this.selectedColors = [];
     this.selectedTransmissions = [];
     this.selectedSeats = null;
     this.selectedLuggage = null;
     this.selectedFuels = [];
+    this.updateAvailableModels();
     this.filterCars();
   }
 

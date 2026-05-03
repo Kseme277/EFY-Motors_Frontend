@@ -5,7 +5,7 @@
 :root {
   --efy-primary: #0f3bff; /* Bleu foncé du logo "EFY MOTORS" - teal foncé */
   --efy-accent: #8B2E3D; /* Marron/rouge foncé de la voiture */
-  --efy-primary-hover: #004A7A; /* Version plus claire pour le hover */
+  --efy-primary-hover: #FFFF; /* Version plus claire pour le hover */
   --efy-accent-hover: #A03D4F; /* Version plus claire pour le hover */
   --efy-primary-light: rgba(0, 94, 155, 0.1); /* Version très claire pour les fonds */
 }
@@ -25,6 +25,7 @@
 :not([class*="admin"]):not([class*="c-"]):not([class*="sidebar"]):not([class*="header"]) .btn-primary:active {
   background-color: var(--efy-primary-hover) !important;
   border-color: var(--efy-primary-hover) !important;
+  color:var(--efy-primary);
 }
 
 /* Boutons secondaires - Marron/rouge foncé (uniquement pour les pages publiques) */
@@ -381,10 +382,10 @@ section, div, article, main, footer, nav, header, span, p, button, form, input {
 }
 
 /* Assurer que les conteneurs carrousel sont visibles - sauf ceux avec owl-loaded qui gèrent leur propre opacité */
-.carousel-car:not(.owl-loaded), 
-.carousel-testimony:not(.owl-loaded), 
-.owl-carousel:not(.owl-loaded), 
-.owl-stage-outer:not(.owl-loaded), 
+.carousel-car:not(.owl-loaded),
+.carousel-testimony:not(.owl-loaded),
+.owl-carousel:not(.owl-loaded),
+.owl-stage-outer:not(.owl-loaded),
 .owl-stage:not(.owl-loaded) {
   opacity: 1 !important;
   visibility: visible !important;

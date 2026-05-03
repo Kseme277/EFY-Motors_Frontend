@@ -12,8 +12,7 @@
               <h1 class="mb-4 hero-title">Conduisez l'avenir, dès aujourd'hui.</h1>
               <p>Découvrez des véhicules sélectionnés, inspectés et disponibles partout au Cameroun.</p>
               <div class="hero-actions d-flex justify-content-center gap-3">
-                <a routerLink="/cars" class="btn btn-primary py-3 px-4">Voir l'inventaire</a>
-                <a (click)="openVideoModal('dQw4w9WgXcQ'); $event.preventDefault()" class="btn btn-outline-light py-3 px-4">Voir la présentation</a>
+                <a routerLink="/cars" class="btn btn-primary py-3 px-4 btn-inventaire">Voir l'inventaire</a>
               </div>
             </div>
           </div>
@@ -82,7 +81,7 @@
                 <input type="text" class="form-control" placeholder="Ex: Yaoundé, Douala, etc." name="ville" [(ngModel)]="searchParams.ville">
               </div>
               <div class="form-group">
-                <button type="submit" class="btn py-3 px-4 w-100 border-0" style="background-color: #0f3bff; display: inline-block; text-align: center; color: #fff; border-radius: 4px;">Rechercher un véhicule</button>
+                <button type="submit" class="btn btn-search-white py-3 px-4 w-100 border-0">Rechercher un véhicule</button>
               </div>
             </form>
           </div>
@@ -118,7 +117,7 @@
                   </div>
                 </div>
               </div>
-              <p><a routerLink="/cars" class="btn btn-primary py-3 px-4" style="background-color: #0f3bff; border-color: #0f3bff;">Voir tous nos véhicules</a></p>
+              <p><a routerLink="/cars" class="btn btn-primary py-3 px-4">Voir tous nos véhicules</a></p>
             </div>
           </div>
         </div>
@@ -259,7 +258,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Carousel -->
     <div class="carousel-car owl-carousel" *ngIf="!isLoadingFeatured && featuredCars.length > 0">
       <div class="item" *ngFor="let car of featuredCars">
@@ -296,7 +295,7 @@
     <div class="row">
       <div class="col-md-12 d-flex align-items-center justify-content-between mb-4">
         <h2 class="recent-title">AJOUTS RÉCENTS</h2>
-        <a routerLink="/cars" class="featured-link light-link">VOIR TOUT L'INVENTAIRE</a>
+        <a routerLink="/cars" class="featured-link btn btn-light ">VOIR TOUT L'INVENTAIRE</a>
       </div>
     </div>
     <div class="recent-grid" *ngIf="recentCars.length > 0; else noRecentCars">
@@ -354,8 +353,55 @@
         <p>Un large choix de marques et modèles adaptés au marché local.</p>
       </div>
     </div>
-    <div class="brands-row">
-      <span>NISSAN</span><span>TESLA</span><span>VOLKSWAGEN</span><span>MERCEDES</span><span>BMW</span><span>AUDI</span>
+    <div class="brands-marquee-section">
+      <div class="marquee-container">
+        <span class="text">
+            <img src="https://img.logo.dev/toyota.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Toyota"/>
+            <img src="https://img.logo.dev/bmw.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="BMW"/>
+            <img src="https://img.logo.dev/mercedes-benz.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Mercedes"/>
+            <img src="https://img.logo.dev/audi.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Audi"/>
+            <img src="https://img.logo.dev/vw.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Volkswagen"/>
+            <img src="https://img.logo.dev/ford.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Ford"/>
+            <img src="https://img.logo.dev/nissan-global.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Nissan"/>
+            <img src="https://img.logo.dev/honda.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Honda"/>
+            <img src="https://img.logo.dev/tesla.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Tesla"/>
+            <img src="https://img.logo.dev/hyundai.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Hyundai"/>
+            <img src="https://img.logo.dev/kia.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Kia"/>
+            <img src="https://img.logo.dev/porsche.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Porsche"/>
+            <img src="https://img.logo.dev/chevrolet.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Chevrolet"/>
+            <img src="https://img.logo.dev/peugeot.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Peugeot"/>
+            <img src="https://img.logo.dev/renault.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Renault"/>
+            <img src="https://img.logo.dev/volvocars.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Volvo"/>
+            <img src="https://img.logo.dev/landrover.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Land Rover"/>
+            <img src="https://img.logo.dev/lexus.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Lexus"/>
+            <img src="https://img.logo.dev/mazda.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Mazda"/>
+            <img src="https://img.logo.dev/jeep.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Jeep"/>
+            <img src="https://img.logo.dev/astonmartin.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Aston Martin"/>
+        </span>
+        <span class="text">
+            <img src="https://img.logo.dev/toyota.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Toyota"/>
+            <img src="https://img.logo.dev/bmw.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="BMW"/>
+            <img src="https://img.logo.dev/mercedes-benz.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Mercedes"/>
+            <img src="https://img.logo.dev/audi.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Audi"/>
+            <img src="https://img.logo.dev/vw.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Volkswagen"/>
+            <img src="https://img.logo.dev/ford.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Ford"/>
+            <img src="https://img.logo.dev/nissan-global.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Nissan"/>
+            <img src="https://img.logo.dev/honda.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Honda"/>
+            <img src="https://img.logo.dev/tesla.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Tesla"/>
+            <img src="https://img.logo.dev/hyundai.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Hyundai"/>
+            <img src="https://img.logo.dev/kia.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Kia"/>
+            <img src="https://img.logo.dev/porsche.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Porsche"/>
+            <img src="https://img.logo.dev/chevrolet.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Chevrolet"/>
+            <img src="https://img.logo.dev/peugeot.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Peugeot"/>
+            <img src="https://img.logo.dev/renault.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Renault"/>
+            <img src="https://img.logo.dev/volvocars.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Volvo"/>
+            <img src="https://img.logo.dev/landrover.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Land Rover"/>
+            <img src="https://img.logo.dev/lexus.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Lexus"/>
+            <img src="https://img.logo.dev/mazda.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Mazda"/>
+            <img src="https://img.logo.dev/jeep.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Jeep"/>
+            <img src="https://img.logo.dev/astonmartin.com?token=pk_To-NEdD0RECzBcrEiO3Pww&format=png" alt="Aston Martin"/>
+        </span>
+      </div>
     </div>
   </div>
 </section>
@@ -375,8 +421,8 @@
 
 <app-footer></app-footer>
 
-<app-video-modal 
-  [isOpen]="isVideoModalOpen" 
+<app-video-modal
+  [isOpen]="isVideoModalOpen"
   [youtubeVideoId]="currentVideoId"
   (close)="closeVideoModal()">
 </app-video-modal>
