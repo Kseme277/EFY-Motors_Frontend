@@ -11,6 +11,8 @@ import { SweetAlertService } from '../../services/sweet-alert.service';
 import { Subscription } from 'rxjs';
 import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
 
+declare var $: any;
+
 interface CarFeature {
   name: string;
   available: boolean;
@@ -56,7 +58,7 @@ interface Review {
 @Component({
   selector: 'app-car-single',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, CarCardComponent, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './car-single.component.html',
   styleUrl: './car-single.component.scss'
 })
@@ -64,6 +66,7 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
   private autoScrollInterval: any;
   private currentImageIndex: number = 0;
+  private carCarouselInstance: any;
   car: Car | null = null;
   relatedCars: CarCard[] = [];
   reviews: Review[] = [];
@@ -113,6 +116,10 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     // Initialiser les animations de scroll
     this.initializeScrollAnimations();
+    // Initialiser le carousel s'il y a déjà des données
+    if (this.relatedCars.length > 0) {
+      setTimeout(() => this.initializeCarCarousel(), 500);
+    }
   }
   
   private initializeScrollAnimations() {
@@ -142,6 +149,16 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     if (this.autoScrollInterval) {
       clearInterval(this.autoScrollInterval);
+    }
+    this.destroyCarousel();
+  }
+
+  private destroyCarousel() {
+    if (typeof $ !== 'undefined' && $('.carousel-car').length && $('.carousel-car').hasClass('owl-loaded')) {
+      try {
+        $('.carousel-car').owlCarousel('destroy');
+      } catch (e) {}
+      this.carCarouselInstance = null;
     }
   }
 
@@ -294,6 +311,11 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
           rating: v.rating || 0
         }));
         this.isLoadingRelated = false;
+        
+        // Initialiser le carousel après le chargement des données
+        setTimeout(() => {
+          this.initializeCarCarousel();
+        }, 500);
       },
       error: (error) => {
         console.error('Erreur lors du chargement des véhicules similaires:', error);
@@ -513,6 +535,52 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
       return (parts[0][0] + parts[1][0]).toUpperCase();
     }
     return name[0].toUpperCase();
+  }
+
+  private initializeCarCarousel(retryCount: number = 0) {
+    if (typeof $ === 'undefined' || typeof $.fn.owlCarousel === 'undefined') {
+      if (retryCount < 10) {
+        setTimeout(() => this.initializeCarCarousel(retryCount + 1), 300);
+      }
+      return;
+    }
+
+    const $carCarousel = $('.carousel-car');
+    if ($carCarousel.length === 0 || $carCarousel.children('.item').length === 0) {
+      if (retryCount < 10 && this.relatedCars.length > 0) {
+        setTimeout(() => this.initializeCarCarousel(retryCount + 1), 300);
+      }
+      return;
+    }
+
+    try {
+      if ($carCarousel.hasClass('owl-loaded')) {
+        $carCarousel.owlCarousel('destroy');
+        $carCarousel.removeClass('owl-loaded owl-drag');
+        $carCarousel.find('.owl-stage-outer').children().unwrap();
+      }
+      
+      $carCarousel.removeData('owl.carousel');
+      
+      this.carCarouselInstance = $carCarousel.owlCarousel({
+        items: 3,
+        loop: this.relatedCars.length > 3,
+        margin: 20,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        nav: false,
+        dots: true,
+        smartSpeed: 800,
+        responsive: {
+          0: { items: 1 },
+          768: { items: 2 },
+          1200: { items: 3 }
+        }
+      });
+    } catch (e) {
+      console.error('Error initializing car carousel:', e);
+    }
   }
 }
 

@@ -88,7 +88,7 @@
     -ms-overflow-style: none;
     border-radius: 6px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -258,23 +258,23 @@
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 2px solid #f0f0f0;
-  
+
   h5 {
     color: #0f3bff;
     margin-bottom: 1rem;
     font-weight: 600;
   }
-  
+
   .specs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-    
+
     .spec-item {
       padding: 0.75rem;
       background: #f8f9fa;
       border-radius: 8px;
-      
+
       strong {
         color: #0f3bff;
         margin-right: 0.5rem;
@@ -288,18 +288,18 @@
   // Styles par défaut (thème clair)
   .nav-tabs {
     border-bottom: 2px solid #e9ecef;
-    
+
     .nav-link {
       color: #495057;
       border: none;
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
-      
+
       &:hover {
         border-bottom-color: #0f3bff;
         color: #0f3bff;
       }
-      
+
       &.active {
         color: #0f3bff;
         background-color: transparent;
@@ -321,19 +321,19 @@
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
   border-radius: 8px;
   padding: 1.5rem;
-  
+
   .nav-tabs {
     border-bottom-color: #444 !important;
-    
+
     .nav-link {
       color: #e0e0e0 !important;
-      
+
       &:hover {
         color: #0f3bff !important;
         border-bottom-color: #0f3bff !important;
         background-color: rgba(0, 95, 155, 0.1) !important;
       }
-      
+
       &.active {
         color: #0f3bff !important;
         border-bottom-color: #0f3bff !important;
@@ -344,7 +344,7 @@
 
   .tab-content {
     color: #e0e0e0 !important;
-    
+
     .tab-pane {
       background-color: rgba(255, 255, 255, 0.05) !important;
       border-radius: 8px;
@@ -370,26 +370,26 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  
+
   h3 {
     color: #0f3bff;
     font-weight: 600;
   }
-  
+
   .form-group {
     margin-bottom: 1.5rem;
-    
+
     label {
       font-weight: 500;
       color: #333;
       margin-bottom: 0.5rem;
       display: block;
-      
+
       .text-danger {
         color: #dc3545;
       }
     }
-    
+
     .form-control {
       border: 2px solid #ddd;
       border-radius: 8px;
@@ -398,23 +398,23 @@
       transition: all 0.3s ease;
       background-color: white;
       color: #333;
-      
+
       &:focus {
         border-color: #0f3bff;
         outline: none;
         box-shadow: 0 0 0 0.2rem rgba(0, 95, 155, 0.25);
         transform: translateY(-1px);
       }
-      
+
       &.is-invalid {
         border-color: #dc3545;
       }
     }
-    
+
     textarea.form-control {
       resize: vertical;
     }
-    
+
     .invalid-feedback {
       display: block;
       color: #dc3545;
@@ -422,19 +422,19 @@
       margin-top: 0.25rem;
     }
   }
-  
+
   .btn-primary {
     transition: all 0.3s ease;
     border-radius: 8px;
     padding: 0.75rem 2rem;
-    
+
     &:hover:not(:disabled) {
       background-color: #004a7a !important;
       border-color: #004a7a !important;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 95, 155, 0.4);
     }
-    
+
     &:disabled {
       opacity: 0.6;
       cursor: not-allowed;
@@ -446,26 +446,26 @@
 // Thème sombre pour devis-form-container
 :host-context(.dark) .devis-form-container {
   background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;
-  
+
   h3 {
     color: #4da6ff !important;
   }
-  
+
   .form-group {
     label {
       color: #e0e0e0 !important;
     }
-    
+
     .form-control {
       background-color: #3a3a3a !important;
       border-color: #555 !important;
       color: #e0e0e0 !important;
-      
+
       &:focus {
         border-color: #0f3bff !important;
         background-color: #444 !important;
       }
-      
+
       &::placeholder {
         color: #999 !important;
       }
@@ -486,7 +486,7 @@
 // Wider containers to reduce screen margins
 .container {
   max-width: 92% !important;
-  
+
   @media (max-width: 1200px) {
     max-width: 95% !important;
   }
@@ -499,17 +499,17 @@
   border-radius: 8px;
   border: 1px solid #e9ecef;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  
+
   h4 {
     color: #0f3bff;
     font-weight: 600;
     margin-bottom: 1rem;
     font-size: 1.2rem;
   }
-  
+
   .form-group {
     margin-bottom: 1rem;
-    
+
     label {
       font-weight: 500;
       color: #333;
@@ -517,32 +517,32 @@
       display: block;
       font-size: 0.9rem;
     }
-    
+
     .rating-input {
       display: flex;
       gap: 0.5rem;
       margin-bottom: 0.5rem;
-      
+
       .star-rating {
         font-size: 1.8rem;
         color: #ddd;
         cursor: pointer;
         transition: all 0.2s ease;
-        
+
         &:hover {
           transform: scale(1.1);
         }
-        
+
         &.filled {
           color: #ffd700;
         }
-        
+
         &.hover {
           color: #ffed4e;
         }
       }
     }
-    
+
     .form-control {
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -551,18 +551,18 @@
       transition: all 0.3s ease;
       background-color: white;
       color: #333;
-      
+
       &:focus {
         border-color: #0f3bff;
         outline: none;
         box-shadow: 0 0 0 0.2rem rgba(0, 95, 155, 0.25);
       }
-      
+
       &.is-invalid {
         border-color: #dc3545;
       }
     }
-    
+
     .btn-primary {
       background: linear-gradient(135deg, #0f3bff 0%, #004a7a 100%);
       border: none;
@@ -570,7 +570,7 @@
       padding: 0.6rem 1.5rem;
       transition: all 0.3s ease;
       font-size: 0.9rem;
-      
+
       &:hover:not(:disabled) {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0, 95, 155, 0.4);
@@ -584,21 +584,21 @@
 :host-context(.dark) .review-form-section {
   background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;
   border-color: #444 !important;
-  
+
   h4 {
     color: #4da6ff !important;
   }
-  
+
   .form-group {
     label {
       color: #e0e0e0 !important;
     }
-    
+
     .form-control {
       background-color: #3a3a3a !important;
       border-color: #555 !important;
       color: #e0e0e0 !important;
-      
+
       &:focus {
         border-color: #0f3bff !important;
         background-color: #444 !important;
@@ -627,7 +627,7 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease, background-color 0.3s ease;
-  
+
   &.show {
     display: flex;
     visibility: visible;
@@ -635,17 +635,17 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   &.hidden {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
   }
-  
+
   .circular {
     animation: loader-rotate 2s linear infinite;
   }
-  
+
   .path {
     stroke: #0f3bff;
     stroke-dasharray: 1, 200;
@@ -681,7 +681,7 @@
   width: 3rem;
   height: 3rem;
   border-width: 0.3em;
-  
+
   &.text-primary {
     color: #0f3bff !important;
     border-color: #0f3bff;
@@ -697,10 +697,10 @@ app-header {
 .hero-wrap {
   margin-top: 0 !important;
   padding-top: 0 !important;
-  
+
   &.hero-wrap-2 {
     position: relative;
-    
+
     .overlay {
       position: absolute;
       top: 0;
@@ -710,7 +710,7 @@ app-header {
       background: rgba(0, 0, 0, 0.4) !important;
       z-index: 1;
     }
-    
+
     .container {
       position: relative;
       z-index: 2;
@@ -721,84 +721,84 @@ app-header {
 .ftco-car-details {
   .car-details {
     margin-bottom: 3rem;
-    
+
     .img {
       height: 500px;
       background-size: cover;
       background-position: center;
       border-radius: 8px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      
+
       @media (max-width: 768px) {
         height: 350px;
         border-radius: 8px;
       }
-      
+
       @media (max-width: 576px) {
         height: 250px;
         border-radius: 6px;
       }
     }
-    
+
     .text {
       margin-top: 2rem;
-      
+
       @media (max-width: 576px) {
         margin-top: 1.5rem;
       }
-      
+
       .subheading {
         color: #0f3bff;
         font-size: 1rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 2px;
-        
+
         @media (max-width: 768px) {
           font-size: 0.9rem;
           letter-spacing: 1px;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 0.85rem;
         }
       }
-      
+
       h2 {
         color: #0f3bff;
         font-size: 2.5rem;
         font-weight: 700;
         margin-top: 0.5rem;
-        
+
         @media (max-width: 768px) {
           font-size: 2rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 1.5rem;
           line-height: 1.3;
         }
       }
-      
+
       .price-display {
         font-size: 2rem;
         font-weight: 700;
         color: #0f3bff;
         margin-top: 1rem;
-        
+
         @media (max-width: 768px) {
           font-size: 1.75rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 1.5rem;
         }
-        
+
         span {
           font-size: 1rem;
           color: #6c757d;
           font-weight: 400;
-          
+
           @media (max-width: 576px) {
             font-size: 0.9rem;
           }
@@ -806,24 +806,24 @@ app-header {
       }
     }
   }
-  
+
   // Spécifications de la voiture - Design moderne avec icônes dans cercles
   .car-specs {
     margin: 3rem 0;
-    
+
     @media (max-width: 768px) {
       margin: 2rem 0;
     }
-    
+
     @media (max-width: 576px) {
       margin: 1.5rem 0;
     }
-    
+
     .col-md {
       @media (max-width: 768px) {
         margin-bottom: 1.5rem;
       }
-      
+
       @media (max-width: 576px) {
         margin-bottom: 1rem;
         flex: 0 0 50%;
@@ -831,7 +831,7 @@ app-header {
       }
     }
   }
-  
+
   .spec-item {
     display: flex;
     flex-direction: column;
@@ -841,24 +841,24 @@ app-header {
     background: transparent;
     border-radius: 8px;
     transition: all 0.3s ease;
-    
+
     @media (max-width: 768px) {
       padding: 1.25rem 0.75rem;
     }
-    
+
     @media (max-width: 576px) {
       padding: 1rem 0.5rem;
       border-radius: 8px;
     }
-    
+
     &:hover {
       transform: translateY(-5px);
-      
+
       @media (max-width: 768px) {
         transform: none;
       }
     }
-    
+
     .spec-icon {
       width: 80px;
       height: 80px;
@@ -870,34 +870,34 @@ app-header {
       justify-content: center;
       margin-bottom: 1rem;
       transition: all 0.3s ease;
-      
+
       @media (max-width: 768px) {
         width: 70px;
         height: 70px;
         margin-bottom: 0.75rem;
       }
-      
+
       @media (max-width: 576px) {
         width: 60px;
         height: 60px;
         margin-bottom: 0.5rem;
         border-width: 1.5px;
       }
-      
+
       span {
         font-size: 2rem;
         color: #0f3bff;
-        
+
         @media (max-width: 768px) {
           font-size: 1.75rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 1.5rem;
         }
       }
     }
-    
+
     .spec-content {
       .spec-label {
         font-size: 0.9rem;
@@ -906,59 +906,59 @@ app-header {
         text-transform: uppercase;
         letter-spacing: 0.5px;
         margin-bottom: 0.5rem;
-        
+
         @media (max-width: 768px) {
           font-size: 0.85rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 0.75rem;
           letter-spacing: 0.25px;
           margin-bottom: 0.25rem;
         }
       }
-      
+
       .spec-value {
         font-size: 1.1rem;
         font-weight: 700;
         color: #0f3bff;
         margin: 0;
-        
+
         @media (max-width: 768px) {
           font-size: 1rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 0.9rem;
         }
       }
     }
   }
-  
+
   // Onglets - Style moderne
   .nav-tabs {
     border-bottom: 1px solid #dee2e6;
     justify-content: center;
     flex-wrap: wrap;
-    
+
     @media (max-width: 576px) {
       flex-direction: column;
       border-bottom: none;
     }
-    
+
     .nav-item {
       margin: 0 0.5rem;
-      
+
       @media (max-width: 768px) {
         margin: 0 0.25rem;
       }
-      
+
       @media (max-width: 576px) {
         margin: 0 0 0.5rem 0;
         width: 100%;
       }
     }
-    
+
     .nav-link {
       color: #6c757d;
       font-weight: 600;
@@ -968,12 +968,12 @@ app-header {
       border-bottom: 2px solid transparent;
       background: transparent;
       transition: all 0.3s ease;
-      
+
       @media (max-width: 768px) {
         font-size: 0.9rem;
         padding: 0.65rem 1rem;
       }
-      
+
       @media (max-width: 576px) {
         font-size: 0.85rem;
         padding: 0.75rem 1rem;
@@ -983,18 +983,18 @@ app-header {
         border-radius: 6px;
         margin-bottom: 0.5rem;
       }
-      
+
       &:hover {
         color: #495057;
         background: #f8f9fa;
       }
-      
+
       &.active {
         color: #0f3bff;
         background: #f8f9fa;
         border: 1px solid #0f3bff;
         border-bottom: 2px solid #0f3bff;
-        
+
         @media (max-width: 576px) {
           border: 1px solid #0f3bff;
           border-bottom: 1px solid #0f3bff;
@@ -1002,7 +1002,7 @@ app-header {
       }
     }
   }
-  
+
   .tab-content {
     margin-top: 2rem;
     padding: 2.5rem;
@@ -1010,32 +1010,32 @@ app-header {
     border-radius: 12px;
     min-height: 400px;
     transition: background-color 0.3s ease;
-    
+
     @media (max-width: 768px) {
       padding: 1.5rem;
       margin-top: 1.5rem;
       min-height: 300px;
     }
-    
+
     @media (max-width: 576px) {
       padding: 1rem;
       margin-top: 1rem;
       border-radius: 8px;
       min-height: auto;
     }
-    
+
     .tab-pane {
       animation: fadeIn 0.3s ease-in;
-      
+
       &[hidden] {
         display: none !important;
       }
-      
+
       &:not([hidden]) {
         display: block;
       }
     }
-    
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -1046,19 +1046,19 @@ app-header {
         transform: translateY(0);
       }
     }
-    
+
     // Section Caractéristiques
     .features-list {
       list-style: none;
       padding: 0;
       margin: 0;
-      
+
       @media (max-width: 768px) {
         .col-md-4 {
           margin-bottom: 1.25rem;
         }
       }
-      
+
       @media (max-width: 576px) {
         .col-md-4 {
           margin-bottom: 1rem;
@@ -1066,59 +1066,59 @@ app-header {
           max-width: 100%;
         }
       }
-      
+
       .feature-item {
         padding: 0.75rem 0;
         font-size: 1rem;
         color: #495057;
         display: flex;
         align-items: center;
-        
+
         @media (max-width: 768px) {
           font-size: 0.95rem;
           padding: 0.65rem 0;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 0.9rem;
           padding: 0.5rem 0;
         }
-        
+
         &.check {
           color: #495057;
-          
+
           .ion-ios-checkmark {
             color: #28a745;
             font-size: 1.5rem;
             margin-right: 0.75rem;
             font-weight: bold;
-            
+
             @media (max-width: 768px) {
               font-size: 1.25rem;
               margin-right: 0.5rem;
             }
-            
+
             @media (max-width: 576px) {
               font-size: 1.1rem;
               margin-right: 0.5rem;
             }
           }
         }
-        
+
         &.remove {
           color: #495057;
-          
+
           .ion-ios-close {
             color: #dc3545;
             font-size: 1.5rem;
             margin-right: 0.75rem;
             font-weight: bold;
-            
+
             @media (max-width: 768px) {
               font-size: 1.25rem;
               margin-right: 0.5rem;
             }
-            
+
             @media (max-width: 576px) {
               font-size: 1.1rem;
               margin-right: 0.5rem;
@@ -1127,7 +1127,7 @@ app-header {
         }
       }
     }
-    
+
     // Section Description
     .description-content {
       h4, h5 {
@@ -1135,79 +1135,79 @@ app-header {
         font-weight: 700;
         margin-top: 2rem;
         margin-bottom: 1rem;
-        
+
         @media (max-width: 768px) {
           margin-top: 1.5rem;
         }
-        
+
         @media (max-width: 576px) {
           margin-top: 1.25rem;
           margin-bottom: 0.75rem;
         }
-        
+
         &:first-child {
           margin-top: 0;
         }
       }
-      
+
       h4 {
         font-size: 1.5rem;
-        
+
         @media (max-width: 768px) {
           font-size: 1.3rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 1.2rem;
         }
       }
-      
+
       h5 {
         font-size: 1.2rem;
         margin-top: 1.5rem;
-        
+
         @media (max-width: 768px) {
           font-size: 1.1rem;
           margin-top: 1.25rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 1rem;
           margin-top: 1rem;
         }
       }
-      
+
       .description-text {
         font-size: 1.1rem;
         line-height: 1.8;
         color: #495057;
         margin-bottom: 1.5rem;
         text-align: justify;
-        
+
         @media (max-width: 768px) {
           font-size: 1rem;
           line-height: 1.7;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 0.95rem;
           line-height: 1.6;
           margin-bottom: 1rem;
         }
       }
-      
+
       p {
         font-size: 1rem;
         line-height: 1.8;
         color: #6c757d;
         margin-bottom: 1rem;
         text-align: justify;
-        
+
         @media (max-width: 768px) {
           font-size: 0.95rem;
           line-height: 1.7;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 0.9rem;
           line-height: 1.6;
@@ -1215,7 +1215,7 @@ app-header {
         }
       }
     }
-    
+
     // Section Avis - Layout responsive
     .row {
       @media (max-width: 768px) {
@@ -1224,7 +1224,7 @@ app-header {
           margin-bottom: 2rem;
         }
       }
-      
+
       @media (max-width: 576px) {
         .col-md-7,
         .col-md-5 {
@@ -1234,49 +1234,49 @@ app-header {
         }
       }
     }
-    
+
     .reviews-heading {
       color: #0f3bff;
       font-weight: 700;
       font-size: 1.5rem;
       margin-bottom: 2rem;
-      
+
       @media (max-width: 768px) {
         font-size: 1.3rem;
         margin-bottom: 1.5rem;
       }
-      
+
       @media (max-width: 576px) {
         font-size: 1.2rem;
         margin-bottom: 1rem;
         text-align: center;
       }
     }
-    
+
     .reviews-list {
       .review-item {
         display: flex;
         margin-bottom: 2.5rem;
         padding-bottom: 2rem;
         border-bottom: 1px solid #e9ecef;
-        
+
         @media (max-width: 768px) {
           margin-bottom: 2rem;
           padding-bottom: 1.5rem;
         }
-        
+
         @media (max-width: 576px) {
           flex-direction: column;
           margin-bottom: 1.5rem;
           padding-bottom: 1.25rem;
         }
-        
+
         &:last-child {
           border-bottom: none;
           margin-bottom: 0;
           padding-bottom: 0;
         }
-        
+
         .initials-avatar {
           width: 70px;
           height: 70px;
@@ -1292,14 +1292,14 @@ app-header {
           flex-shrink: 0;
           box-shadow: 0 4px 10px rgba(0, 95, 155, 0.2);
           border: 3px solid #fff;
-          
+
           @media (max-width: 768px) {
             width: 60px;
             height: 60px;
             font-size: 1.25rem;
             margin-right: 1rem;
           }
-          
+
           @media (max-width: 576px) {
             width: 50px;
             height: 50px;
@@ -1309,66 +1309,66 @@ app-header {
             align-self: center;
           }
         }
-        
+
         .review-content {
           flex: 1;
-          
+
           @media (max-width: 576px) {
             text-align: center;
           }
-          
+
           .review-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.5rem;
-            
+
             @media (max-width: 576px) {
               flex-direction: column;
               align-items: center;
               gap: 0.25rem;
             }
-            
+
             .reviewer-name {
               font-size: 1.1rem;
               font-weight: 700;
           color: #0f3bff;
               margin: 0;
-              
+
               @media (max-width: 768px) {
                 font-size: 1rem;
               }
-              
+
               @media (max-width: 576px) {
                 font-size: 0.95rem;
               }
             }
-            
+
             .review-date {
               font-size: 0.9rem;
               color: #6c757d;
-              
+
               @media (max-width: 576px) {
                 font-size: 0.85rem;
               }
             }
           }
-          
+
           .review-rating {
             margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
-            
+
             @media (max-width: 576px) {
               justify-content: center;
               margin-bottom: 0.5rem;
             }
-            
+
             .stars {
               display: flex;
               align-items: center;
               gap: 0.15rem;
-              
+
               i {
                 color: #ffc107;
                 font-size: 1.1rem;
@@ -1376,34 +1376,34 @@ app-header {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                
+
                 @media (max-width: 768px) {
                   font-size: 1.05rem;
                 }
-                
+
                 @media (max-width: 576px) {
                   font-size: 1rem;
                 }
-                
+
                 &.ion-ios-star-outline {
                   color: #e9ecef;
                 }
               }
             }
           }
-          
+
           .review-text {
             color: #495057;
             line-height: 1.7;
             margin: 0;
             font-size: 0.95rem;
             text-align: justify;
-            
+
             @media (max-width: 768px) {
               font-size: 0.9rem;
               line-height: 1.6;
             }
-            
+
             @media (max-width: 576px) {
               font-size: 0.85rem;
             }
@@ -1411,43 +1411,43 @@ app-header {
         }
       }
     }
-    
+
     // Résumé des notes
     .rating-summary {
       background: #f8f9fa;
       padding: 2rem;
       border-radius: 8px;
       margin-bottom: 2rem;
-      
+
       @media (max-width: 768px) {
         padding: 1.5rem;
         margin-bottom: 1.5rem;
       }
-      
+
       @media (max-width: 576px) {
         padding: 1rem;
         margin-bottom: 1rem;
         border-radius: 8px;
       }
-      
+
       .summary-heading {
         color: #0f3bff;
         font-weight: 700;
         font-size: 1.3rem;
         margin-bottom: 1.5rem;
-        
+
         @media (max-width: 768px) {
           font-size: 1.2rem;
           margin-bottom: 1.25rem;
         }
-        
+
         @media (max-width: 576px) {
           font-size: 1.1rem;
           margin-bottom: 1rem;
           text-align: center;
         }
       }
-      
+
       .average-rating {
         text-align: center;
         margin-bottom: 2rem;
@@ -1457,46 +1457,46 @@ app-header {
         flex-direction: column;
         align-items: center;
         gap: 0.75rem;
-        
+
         @media (max-width: 768px) {
           margin-bottom: 1.5rem;
           padding-bottom: 1.25rem;
           gap: 0.65rem;
         }
-        
+
         @media (max-width: 576px) {
           margin-bottom: 1rem;
           padding-bottom: 1rem;
           gap: 0.5rem;
         }
-        
+
         .rating-number {
           display: block;
           font-size: 3rem;
           font-weight: 700;
           color: #0f3bff;
           line-height: 1;
-          
+
           @media (max-width: 768px) {
             font-size: 2.5rem;
           }
-          
+
           @media (max-width: 576px) {
             font-size: 2rem;
           }
         }
-        
+
         .rating-stars-large {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 0.3rem;
           flex-wrap: wrap;
-          
+
           @media (max-width: 576px) {
             gap: 0.2rem;
           }
-          
+
           i {
             color: #ffc107;
             font-size: 1.5rem;
@@ -1504,39 +1504,39 @@ app-header {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            
+
             @media (max-width: 768px) {
               font-size: 1.4rem;
             }
-            
+
             @media (max-width: 576px) {
               font-size: 1.25rem;
             }
-            
+
             &.ion-ios-star-outline {
               color: #e9ecef;
             }
           }
         }
       }
-      
+
       .rating-breakdown {
         .rating-bar-item {
           display: flex;
           align-items: center;
           margin-bottom: 1rem;
           gap: 0.75rem;
-          
+
           @media (max-width: 768px) {
             gap: 0.5rem;
           }
-          
+
           @media (max-width: 576px) {
             margin-bottom: 0.75rem;
             flex-wrap: wrap;
             gap: 0.5rem;
           }
-          
+
           .rating-label {
             min-width: 90px;
             font-size: 0.9rem;
@@ -1544,12 +1544,12 @@ app-header {
             font-weight: 600;
             display: flex;
             align-items: center;
-            
+
             @media (max-width: 768px) {
               min-width: 80px;
               font-size: 0.85rem;
             }
-            
+
             @media (max-width: 576px) {
               width: 100%;
               margin-bottom: 0;
@@ -1557,7 +1557,7 @@ app-header {
               min-width: auto;
             }
           }
-          
+
           .rating-bar {
             flex: 1;
             height: 10px;
@@ -1565,17 +1565,17 @@ app-header {
             border-radius: 5px;
             overflow: hidden;
             position: relative;
-            
+
             @media (max-width: 768px) {
               height: 8px;
             }
-            
+
             @media (max-width: 576px) {
               width: 100%;
               height: 8px;
               order: 3;
             }
-            
+
             .rating-bar-fill {
               height: 100%;
               background: linear-gradient(90deg, #0f3bff 0%, #004A7A 100%);
@@ -1583,7 +1583,7 @@ app-header {
               border-radius: 5px;
             }
           }
-          
+
           .rating-count {
             min-width: 35px;
             text-align: right;
@@ -1593,12 +1593,12 @@ app-header {
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            
+
             @media (max-width: 768px) {
               min-width: 30px;
               font-size: 0.85rem;
             }
-            
+
             @media (max-width: 576px) {
               width: auto;
               text-align: left;
@@ -1610,24 +1610,24 @@ app-header {
         }
       }
     }
-    
+
     // Formulaire d'ajout d'avis
     .add-review-form {
       background: #fff;
       padding: 2rem;
       border-radius: 12px;
       border: 2px solid #e9ecef;
-      
+
       .form-heading {
         color: #0f3bff;
         font-weight: 700;
         font-size: 1.3rem;
         margin-bottom: 1.5rem;
       }
-      
+
       .form-group {
         margin-bottom: 1.5rem;
-        
+
         label {
           display: block;
           font-weight: 600;
@@ -1635,7 +1635,7 @@ app-header {
           margin-bottom: 0.5rem;
           font-size: 0.95rem;
         }
-        
+
         .form-control {
           width: 100%;
           padding: 0.75rem;
@@ -1643,36 +1643,36 @@ app-header {
           border-radius: 6px;
           font-size: 0.95rem;
           transition: all 0.3s ease;
-          
+
           &:focus {
             outline: none;
             border-color: #0f3bff;
             box-shadow: 0 0 0 0.2rem rgba(0, 94, 155, 0.25);
           }
         }
-        
+
         textarea.form-control {
           resize: vertical;
         }
       }
-      
+
       .rating-input {
         display: flex;
         gap: 0.5rem;
-        
+
         .star-input {
           cursor: pointer;
-          
+
           i {
             font-size: 2rem;
             color: #e9ecef;
             transition: all 0.2s ease;
-            
+
             &.active {
               color: #ffc107;
             }
           }
-          
+
           &:hover i {
             color: #ffc107;
             transform: scale(1.1);
@@ -1681,7 +1681,7 @@ app-header {
       }
     }
   }
-  
+
   .btn-primary {
     background: linear-gradient(135deg, #0f3bff 0%, #004A7A 100%);
     border: none;
@@ -1692,12 +1692,12 @@ app-header {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
+
     @media (max-width: 768px) {
       padding: 0.875rem 2rem;
       font-size: 1rem;
     }
-    
+
     @media (max-width: 576px) {
       padding: 0.75rem 1.5rem;
       font-size: 0.9rem;
@@ -1705,11 +1705,11 @@ app-header {
       display: block;
       letter-spacing: 0.5px;
     }
-    
+
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0, 94, 155, 0.4);
-      
+
       @media (max-width: 768px) {
         transform: none;
       }
@@ -1728,40 +1728,40 @@ app-header {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
-  
+
   @media (max-width: 768px) {
     margin-bottom: 1.25rem;
   }
-  
+
   @media (max-width: 576px) {
     margin-bottom: 1rem;
     border-radius: 8px;
   }
-  
+
   &:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 24px rgba(0, 94, 155, 0.2);
-    
+
     @media (max-width: 768px) {
       transform: translateY(-3px);
     }
   }
-  
+
   .img {
     height: 220px;
     background-size: cover;
     background-position: center;
     position: relative;
     transition: transform 0.3s ease;
-    
+
     @media (max-width: 768px) {
       height: 200px;
     }
-    
+
     @media (max-width: 576px) {
       height: 180px;
     }
-    
+
     .cat {
       position: absolute;
       top: 1rem;
@@ -1775,79 +1775,79 @@ app-header {
       font-weight: 600;
       display: inline-block;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      
+
       @media (max-width: 576px) {
         font-size: 0.75rem;
         padding: 0.25rem 0.6rem;
       }
     }
   }
-  
+
   &:hover .img {
     transform: scale(1.05);
-    
+
     @media (max-width: 768px) {
       transform: scale(1.02);
     }
   }
-  
+
   .text {
     padding: 1.25rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    
+
     @media (max-width: 768px) {
       padding: 1rem;
     }
-    
+
     @media (max-width: 576px) {
       padding: 0.875rem;
     }
-    
+
     h2 {
       font-size: 1.3rem;
       font-weight: 700;
       color: #0f3bff;
       margin-bottom: 0.5rem;
       line-height: 1.3;
-      
+
       @media (max-width: 768px) {
         font-size: 1.2rem;
       }
-      
+
       @media (max-width: 576px) {
         font-size: 1.1rem;
         margin-bottom: 0.375rem;
       }
-      
+
       a {
         color: #0f3bff;
         text-decoration: none;
         transition: color 0.3s ease;
-        
+
         &:hover {
           color: #004A7A;
         }
       }
     }
-    
+
     .price {
       font-size: 1.4rem;
       font-weight: 700;
       color: #0f3bff;
       margin: 0;
       line-height: 1.2;
-      
+
       @media (max-width: 768px) {
         font-size: 1.3rem;
       }
-      
+
       @media (max-width: 576px) {
         font-size: 1.2rem;
       }
     }
-    
+
     .btn {
       border-radius: 6px;
       font-weight: 600;
@@ -1857,29 +1857,29 @@ app-header {
       letter-spacing: 0.5px;
       font-size: 0.8rem;
       flex: 1;
-      
+
       @media (max-width: 768px) {
         padding: 0.6rem 1rem;
         font-size: 0.75rem;
       }
-      
+
       @media (max-width: 576px) {
         padding: 0.55rem 0.875rem;
         font-size: 0.7rem;
       }
     }
-    
+
     .btn-secondary {
       background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%) !important;
       border: none !important;
       color: #fff !important;
     }
-    
+
     .btn-secondary:hover {
       background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
-      
+
       @media (max-width: 768px) {
         transform: none;
       }
@@ -1887,14 +1887,156 @@ app-header {
   }
 }
 
-// Section véhicules similaires responsive
+.featured-items-section {
+  background: #061a2b;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+
+  .heading-section h2 {
+    color: #ffffff !important;
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+  }
+
+  .carousel-car .item {
+    padding: 0 6px;
+  }
+
+  .featured-card {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 0;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-card .img-wrapper {
+    border-radius: 0;
+    overflow: hidden;
+    height: 200px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .featured-meta {
+    padding: 0.5rem 0.55rem;
+    background: #0f3bff;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: auto;
+
+    .meta-content {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: end;
+      gap: 12px;
+    }
+
+    .meta-left {
+      .brand-year {
+        display: block;
+        font-size: 0.55rem;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        color: #c9d5ff;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+      .car-name {
+        margin: 0;
+        font-size: 1rem !important;
+        color: #fff !important;
+        line-height: 1.1;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+    }
+
+    .meta-center {
+      .msrp-label {
+        display: block;
+        font-size: 0.55rem;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        color: #c9d5ff;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+      .price-val {
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1;
+        font-weight: 800;
+      }
+    }
+
+    .meta-right {
+      text-align: right;
+
+      .details-btn {
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        color: #fff !important;
+        text-decoration: none;
+        padding: 0.35rem 0.85rem;
+        font-size: 0.66rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+        display: inline-block;
+
+        &:hover {
+          background: #fff;
+          color: #0f3bff !important;
+        }
+      }
+    }
+  }
+
+  .card-progress {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 8px;
+
+    .progress-bar {
+      height: 100%;
+      background: #fff;
+      width: 0;
+    }
+  }
+}
+
+// Skeleton Loader Styles
+.carousel-car-skeleton {
+  display: flex;
+  gap: 20px;
+  .skeleton-item {
+    flex: 1;
+    background: #1a2231;
+    height: 300px;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
 section.ftco-no-pt {
   @media (max-width: 768px) {
     .col-md-4 {
       margin-bottom: 1.5rem;
     }
   }
-  
+
   @media (max-width: 576px) {
     .col-md-4 {
       margin-bottom: 1rem;

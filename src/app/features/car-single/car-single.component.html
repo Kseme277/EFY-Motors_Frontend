@@ -373,26 +373,50 @@
   </div>
 </section>
 
-<section class="ftco-section ftco-no-pt bg-light" *ngIf="!isLoading">
+<section class="featured-items-section">
   <div class="container">
-    <div class="row justify-content-center" *ngIf="isLoadingRelated">
-      <div class="col-md-12 text-center mb-5">
-        <div class="spinner-border text-primary" role="status" style="color: #0f3bff !important;">
-          <span class="sr-only">Chargement...</span>
-        </div>
-        <p class="mt-3">Chargement des véhicules similaires...</p>
+    <div class="row justify-content-center">
+      <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+        <span class="subheading">Choisir une voiture</span>
+        <h2 class="mb-2" style="color: #fff !important;">Véhicules similaires</h2>
       </div>
     </div>
-    <div *ngIf="!isLoadingRelated && relatedCars.length > 0">
-      <div class="row justify-content-center">
-        <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          <span class="subheading">Choisir une voiture</span>
-          <h2 class="mb-2">Véhicules similaires</h2>
+
+    <!-- Skeleton Loader -->
+    <div *ngIf="isLoadingRelated" class="skeleton-container">
+      <div class="carousel-car-skeleton">
+        <div class="skeleton-item" *ngFor="let i of [1,2,3]">
+          <div class="skeleton-image"></div>
+          <div class="skeleton-title"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let relatedCar of relatedCars">
-          <app-car-card [car]="relatedCar" [showPrice]="true" [showDetails]="true"></app-car-card>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel-car owl-carousel" *ngIf="!isLoadingRelated && relatedCars.length > 0">
+      <div class="item" *ngFor="let relatedCar of relatedCars">
+        <div class="featured-card">
+          <div class="img-wrapper">
+            <img [src]="relatedCar.image" [alt]="relatedCar.name" (error)="$event.target.src='assets/images/car-1.jpg'">
+          </div>
+          <div class="featured-meta">
+            <div class="meta-content">
+              <div class="meta-left">
+                <span class="brand-year">{{ relatedCar.brand | uppercase }} {{ relatedCar.annee }}</span>
+                <h3 class="car-name">{{ relatedCar.name }}</h3>
+              </div>
+              <div class="meta-center">
+                <span class="msrp-label">PRIX: </span>
+                <strong class="price-val">{{ relatedCar.price | number }} FCFA</strong>
+              </div>
+              <div class="meta-right">
+                <a [routerLink]="['/cars', relatedCar.id]" class="details-btn">DETAILS</a>
+              </div>
+            </div>
+            <div class="card-progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

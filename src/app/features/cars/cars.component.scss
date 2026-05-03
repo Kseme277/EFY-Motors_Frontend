@@ -426,9 +426,28 @@
   gap: 20px;
 
   .car-premium-card {
+    border: 1px solid #e4e7ec;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    transition: all 0.3s ease;
+    height: 220px; // Fixed height for consistency
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      height: auto; // Let it grow on mobile
+    }
+
+    &:hover {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+      border-color: #0f3bff;
+    }
+
     .car-card-link {
       display: flex;
       flex-direction: row;
+      height: 100%;
       
       @media (max-width: 768px) {
         flex-direction: column;
@@ -436,27 +455,225 @@
     }
 
     .car-img-wrapper {
-      width: 40%;
+      width: 300px;
       min-width: 300px;
-      aspect-ratio: auto;
+      height: 100%;
+      border-radius: 12px 0 0 12px;
+      position: relative;
       
       @media (max-width: 768px) {
         width: 100%;
         min-width: 100%;
-        aspect-ratio: 16 / 9;
+        height: 200px;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .images-scroll-container {
+        height: 100%;
+        img {
+          height: 100%;
+          object-fit: cover;
+          border-radius: inherit;
+        }
+      }
+
+      .badge-360 {
+        background: rgba(255, 255, 255, 0.9);
+        color: #101828;
+        font-weight: 700;
+        border: 1px solid #eaecf0;
       }
     }
 
     .car-info-content {
-      width: 60%;
+      flex: 1;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 30px;
+      flex-direction: row;
+      padding: 0;
+      background: transparent;
+      height: 100%;
       
-      @media (max-width: 768px) {
-        width: 100%;
-        padding: 20px;
+      @media (max-width: 991px) {
+        flex-direction: column;
+      }
+
+      .car-info-main {
+        flex: 1;
+        padding: 20px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .car-header-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 4px;
+
+          .car-title-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #101828;
+            margin: 0;
+            letter-spacing: -0.01em;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          .car-quick-actions {
+            display: flex;
+            gap: 10px;
+
+            .action-icon {
+              background: #f9fafb;
+              border: 1px solid #f2f4f7;
+              color: #667085;
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.2s;
+              
+              &:hover {
+                background: #fef2f2;
+                color: #ef4444;
+                border-color: #fee2e2;
+              }
+
+              &.copy-btn:hover {
+                background: #f0fdf4;
+                color: #16a34a;
+                border-color: #dcfce7;
+              }
+            }
+
+            .favorite-btn {
+              @media (max-width: 768px) {
+                display: none !important;
+              }
+            }
+          }
+        }
+
+        .car-specs-inline {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.85rem;
+          color: #667085;
+          margin-bottom: 15px;
+
+          .separator {
+            color: #d0d5dd;
+            font-weight: 300;
+          }
+
+          .spec-item {
+            white-space: nowrap;
+          }
+        }
+
+        .car-brand-logo {
+          margin-top: auto;
+          .brand-logo-img {
+            height: 18px;
+            opacity: 0.6;
+            filter: grayscale(1);
+          }
+        }
+      }
+
+      .car-info-side {
+        width: 240px;
+        min-width: 240px;
+        padding: 20px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        text-align: right;
+        background: #fcfcfd;
+        border-left: 1px solid #f2f4f7;
+
+        @media (max-width: 991px) {
+          width: 100%;
+          min-width: 100%;
+          border-left: none;
+          border-top: 1px solid #f2f4f7;
+          align-items: flex-start;
+          text-align: left;
+          padding: 15px 24px;
+        }
+
+        .price-container {
+          .current-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #101828;
+            margin-bottom: 2px;
+          }
+
+          .old-price {
+            font-size: 0.85rem;
+            color: #98a2b3;
+            text-decoration: line-through;
+            margin-bottom: 8px;
+          }
+
+          .monthly-price {
+            font-size: 0.75rem;
+            color: #667085;
+            
+            strong {
+              color: #101828;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark .cars-premium-grid.list-view {
+  .car-premium-card {
+    background: #1a2231;
+    border-color: #344054;
+    
+    .car-info-content {
+      .car-info-main {
+        .car-header-row {
+          .car-title-text {
+            color: #fff;
+          }
+          .car-quick-actions .action-icon {
+            background: #232b3e;
+            border-color: #344054;
+            color: #98a2b3;
+          }
+        }
+        .car-specs-inline {
+          color: #98a2b3;
+        }
+      }
+      
+      .car-info-side {
+        background: #1e293b;
+        border-color: #344054;
+        .price-container {
+          .current-price {
+            color: #fff;
+          }
+          .monthly-price {
+            color: #98a2b3;
+            strong { color: #fff; }
+          }
+        }
       }
     }
   }

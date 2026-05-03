@@ -1,0 +1,30 @@
+<div class="cookie-overlay" *ngIf="showBanner">
+  <div class="cookie-modal">
+    <div class="cookie-content">
+      <div class="cookie-header">
+        <div class="cookie-icon">
+          <img src="assets/images/logo.png" alt="EFY Motors" class="h-8 mb-4">
+        </div>
+        <h2 class="cookie-title">Votre confidentialité nous importe</h2>
+      </div>
+      
+      <p class="cookie-text">
+        EFY Motors utilise des cookies pour améliorer votre expérience, analyser le trafic et vous proposer des offres personnalisées. 
+        En cliquant sur "Tout accepter", vous consentez à l'utilisation de tous les cookies. Vous pouvez également choisir de 
+        "Continuer sans accepter" pour ne conserver que les cookies essentiels.
+      </p>
+      
+      <div class="cookie-links">
+        <a href="/privacy" class="cookie-link">Politique de confidentialité</a>
+        <span class="separator">•</span>
+        <a href="/terms" class="cookie-link">Conditions d'utilisation</a>
+      </div>
+      
+      <div class="cookie-actions">
+        <button class="btn btn-primary" (click)="acceptAll()">Tout accepter</button>
+        <button class="btn btn-outline-primary" (click)="showSettings()">Paramètres</button>
+        <button class="btn btn-link-refuse" (click)="refuseAll()">Continuer sans accepter</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -89,6 +89,28 @@ export class SweetAlertService {
   }
 
   /**
+   * Affiche un toast (notification rapide en bas à droite)
+   */
+  toast(title: string, icon: 'success' | 'error' | 'info' | 'warning' = 'success') {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'bottom-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+
+    return Toast.fire({
+      icon: icon,
+      title: title
+    });
+  }
+
+  /**
    * Ferme le loader
    */
   close() {

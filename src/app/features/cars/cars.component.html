@@ -25,7 +25,7 @@
           <div class="sidebar-header">
             <span>Filtres de recherche</span>
           </div>
-          
+
           <div class="filter-accordion">
             <!-- Condition -->
             <div class="filter-item">
@@ -150,8 +150,8 @@
               </button>
               <div class="filter-content px-3 pb-3" *ngIf="expandedSections['color']">
                 <div class="d-flex flex-wrap gap-2">
-                  <div class="color-swatch" *ngFor="let color of colors" 
-                       [style.background]="getColorHex(color)" 
+                  <div class="color-swatch" *ngFor="let color of colors"
+                       [style.background]="getColorHex(color)"
                        [title]="color"
                        [class.border-primary]="selectedColors.includes(color)"
                        [style.borderWidth.px]="selectedColors.includes(color) ? 2 : 1"
@@ -164,7 +164,7 @@
               </div>
             </div>
           </div>
-          
+
           <button class="btn btn-outline-primary w-100 mt-4" (click)="resetFilters()">Réinitialiser les filtres</button>
         </div>
       </div>
@@ -197,29 +197,26 @@
               <div class="car-img-wrapper">
                 <div class="images-scroll-container" #scrollContainer>
                   <img *ngFor="let photo of car.photos" [src]="photo" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
-                  <!-- Placeholder if no photos -->
                   <img *ngIf="car.photos.length === 0" src="assets/images/car-1.jpg" [alt]="car.name">
                 </div>
-                
-                <!-- Overlays -->
+
                 <div class="image-overlays">
                   <div class="overlay-badge photo-count">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
                     <span>{{ car.photosCount }}</span>
                   </div>
-                  <div class="overlay-badge video-count" *ngIf="car.hasVideo">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                    <span>1</span>
+                  <div class="overlay-badge badge-360" *ngIf="car.has360View">
+                    <span>360°</span>
                   </div>
                 </div>
 
-                <!-- Sold Sash -->
                 <div class="sold-sash" *ngIf="car.isSold">
                   <span>VENDU</span>
                 </div>
               </div>
 
-              <div class="car-info-content">
+              <!-- Grid View Content -->
+              <div class="car-info-content" *ngIf="viewMode === 'grid'">
                 <div class="car-card-header">
                   <h3 class="car-title-text">{{ car.name | uppercase }}</h3>
                   <div class="price-badge-container">
@@ -248,6 +245,45 @@
                   <div class="spec-item">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     <span>{{ car.acceleration || 'N/A' }} s</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- List View Content -->
+              <div class="car-info-content list-info-content" *ngIf="viewMode === 'list'">
+                <div class="car-info-main">
+                  <div class="car-header-row">
+                    <h3 class="car-title-text">{{ car.name }}</h3>
+                    <div class="car-quick-actions">
+                      <button class="action-icon copy-btn" (click)="copyLink(car.id, $event)" title="Copier le lien">
+                        <i class="ion-ios-link"></i>
+                      </button>
+                      <button class="action-icon d-none d-md-flex"><i class="ion-ios-eye"></i></button>
+                    </div>
+                  </div>
+
+                  <div class="car-specs-inline">
+                    <span class="spec-item">{{ car.annee || '2024' }}</span>
+                    <span class="separator">|</span>
+                    <span class="spec-item">{{ car.mileage | number }} km</span>
+                    <span class="separator">|</span>
+                    <span class="spec-item">{{ car.transmission }}</span>
+                    <span class="separator">|</span>
+                    <span class="spec-item">{{ car.energy }}</span>
+                    <span class="separator">|</span>
+                    <span class="spec-item">{{ car.power }} ch</span>
+                  </div>
+
+
+                </div>
+
+                <div class="car-info-side">
+                  <div class="price-container">
+                    <div class="current-price">{{ car.price | number }} FCFA</div>
+                    <div class="old-price" *ngIf="car.oldPrice">{{ car.oldPrice | number }} FCFA</div>
+                    <div class="monthly-price" *ngIf="car.price > 0">
+                      Prix mensuel env. <strong>{{ (car.price / 48) | number:'1.0-0' }} FCFA*</strong>
+                    </div>
                   </div>
                 </div>
               </div>

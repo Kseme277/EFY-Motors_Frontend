@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { SweetAlertService } from '../../services/sweet-alert.service';
 
 interface Car {
   id: number;
@@ -12,6 +14,7 @@ interface Car {
   brand: string;
   model: string;
   year: number;
+  annee: number; // Added for template compatibility
   image: string;
   price: number;
   oldPrice?: number;
@@ -26,6 +29,7 @@ interface Car {
   photos: string[];
   photosCount: number;
   hasVideo: boolean;
+  has360View: boolean; // Added
   isSold: boolean;
   isPromo: boolean;
   color: string;
@@ -107,7 +111,9 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   constructor(
     private apiService: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private swal: SweetAlertService
   ) {}
 
   ngOnInit() {
@@ -189,6 +195,7 @@ export class CarsComponent implements OnInit, OnDestroy {
             brand: vehicle.marque,
             model: vehicle.modele,
             year: vehicle.annee,
+            annee: vehicle.annee,
             image: vehicle.photo_principale || (vehicle.photos && vehicle.photos.length > 0 ? vehicle.photos[0] : 'assets/images/car-1.jpg'),
             price: vehicle.est_en_promotion && vehicle.prix_promotionnel ? vehicle.prix_promotionnel : vehicle.prix,
             oldPrice: vehicle.est_en_promotion ? vehicle.prix : undefined,
@@ -203,6 +210,7 @@ export class CarsComponent implements OnInit, OnDestroy {
             photos: vehicle.photos || (vehicle.photo_principale ? [vehicle.photo_principale] : []),
             photosCount: vehicle.photos ? vehicle.photos.length : (vehicle.photo_principale ? 1 : 0),
             hasVideo: !!vehicle.features?.video_url,
+            has360View: !!vehicle.features?.has_360_view, // Added
             isSold: vehicle.est_vendu || !vehicle.est_disponible,
             isPromo: vehicle.est_en_promotion,
             color: vehicle.couleur_exterieure || 'N/A',
@@ -557,5 +565,22 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   getEmptyStarsArray(rating: number = 0): number[] {
     return Array(5 - Math.floor(rating)).fill(0);
+  }
+
+  copyLink(carId: number, event: Event) {
+    event.stopPropagation();
+    event.preventDefault();
+    const url = window.location.origin + '/cars/' + carId;
+    navigator.clipboard.writeText(url).then(() => {
+      // On utilise SweetAlert pour plus de fiabilité si toastr ne s'affiche pas
+      this.swal.toast('Lien du véhicule copié !', 'success');
+      
+      // On garde aussi toastr au cas où
+      this.toastr.success('Le lien du véhicule a été copié !', 'Succès', {
+        progressBar: true,
+        closeButton: true,
+        positionClass: 'toast-bottom-right'
+      });
+    });
   }
 }

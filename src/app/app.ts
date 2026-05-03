@@ -7,11 +7,12 @@ import { delay, filter, map, tap } from 'rxjs/operators';
 import { ColorModeService } from '@coreui/angular';
 import { ThemeService } from './shared/services/theme.service';
 import { ChatbotComponent } from './shared/components/chatbot/chatbot.component';
+import { CookieConsent } from './shared/components/cookie-consent/cookie-consent';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ChatbotComponent],
+  imports: [RouterOutlet, ChatbotComponent, CookieConsent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
