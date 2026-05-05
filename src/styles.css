@@ -52,18 +52,18 @@
   --color-brand-900: #0e2c42; /* Navy Primary */
   --color-brand-950: #0a2030;
 
-  --color-blue-light-25: #f5fbff;
-  --color-blue-light-50: #f0f9ff;
-  --color-blue-light-100: #e0f2fe;
-  --color-blue-light-200: #b9e6fe;
-  --color-blue-light-300: #7cd4fd;
-  --color-blue-light-400: #36bffa;
-  --color-blue-light-500: #0ba5ec;
-  --color-blue-light-600: #0086c9;
-  --color-blue-light-700: #026aa2;
-  --color-blue-light-800: #065986;
-  --color-blue-light-900: #0b4a6f;
-  --color-blue-light-950: #062c41;
+  --color-blue-light-25: #f0f4f8;
+  --color-blue-light-50: #e1e9f0;
+  --color-blue-light-100: #c2d2e1;
+  --color-blue-light-200: #a4bcc2;
+  --color-blue-light-300: #7a9cb0;
+  --color-blue-light-400: #4a748e;
+  --color-blue-light-500: #0e2c42; /* Navy */
+  --color-blue-light-600: #0c2538;
+  --color-blue-light-700: #0a1e2e;
+  --color-blue-light-800: #081723;
+  --color-blue-light-900: #061019;
+  --color-blue-light-950: #04090e;
 
   --color-gray-25: #fcfcfd;
   --color-gray-50: #f9fafb;
