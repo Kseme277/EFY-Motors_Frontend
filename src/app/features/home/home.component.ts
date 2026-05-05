@@ -9,6 +9,7 @@ import { CarCardComponent, CarCard } from '../../shared/components/car-card/car-
 import { VideoModalComponent } from '../../shared/components/video-modal/video-modal.component';
 import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
 import { ApiService } from '../../services/api.service';
+import { SeoService } from '../../core/services/seo.service';
 
 declare var $: any;
 
@@ -49,8 +50,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     private apiService: ApiService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private titleService: Title,
-    private metaService: Meta
+    private seoService: SeoService
   ) {}
 
   onSearch() {
@@ -83,9 +83,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setSEO() {
-    this.titleService.setTitle('EFY Motors | Vente de voitures neuves et d\'occasion au Cameroun');
-    this.metaService.updateTag({ name: 'description', content: 'Découvrez les meilleures offres de voitures au Cameroun avec EFY Motors. Large choix de marques, prix compétitifs et service de qualité à Yaoundé.' });
-    this.metaService.updateTag({ property: 'og:title', content: 'EFY Motors | Votre expert automobile au Cameroun' });
+    this.seoService.updateMeta(
+      'Vente de voitures neuves et d\'occasion au Cameroun',
+      'Découvrez les meilleures offres de voitures au Cameroun avec EFY Motors. Large choix de marques, prix compétitifs et service de qualité à Yaoundé.',
+      undefined,
+      '/'
+    );
   }
 
   private extractVehicles(response: any): any[] {

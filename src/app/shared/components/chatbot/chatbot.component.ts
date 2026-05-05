@@ -123,7 +123,7 @@ interface ChatMessage {
       right: 0;
       height: 64px;
       width: 64px;
-      background: #0f3bff;
+      background: #460e14;
       border-radius: 50%;
       box-shadow: 0 4px 15px rgba(0, 95, 155, 0.4);
       display: flex;
@@ -162,7 +162,7 @@ interface ChatMessage {
     
     /* Header */
     .chat-app_header {
-      background: #0f3bff;
+      background: #460e14;
       color: white;
       position: relative;
     }
@@ -257,7 +257,7 @@ interface ChatMessage {
       margin-top: 0.5em;
       border-radius: 16px;
       margin-left: auto;
-      background: #0f3bff;
+      background: #460e14;
       color: white;
       position: relative;
       word-break: break-word;
@@ -271,7 +271,7 @@ interface ChatMessage {
       bottom: 0.75em;
       right: -0.6em;
       clip-path: polygon(0 0, 0% 100%, 75% 100%);
-      background: #0f3bff;
+      background: #460e14;
       transform: skewY(15deg);
     }
     .chat-app_content .message.reply {
@@ -282,7 +282,7 @@ interface ChatMessage {
       transition: background-color 0.3s, color 0.3s;
     }
     .chat-app_content .message.reply a {
-      color: #0f3bff;
+      color: #460e14;
       font-weight: 600;
       text-decoration: underline;
     }
@@ -337,14 +337,14 @@ interface ChatMessage {
     .chat-input:focus {
       outline: none;
       box-shadow: 0 5px 15px rgba(0, 95, 155, 0.2);
-      border-color: #0f3bff;
+      border-color: #460e14;
       background: white;
     }
     :host-context(.dark) .chat-input:focus {
       background: #1f1f1f;
     }
     .submit-btn {
-      background: #0f3bff;
+      background: #460e14;
       color: white;
       border: none;
       border-radius: 50%;

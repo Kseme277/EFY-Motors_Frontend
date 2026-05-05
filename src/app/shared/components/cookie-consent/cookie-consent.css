@@ -70,7 +70,7 @@
 }
 
 .cookie-link {
-  color: #0f3bff;
+  color: #460e14;
   text-decoration: none;
   font-weight: 600;
 }
@@ -101,7 +101,7 @@
 }
 
 .btn-primary {
-  background-color: #0f3bff;
+  background-color: #460e14;
   color: white;
   border: none;
 }
@@ -113,12 +113,12 @@
 
 .btn-outline-primary {
   background-color: transparent;
-  color: #0f3bff;
-  border: 2px solid #0f3bff;
+  color: #460e14;
+  border: 2px solid #460e14;
 }
 
 .btn-outline-primary:hover {
-  background-color: #0f3bff;
+  background-color: #460e14;
   color: white;
 }
 

@@ -12,7 +12,7 @@
 <div id="ftco-loader" class="fullscreen" [class.show]="isLoading" [class.hidden]="!isLoading">
   <svg class="circular" width="48px" height="48px">
     <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#0f3bff"/>
+    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#460e14"/>
   </svg>
 </div>
 
@@ -156,7 +156,7 @@
                        [class.border-primary]="selectedColors.includes(color)"
                        [style.borderWidth.px]="selectedColors.includes(color) ? 2 : 1"
                        [style.borderStyle]="'solid'"
-                       [style.borderColor]="selectedColors.includes(color) ? '#0f3bff' : '#ddd'"
+                       [style.borderColor]="selectedColors.includes(color) ? '#460e14' : '#ddd'"
                        style="cursor:pointer; width:30px; height:30px; border-radius:50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
                        (click)="toggleColor(color)">
                   </div>

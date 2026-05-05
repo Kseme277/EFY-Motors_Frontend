@@ -14,14 +14,15 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0);
 
   &.scrolled {
-    background-color: rgba(12, 17, 29, 0.95) !important;
-    backdrop-filter: blur(10px);
+    background-color: rgba(14, 44, 66, 0.98) !important; /* New Navy */
+    backdrop-filter: blur(15px);
     padding: 0 !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(254, 253, 248, 0.1);
 
     .logo-img {
-      height: 60px;
+      height: 55px; /* Légèrement réduit pour laisser de la place au fond blanc */
+      width: 55px;
     }
   }
 }
@@ -29,26 +30,31 @@
 /* Dark mode overrides for navbar */
 .dark .ftco_navbar {
   &.scrolled {
-    background-color: rgba(8, 12, 20, 0.98) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background-color: rgba(10, 32, 48, 0.99) !important;
+    border-bottom: 1px solid rgba(254, 252, 242, 0.05);
   }
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 4px;
   margin: 0;
 
+
   .logo-img {
-    height: 90px;
-    width: auto;
+    height: 60px;
+    width: 60px;
     object-fit: contain;
+    background-color: #ffffff;
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
-    /* Transformation en noir puis application du filtre bleu #0f3bff */
-    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2)) brightness(0) saturate(100%) invert(18%) sepia(87%) saturate(5185%) hue-rotate(233deg) brightness(96%) contrast(106%);
+    /* Logo avec ses couleurs originales */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
-  
+
   &:hover .logo-img {
     transform: scale(1.05);
   }
@@ -63,14 +69,14 @@
       transition: all 0.3s ease;
       position: relative;
       opacity: 0.85;
-      
+
       &:hover {
-        color: #0f3bff !important;
+        color: #460e14 !important; /* Burgundy */
         opacity: 1;
       }
-      
+
       &.active {
-        color: #0f3bff !important;
+        color: #460e14 !important;
         opacity: 1;
       }
 
@@ -82,10 +88,10 @@
         transform: translateX(-50%) scaleX(0);
         width: 40px;
         height: 2px;
-        background: #0f3bff;
+        background: #460e14;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      
+
       &:hover::after,
       &.active::after {
         transform: translateX(-50%) scaleX(1);
@@ -123,10 +129,11 @@
   }
 
   .navbar-collapse {
-    background: rgba(12, 17, 29, 0.98);
+    background: rgba(14, 44, 66, 0.98);
     margin-top: 0.5rem;
     padding: 1rem;
     border-radius: 1rem;
+    border: 1px solid rgba(70, 14, 20, 0.2);
   }
 
   .nav-item .nav-link {

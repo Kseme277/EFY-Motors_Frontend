@@ -10,6 +10,7 @@ import { ApiService } from '../../services/api.service';
 import { SweetAlertService } from '../../services/sweet-alert.service';
 import { Subscription } from 'rxjs';
 import { ScrollAnimationService } from '../../core/services/scroll-animation.service';
+import { SeoService } from '../../core/services/seo.service';
 
 declare var $: any;
 
@@ -96,8 +97,7 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
     private apiService: ApiService,
     private fb: FormBuilder,
     private swal: SweetAlertService,
-    private titleService: Title,
-    private metaService: Meta
+    private seoService: SeoService
   ) {
     this.devisForm = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(2)]],
@@ -279,14 +279,15 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private updateSEO() {
     if (!this.car) return;
-    const title = `${this.car.brand} ${this.car.name} | EFY Motors Cameroun`;
+    const title = `${this.car.brand} ${this.car.name}`;
     const description = `Découvrez cette ${this.car.brand} ${this.car.name} d'exception chez EFY Motors. Prix: ${this.car.price} FCFA. Qualité certifiée et disponible dès maintenant.`;
     
-    this.titleService.setTitle(title);
-    this.metaService.updateTag({ name: 'description', content: description });
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:image', content: this.car.image });
+    this.seoService.updateMeta(
+      title,
+      description,
+      this.car.image,
+      `/cars/car-single/${this.car.id}`
+    );
   }
 
   private loadSimilarVehicles(vehicleId: number) {

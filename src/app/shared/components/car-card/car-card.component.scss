@@ -1,6 +1,6 @@
 .light {
   .car {
-    background: #fff;
+    background: #fefcf2; /* Cream background */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -33,7 +33,7 @@
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
-        background: #0f3bff;
+        background: #460e14;
         color: #fff !important;
         padding: 10px 20px;
         border-radius: 5px;
@@ -47,7 +47,7 @@
         cursor: pointer;
         
         &:hover {
-          background: #004a7a;
+          background: #0e2c42;
           color: #fff !important;
         }
       }
@@ -122,7 +122,7 @@
         .price-value {
           font-size: 24px;
           font-weight: 700;
-          color: #0f3bff;
+          color: #460e14;
         }
       }
 
@@ -170,7 +170,7 @@
 
       .btn-details {
         display: inline-block;
-        background: #0f3bff;
+        background: #460e14;
         color: #fff !important;
         padding: 10px 20px;
         border-radius: 5px;
@@ -183,7 +183,7 @@
         cursor: pointer;
 
         &:hover {
-          background: #004a7a;
+          background: #0e2c42;
           color: #fff !important;
         }
       }
@@ -207,7 +207,7 @@
     }
     
     .car-price .price-value {
-      color: #0f3bff;
+      color: #460e14;
     }
 
     .car-rating {

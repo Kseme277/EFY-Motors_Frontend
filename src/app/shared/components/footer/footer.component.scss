@@ -3,7 +3,7 @@
 }
 
 .footer-cta {
-  background: radial-gradient(circle at top right, #001f36 0%, #101828 100%);
+  background: radial-gradient(circle at top right, #1a3a5a 0%, #0e2c42 100%);
   position: relative;
   overflow: hidden;
 
@@ -18,15 +18,15 @@
   }
 
   .cta-badge {
-    background: rgba(0, 149, 255, 0.15);
-    color: #4d8fbe; // Lighter blue for better visibility
-    border: 1px solid rgba(0, 149, 255, 0.3);
+    background: rgba(70, 14, 20, 0.15); /* Burgundy based */
+    color: #fefcf2;
+    border: 1px solid rgba(70, 14, 20, 0.3);
   }
 
   .cta-button {
-    background-color: #0f3bff;
-    color: #ffffff !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background-color: #460e14;
+    color: #fefdf8 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     text-decoration: none;
 
     &:hover {
@@ -42,9 +42,18 @@
   border-top: 1px solid var(--color-gray-900);
   
   .footer-logo {
-    height: 60px;
-    width: auto;
-    filter: brightness(0) saturate(100%) invert(18%) sepia(87%) saturate(5185%) hue-rotate(233deg) brightness(96%) contrast(106%);
+    height: 80px; /* Légèrement plus grand pour compenser le padding */
+    width: 80px;
+    object-fit: contain;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .footer-brand p {
@@ -59,14 +68,14 @@
     
     &:hover {
       transform: translateY(-5px);
-      background-color: var(--color-brand-600);
-      border-color: var(--color-brand-600);
-      box-shadow: 0 10px 20px rgba(0, 95, 155, 0.3);
+      background-color: #460e14;
+      border-color: #460e14;
+      box-shadow: 0 10px 20px rgba(70, 14, 20, 0.3);
     }
   }
 
   h3 {
-    color: var(--color-brand-300);
+    color: #460e14;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -81,7 +90,7 @@
       left: 0;
       width: 40px;
       height: 2px;
-      background: linear-gradient(90deg, var(--color-brand-500), transparent);
+      background: linear-gradient(90deg, #460e14, transparent);
     }
   }
 
@@ -92,7 +101,7 @@
     display: inline-block;
 
     &:hover {
-      color: var(--color-brand-400) !important;
+      color: #460e14 !important;
       transform: translateX(5px);
     }
   }

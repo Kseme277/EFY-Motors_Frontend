@@ -50,36 +50,29 @@
   --color-white: #ffffff;
   --color-black: #0c111d;
 
-  /* EFY Motors Brand Palette (Refined) */
-  --color-brand-25: #f0f7ff;
-  --color-brand-50: #e0f0ff;
-  --color-brand-100: #b3d9ff;
-  --color-brand-200: #80c0ff;
-  --color-brand-300: #4da6ff;
-  --color-brand-400: #1a8cff;
-  --color-brand-500: #0070cc; /* Main Brand Blue */
-  --color-brand-600: #0f3bff; /* EFY Signature Blue */
-  --color-brand-700: #004d7d;
-  --color-brand-800: #003a5f;
-  --color-brand-900: #002841;
-  --color-brand-950: #001524;
+  /* New Premium Palette */
+  --color-brand-25: #f4f6f8;
+  --color-brand-50: #e7eaed;
+  --color-brand-100: #ced5db;
+  --color-brand-200: #9daab8;
+  --color-brand-300: #6c7f94;
+  --color-brand-400: #3b5470;
+  --color-brand-500: #0e2c42; /* Main Navy */
+  --color-brand-600: #0b2335;
+  --color-brand-700: #081a28;
+  --color-brand-800: #05111a;
+  --color-brand-900: #03090d;
+  --color-brand-950: #010406;
 
-  --color-gray-25: #fcfcfd;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f2f4f7;
-  --color-gray-200: #e4e7ec;
-  --color-gray-300: #d0d5dd;
-  --color-gray-400: #98a2b3;
-  --color-gray-500: #667085;
-  --color-gray-600: #475467;
-  --color-gray-700: #344054;
-  --color-gray-800: #1d2939;
-  --color-gray-900: #101828;
-  --color-gray-950: #0c111d;
-  --color-gray-dark: #080c14;
+  --color-accent-500: #460e14; /* Deep Burgundy Accent */
+  --color-accent-600: #3a0b10;
+  --color-accent-700: #2d080d;
 
-  --color-accent-500: #fdb022; /* Gold/Orange accent */
-  --color-accent-600: #f79009;
+  --color-gray-25: #fefdf8; /* Bone */
+  --color-gray-50: #fefcf2; /* Cream */
+  --color-gray-100: #fbf9e8;
+  --color-gray-200: #f7f3d0;
+  --color-gray-300: #f3eda8;
 
 
   /* Shadows */
@@ -122,7 +115,7 @@
 
     .container, .container-fluid {
       @apply relative z-[2];
-      
+
       h1 {
         @apply text-white font-black leading-tight text-6xl md:text-8xl lg:text-9xl tracking-tighter;
         text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -172,45 +165,26 @@
   --color-white: #ffffff;
   --color-black: #101828;
 
-  --color-brand-25: #f2f7ff;
-  --color-brand-50: #ecf3ff;
-  --color-brand-100: #dde9ff;
-  --color-brand-200: #c2d6ff;
-  --color-brand-300: #9cb9ff;
-  --color-brand-400: #7592ff;
-  --color-brand-500: #465fff;
-  --color-brand-600: #3641f5;
-  --color-brand-700: #2a31d8;
-  --color-brand-800: #252dae;
-  --color-brand-900: #262e89;
-  --color-brand-950: #161950;
+  --color-brand-500: #0e2c42;
+  --color-brand-600: #0b2335;
+  --color-brand-700: #081a28;
 
-  --color-blue-light-25: #f5fbff;
-  --color-blue-light-50: #f0f9ff;
-  --color-blue-light-100: #e0f2fe;
-  --color-blue-light-200: #b9e6fe;
-  --color-blue-light-300: #7cd4fd;
-  --color-blue-light-400: #36bffa;
-  --color-blue-light-500: #0ba5ec;
-  --color-blue-light-600: #0086c9;
-  --color-blue-light-700: #026aa2;
-  --color-blue-light-800: #065986;
-  --color-blue-light-900: #0b4a6f;
-  --color-blue-light-950: #062c41;
+  --color-accent-500: #460e14;
+  --color-accent-600: #3a0b10;
 
-  --color-gray-25: #fcfcfd;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f2f4f7;
-  --color-gray-200: #e4e7ec;
-  --color-gray-300: #d0d5dd;
+  --color-gray-25: #fefdf8;
+  --color-gray-50: #fefcf2;
+  --color-gray-100: #fbf9e8;
+  --color-gray-200: #f7f3d0;
+  --color-gray-300: #f3eda8;
   --color-gray-400: #98a2b3;
   --color-gray-500: #667085;
   --color-gray-600: #475467;
   --color-gray-700: #344054;
   --color-gray-800: #1d2939;
-  --color-gray-900: #101828;
-  --color-gray-950: #0c111d;
-  --color-gray-dark: #1a2231;
+  --color-gray-900: #0e2c42; /* Use Navy for very dark text/bg instead of black */
+  --color-gray-950: #081a28;
+  --color-gray-dark: #05111a;
 
   --color-orange-25: #fffaf5;
   --color-orange-50: #fff6ed;
@@ -379,39 +353,39 @@ body {
 }
 
 .btn-primary {
-  background-color: #0f3bff !important;
-  border-color: #0f3bff !important;
-  color: #fff !important;
-  
+  background-color: #460e14 !important; /* Burgundy for primary buttons */
+  border-color: #460e14 !important;
+  color: #fefdf8 !important;
+
   &:hover {
-    background-color: #002841 !important;
-    border-color: #002841 !important;
+    background-color: #0e2c42 !important; /* Navy hover */
+    border-color: #0e2c42 !important;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(15, 59, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(70, 14, 20, 0.4);
   }
 }
 
 .btn-outline-primary {
-  color: #0f3bff !important;
-  border-color: #0f3bff !important;
+  color: #460e14 !important;
+  border-color: #460e14 !important;
   background-color: transparent !important;
-  
+
   &:hover {
-    background-color: #0f3bff !important;
-    color: #fff !important;
+    background-color: #460e14 !important;
+    color: #fefdf8 !important;
     transform: translateY(-2px);
   }
 }
 
 .btn-search-white {
-  background-color: #ffffff !important;
-  color: #0f3bff !important;
+  background-color: #fefdf8 !important;
+  color: #0e2c42 !important;
   font-weight: 700;
-  border: 1px solid #ffffff !important;
-  
+  border: 1px solid #fefcf2 !important;
+
   &:hover {
-    background-color: #f8f9fa !important;
-    color: #002841 !important;
+    background-color: #fefcf2 !important;
+    color: #460e14 !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
@@ -459,19 +433,19 @@ body {
 .dark input:focus, .dark textarea:focus, .dark select:focus {
   background-color: #2a2a2a;
   color: #e5e5e5;
-  border-color: #0f3bff;
+  border-color: #460e14;
 }
 
 /* Dark mode pour les boutons */
 .dark .btn-primary {
-  background-color: #0f3bff;
-  border-color: #0f3bff;
+  background-color: #460e14;
+  border-color: #460e14;
   color: #fff;
 }
 
 .dark .btn-primary:hover {
-  background-color: #004d7a;
-  border-color: #004d7a;
+  background-color: #0e2c42;
+  border-color: #0e2c42;
 }
 
 /* Base Layer - Tailwind Compatibility */
@@ -633,7 +607,7 @@ body {
 /* ApexCharts */
 .apexcharts-legend-text {
   color: #475467 !important;
-  
+
   .dark & {
     color: #98a2b3 !important;
   }
@@ -641,7 +615,7 @@ body {
 
 .apexcharts-text {
   fill: #475467 !important;
-  
+
   .dark & {
     fill: #98a2b3 !important;
   }
@@ -653,7 +627,7 @@ body {
   border: 1px solid #e4e7ec !important;
   padding: 0.75rem;
   box-shadow: 0px 1px 3px 0px rgba(16, 24, 40, 0.1), 0px 1px 2px 0px rgba(16, 24, 40, 0.06) !important;
-  
+
   .dark & {
     border-color: #1d2939 !important;
     background-color: #101828 !important;
@@ -669,7 +643,7 @@ body {
 .apexcharts-legend-text {
   padding-left: 1.25rem !important;
   color: #475467 !important;
-  
+
   .dark & {
     color: #98a2b3 !important;
   }
@@ -691,7 +665,7 @@ body {
   font-size: 10px !important;
   line-height: 1rem !important;
   color: #1d2939 !important;
-  
+
   .dark & {
     color: rgba(255, 255, 255, 0.9) !important;
   }
@@ -701,7 +675,7 @@ body {
   font-size: 12px !important;
   line-height: 18px !important;
   color: #475467 !important;
-  
+
   .dark & {
     color: rgba(255, 255, 255, 0.9) !important;
   }
@@ -713,7 +687,7 @@ body {
 
 .apexcharts-gridline {
   stroke: #f2f4f7 !important;
-  
+
   .dark & {
     stroke: #1d2939 !important;
   }
@@ -725,7 +699,7 @@ body {
   .apexcharts-text {
     fill: #1d2939 !important;
     font-weight: 600 !important;
-    
+
     .dark & {
       fill: rgba(255, 255, 255, 0.9) !important;
     }
@@ -735,7 +709,7 @@ body {
 #chartDarkStyle .apexcharts-datalabels-group .apexcharts-text {
   fill: #1d2939 !important;
   font-weight: 600 !important;
-  
+
   .dark & {
     fill: rgba(255, 255, 255, 0.9) !important;
   }
@@ -749,7 +723,7 @@ body {
 /* jVectorMap */
 .jvectormap-container {
   background-color: #f9fafb !important;
-  
+
   .dark & {
     background-color: #101828 !important;
   }
@@ -757,14 +731,14 @@ body {
 
 .jvectormap-region.jvectormap-element {
   fill: #d0d5dd !important;
-  
+
   &:hover {
     fill: #465fff !important;
   }
-  
+
   .dark & {
     fill: #344054 !important;
-    
+
     &:hover {
       fill: #465fff !important;
     }
@@ -773,7 +747,7 @@ body {
 
 .jvectormap-marker.jvectormap-element {
   stroke: #e4e7ec !important;
-  
+
   .dark & {
     stroke: #1d2939 !important;
   }
@@ -810,16 +784,16 @@ body {
     border: 1px solid #e4e7ec;
     color: #475467 !important;
     transition: all 0.2s;
-    
+
     &:hover {
       background-color: #f2f4f7;
     }
-    
+
     .dark & {
       border-color: rgba(255, 255, 255, 0.03);
       background-color: #1d2939;
       color: #98a2b3 !important;
-      
+
       &:hover {
         background-color: rgba(255, 255, 255, 0.05);
         color: rgba(255, 255, 255, 0.9) !important;
@@ -831,7 +805,7 @@ body {
   .swiper-button-prev.swiper-button-disabled {
     background-color: #ffffff;
     opacity: 0.5;
-    
+
     .dark & {
       background-color: #101828;
     }
@@ -877,7 +851,7 @@ body {
 
   .swiper-button-prev {
     left: 0.75rem !important;
-    
+
     @media (min-width: 640px) {
       left: 1rem !important;
     }
@@ -885,7 +859,7 @@ body {
 
   .swiper-button-next {
     right: 0.75rem !important;
-    
+
     @media (min-width: 640px) {
       right: 1rem !important;
     }
@@ -911,7 +885,7 @@ body {
     padding-bottom: 0.375rem;
     box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.1), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
     backdrop-filter: blur(10px);
-    
+
     @media (min-width: 640px) {
       bottom: 1.25rem !important;
     }
@@ -946,14 +920,14 @@ body {
   padding: 1.25rem !important;
   border: 1px solid #e4e7ec !important;
   color: #667085 !important;
-  
+
   .dark & {
     border-color: rgba(255, 255, 255, 0.05) !important;
     background-color: #1a2231 !important;
     color: #98a2b3 !important;
     box-shadow: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03) !important;
   }
-  
+
   @media (min-width: 375px) {
     width: auto !important;
   }
@@ -969,7 +943,7 @@ body {
   .flatpickr-next-month {
     top: 1.75rem !important;
     background: transparent !important;
-    
+
     .dark & {
       fill: #ffffff !important;
       color: #ffffff !important;
@@ -1017,7 +991,7 @@ body {
     font-size: 1.125rem !important;
     font-weight: 500 !important;
     color: #1d2939 !important;
-    
+
     .dark & {
       color: rgba(255, 255, 255, 0.9) !important;
     }
@@ -1054,7 +1028,7 @@ body {
   font-weight: 500 !important;
   color: #667085 !important;
   background: transparent !important;
-  
+
   .dark & {
     color: #98a2b3 !important;
   }
@@ -1067,10 +1041,10 @@ body {
   line-height: 20px !important;
   font-weight: 500 !important;
   color: #1d2939 !important;
-  
+
   .dark & {
     color: rgba(255, 255, 255, 0.9) !important;
-    
+
     &:hover {
       border-color: #d0d5dd !important;
       background-color: #101828 !important;
@@ -1084,7 +1058,7 @@ body {
 
   &.inRange {
     box-shadow: -5px 0 0 #f9fafb, 5px 0 0 #f9fafb !important;
-    
+
     .dark & {
       box-shadow: -5px 0 0 #262d3c, 5px 0 0 #262d3c !important;
     }
@@ -1104,7 +1078,7 @@ body {
   &.nextMonthDay:focus {
     border-color: #f9fafb !important;
     background-color: #f9fafb !important;
-    
+
     .dark & {
       border: 0 !important;
       border-color: rgba(255, 255, 255, 0.05) !important;
@@ -1116,7 +1090,7 @@ body {
   &.startRange,
   &.endRange {
     color: #ffffff !important;
-    
+
     .dark & {
       color: #ffffff !important;
     }
@@ -1143,7 +1117,7 @@ body {
     background: #465fff;
     border-color: #465fff !important;
     background-color: #465fff !important;
-    
+
     &:hover {
       border-color: #465fff !important;
       background-color: #465fff !important;
@@ -1228,7 +1202,7 @@ span.flatpickr-weekday,
     .fc-scrollgrid-sync-inner {
       border-radius: 0.125rem;
       background-color: #f2f4f7;
-      
+
       .dark & {
         background-color: rgba(255, 255, 255, 0.03);
       }
@@ -1244,7 +1218,7 @@ span.flatpickr-weekday,
     font-size: 0.875rem;
     font-weight: 500;
     color: #475467;
-    
+
     .dark & {
       color: #98a2b3;
     }
@@ -1290,30 +1264,30 @@ span.flatpickr-weekday,
     border: 1px solid #e4e7ec;
     background-color: transparent;
     text-transform: capitalize;
-    
+
     &:hover {
       border-color: #e4e7ec;
       background-color: #f9fafb;
     }
-    
+
     &:focus {
       box-shadow: none;
     }
-    
+
     &:active {
       border-color: #e4e7ec !important;
       background-color: transparent !important;
       box-shadow: none !important;
     }
-    
+
     .dark & {
       border-color: #1d2939;
-      
+
       &:hover {
         border-color: #1d2939;
         background-color: #101828;
       }
-      
+
       &:active {
         border-color: #1d2939 !important;
       }
@@ -1355,11 +1329,11 @@ span.flatpickr-weekday,
   padding-bottom: 0.625rem !important;
   font-size: 0.875rem !important;
   font-weight: 500 !important;
-  
+
   &:hover {
     background-color: #3641f5 !important;
   }
-  
+
   &:focus {
     box-shadow: none !important;
   }
@@ -1369,7 +1343,7 @@ span.flatpickr-weekday,
   font-size: 1.125rem !important;
   font-weight: 500 !important;
   color: #1d2939;
-  
+
   .dark & {
     color: rgba(255, 255, 255, 0.9) !important;
   }
@@ -1379,7 +1353,7 @@ span.flatpickr-weekday,
   border-radius: 0.5rem;
   background-color: #f2f4f7;
   padding: 0.125rem;
-  
+
   .dark & {
     background-color: #101828;
   }
@@ -1397,15 +1371,15 @@ span.flatpickr-weekday,
     font-size: 0.875rem;
     font-weight: 500;
     color: #667085;
-    
+
     &:hover {
       color: #475467;
     }
-    
+
     &:focus {
       box-shadow: none !important;
     }
-    
+
     .dark & {
       color: #98a2b3;
     }
@@ -1413,7 +1387,7 @@ span.flatpickr-weekday,
     &.fc-button-active {
       color: #101828;
       background-color: #ffffff;
-      
+
       .dark & {
         background-color: #1d2939;
         color: #ffffff;
@@ -1429,7 +1403,7 @@ span.flatpickr-weekday,
     border-top: 1px solid #e4e7ec;
     background-color: #f9fafb;
     text-align: left !important;
-    
+
     .dark & {
       border-color: #1d2939 !important;
       background-color: #101828 !important;
@@ -1439,7 +1413,7 @@ span.flatpickr-weekday,
   td,
   .fc-scrollgrid {
     border-color: #e4e7ec !important;
-    
+
     .dark & {
       border-color: #1d2939 !important;
     }
@@ -1551,7 +1525,7 @@ span.flatpickr-weekday,
     background-color: #e4e7ec !important;
     border-radius: 9999px !important;
     opacity: 1 !important;
-    
+
     .dark & {
       background-color: #344054 !important;
     }
@@ -1697,11 +1671,11 @@ pre[class*="language-"].line-numbers {
   font-weight: 900;
   letter-spacing: -0.02em;
   text-transform: none;
-  
+
   @media (min-width: 768px) {
     font-size: 4.5rem;
   }
-  
+
   @media (min-width: 1280px) {
     font-size: 6rem;
   }
@@ -1712,7 +1686,7 @@ pre[class*="language-"].line-numbers {
   line-height: 1.6;
   font-weight: 400;
   opacity: 0.9;
-  
+
   @media (min-width: 768px) {
     font-size: 1.5rem;
   }
@@ -1729,22 +1703,22 @@ main {
 }
 
 @keyframes slideUp {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(40px);
   }
-  to { 
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes scaleUp {
-  from { 
+  from {
     opacity: 0;
     transform: scale(0.95);
   }
-  to { 
+  to {
     opacity: 1;
     transform: scale(1);
   }
@@ -1813,7 +1787,7 @@ html {
 /* Icons Globaux */
 .icon-check {
   &::before {
-    content: "\f00c"; 
+    content: "\f00c";
     font-family: 'icomoon' !important;
     font-weight: 900;
   }
@@ -1821,7 +1795,7 @@ html {
 
 .icon-wallet {
   &::before {
-    content: "\f3d1"; 
+    content: "\f3d1";
     font-family: 'icomoon' !important;
   }
 }

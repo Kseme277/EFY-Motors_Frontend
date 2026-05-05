@@ -123,8 +123,8 @@
     border-width: 0.3em;
 
     &.text-primary {
-      color: #0f3bff !important;
-      border-color: #0f3bff;
+      color: #460e14 !important;
+      border-color: #460e14;
       border-right-color: transparent;
     }
   }
@@ -213,8 +213,8 @@
       z-index: 2;
 
       .btn-inventaire {
-        background-color: #0f3bff !important;
-        border-color: #0f3bff !important;
+        background-color: #460e14 !important;
+        border-color: #460e14 !important;
         color: #fff !important;
         font-weight: 700;
         transition: all 0.3s ease;
@@ -259,7 +259,7 @@
 
         &.active span,
         &:hover span {
-          background: #0f3bff;
+          background: #460e14;
           width: 30px;
           border-radius: 15px;
 
@@ -272,9 +272,9 @@
   }
 
 .featured-items-section {
-  background-color: #0c111d;
+  background-color: #0e2c42; /* Navy background */
   padding: 3rem 0;
-  color: #fff;
+  color: #fefdf8;
 
   .section-header {
     display: flex;
@@ -320,7 +320,7 @@
         &:hover {
           color: #fff;
           .hexagon-svg {
-            stroke: #0f3bff;
+            stroke: #460e14;
           }
         }
       }
@@ -335,7 +335,7 @@
     margin: 0 auto;
     border-radius: 4px;
     overflow: hidden;
-    background: #1d2939;
+    background: #0b2335; /* Darker Navy */
 
     .img-wrapper {
       width: 100%;
@@ -511,7 +511,7 @@
         h2 {
           font-size: 0.95rem;
           font-weight: 700;
-          color: #0f3bff !important;
+          color: #460e14 !important;
           margin-bottom: 0;
           line-height: 1.4;
           white-space: nowrap;
@@ -533,7 +533,7 @@
           }
 
           a {
-            color: #0f3bff !important;
+            color: #460e14 !important;
             text-decoration: none;
             transition: color 0.3s ease;
             white-space: nowrap;
@@ -553,7 +553,7 @@
         .price {
           font-size: 0.95rem;
           font-weight: 700;
-          color: #0f3bff !important;
+          color: #460e14 !important;
           margin: 0;
           line-height: 1.4;
           white-space: nowrap;
@@ -741,8 +741,8 @@
         }
 
         .btn-secondary {
-          background-color: #0f3bff !important;
-          border-color: #0f3bff !important;
+          background-color: #460e14 !important;
+          border-color: #460e14 !important;
           color: #fff !important;
           transition: all 0.3s ease;
 
@@ -785,7 +785,7 @@
         .form-control:focus {
           background-color: #1a1a1a !important;
           color: #e5e5e5 !important;
-          border-color: #0f3bff !important;
+          border-color: #460e14 !important;
         }
 
         select.form-control option {
@@ -816,7 +816,7 @@
         }
 
         .heading-section {
-          color: #0f3bff;
+          color: #460e14;
           font-weight: 700;
           font-size: 1.8rem;
           transition: color 0.3s ease;
@@ -897,7 +897,7 @@
           }
 
           .icon {
-            color: #0f3bff;
+            color: #460e14;
           }
 
           .text {
@@ -916,8 +916,8 @@
 
       // Styles pour le bouton "Voir tous nos véhicules"
       .services-wrap .btn-primary {
-        background-color: #0f3bff !important;
-        border-color: #0f3bff !important;
+        background-color: #460e14 !important;
+        border-color: #460e14 !important;
         color: #fff !important;
         transition: all 0.3s ease;
         text-align: center;
@@ -1008,7 +1008,7 @@
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
-        border: 3px solid #0f3bff;
+        border: 3px solid #460e14;
 
         @media (max-width: 576px) {
           width: 60px;
@@ -1028,7 +1028,7 @@
 
         .name {
           font-weight: 700;
-          color: #0f3bff;
+          color: #460e14;
           font-size: 1.1rem;
           transition: color 0.3s ease;
 
@@ -1060,7 +1060,7 @@
         }
 
         .name {
-          color: #0f3bff;
+          color: #460e14;
         }
 
         .position {
@@ -1074,11 +1074,11 @@
       background-color: #2a2a2a;
 
       h2 {
-        color: #0f3bff;
+        color: #460e14;
       }
 
       .car h3 {
-        color: #0f3bff;
+        color: #460e14;
       }
 
       .car li {
@@ -1103,7 +1103,7 @@
       .owl-prev,
       .owl-next {
         position: absolute;
-        background: #0f3bff !important;
+        background: #460e14 !important;
         color: #fff !important;
         width: 40px;
         height: 40px;
@@ -1166,7 +1166,7 @@
 
         &.active span,
         &:hover span {
-          background: #0f3bff;
+          background: #460e14;
         }
       }
     }
@@ -1271,11 +1271,11 @@
     background-color: #1a1a1a;
 
     .wrap-about {
-      background-color: #0f3bff !important;
+      background-color: #460e14 !important;
     }
 
     .heading-section-white {
-      background-color: #0f3bff !important;
+      background-color: #460e14 !important;
 
       h2,
       p,
@@ -1478,7 +1478,7 @@
       }
 
       .icon {
-        color: #0f3bff;
+        color: #460e14;
       }
     }
   }
@@ -1534,14 +1534,14 @@
   .ftco-section.ftco-about .heading-section-white .btn-white-blue,
   .wrap-about .btn-white-blue {
     background-color: #fff !important;
-    border-color: #0f3bff !important;
-    color: #0f3bff !important;
+    border-color: #460e14 !important;
+    color: #460e14 !important;
     transition: all 0.3s ease !important;
     text-decoration: none !important;
 
     &:hover,
     &:focus {
-      background-color: #0f3bff !important;
+      background-color: #460e14 !important;
       border-color: #fff !important;
       color: #fff !important;
       transform: translateY(-2px);
@@ -1560,14 +1560,14 @@
   // Règle générale pour le bouton (au cas où)
   .btn-white-blue {
     background-color: #fff !important;
-    border-color: #0f3bff !important;
-    color: #0f3bff !important;
+    border-color: #460e14 !important;
+    color: #460e14 !important;
     transition: all 0.3s ease !important;
     text-decoration: none !important;
 
     &:hover,
     &:focus {
-      background-color: #0f3bff !important;
+      background-color: #460e14 !important;
       border-color: #fff !important;
       color: #fff !important;
       transform: translateY(-2px);
@@ -1600,7 +1600,7 @@
       }
 
       .icon {
-        color: #0f3bff;
+        color: #460e14;
       }
 
       .text {
@@ -1702,7 +1702,7 @@
 
 .stat-box h3 {
   margin-bottom: 0.4rem;
-  color: #0f3bff;
+  color: #460e14;
   font-weight: 800;
 }
 
@@ -1771,7 +1771,7 @@
     align-items: end;
     gap: 12px;
     padding: 0.5rem 0.55rem;
-    background: #0f3bff;
+    background: #460e14;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
 
@@ -1818,7 +1818,7 @@
 
   .details-btn:hover {
     background: #fff;
-    color: #0f3bff;
+    color: #460e14;
   }
 }
 
@@ -1881,14 +1881,14 @@
     position: relative;
     height: 160px;
     overflow: hidden;
-    border-bottom: 3px solid #0f3bff;
+    border-bottom: 3px solid #460e14;
     cursor: col-resize;
 
     .buy-now-ribbon {
       position: absolute;
       top: 15px;
       right: -30px;
-      background: #0f3bff;
+      background: #460e14;
       color: #fff;
       padding: 5px 40px;
       transform: rotate(45deg);
@@ -1915,7 +1915,7 @@
     position: absolute;
     right: 0;
     bottom: 10px;
-    background: #0f3bff;
+    background: #460e14;
     color: #fff;
     padding: 8px 15px;
     border-radius: 4px 0 0 4px;
@@ -1934,7 +1934,7 @@
     min-height: 140px;
 
     .brand-subtitle {
-      color: #0f3bff;
+      color: #460e14;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 1px;
@@ -1965,7 +1965,7 @@
 
         i {
           font-size: 1.3rem;
-          color: #0f3bff;
+          color: #460e14;
           opacity: 0.9;
         }
       }
@@ -1994,7 +1994,7 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      background: #0f3bff;
+      background: #460e14;
       color: #fff;
       padding: 20px 30px;
       border-radius: 10px;
@@ -2022,7 +2022,7 @@
     padding-left: 20px;
 
     .sub-title {
-      color: #0f3bff;
+      color: #460e14;
       font-weight: 700;
       letter-spacing: 2px;
       font-size: 0.9rem;
@@ -2064,7 +2064,7 @@
           width: 24px;
           height: 24px;
           background: rgba(15, 59, 255, 0.1);
-          color: #0f3bff;
+          color: #460e14;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -2093,7 +2093,7 @@
       &:hover {
         transform: translateY(-3px);
         box-shadow: 0 15px 30px rgba(15, 59, 255, 0.3);
-        background-color: #0f3bff;
+        background-color: #460e14;
         color: #fff;
 
       }
@@ -2102,9 +2102,10 @@
 }
 
 .blue-stats-band {
-  background: #1541ff;
-  padding: 3.5rem 0;
-  color: #fff;
+  background-color: #0e2c42 !important; /* Premium Navy */
+  padding: 4.5rem 0;
+  color: #fefdf8 !important;
+  border-top: 4px solid #460e14; /* Burgundy Accent */
 
   h2 {
     color: #fff;

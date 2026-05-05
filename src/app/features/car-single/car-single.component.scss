@@ -49,7 +49,7 @@
 }
 
 .price-box strong {
-  color: #0f3bff;
+  color: #460e14;
   font-size: 1.9rem;
   font-weight: 800;
 }
@@ -105,10 +105,12 @@
 
 .vehicle-side .quick-metrics,
 .vehicle-side .contact-panel {
-  background: #fff;
-  border: 1px solid #dde2ec;
-  padding: 1rem;
-  margin-bottom: 14px;
+  background: #fefcf2; /* Cream background */
+  border: 1px solid #d9e0ea;
+  padding: 1.25rem;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(14, 44, 66, 0.05);
 }
 
 .quick-metrics .metric {
@@ -150,8 +152,9 @@
 
 .summary-card {
   border: 1px solid #d9e0ea;
-  background: #fff;
-  padding: 1rem;
+  background: #fefdf8; /* Bone background */
+  padding: 1.5rem;
+  border-radius: 8px;
 }
 
 .summary-card h3 {
@@ -189,9 +192,10 @@
 }
 
 .content-card {
-  background: #fff;
+  background: #fefcf2;
   border: 1px solid #d9e0ea;
-  padding: 1rem;
+  padding: 1.5rem;
+  border-radius: 8px;
 }
 
 .content-card h3 {
@@ -260,7 +264,7 @@
   border-top: 2px solid #f0f0f0;
 
   h5 {
-    color: #0f3bff;
+    color: #460e14;
     margin-bottom: 1rem;
     font-weight: 600;
   }
@@ -276,7 +280,7 @@
       border-radius: 8px;
 
       strong {
-        color: #0f3bff;
+        color: #460e14;
         margin-right: 0.5rem;
       }
     }
@@ -296,14 +300,14 @@
       transition: all 0.3s ease;
 
       &:hover {
-        border-bottom-color: #0f3bff;
-        color: #0f3bff;
+        border-bottom-color: #460e14;
+        color: #460e14;
       }
 
       &.active {
-        color: #0f3bff;
+        color: #460e14;
         background-color: transparent;
-        border-bottom-color: #0f3bff;
+        border-bottom-color: #460e14;
         font-weight: 600;
       }
     }
@@ -329,14 +333,14 @@
       color: #e0e0e0 !important;
 
       &:hover {
-        color: #0f3bff !important;
-        border-bottom-color: #0f3bff !important;
+        color: #460e14 !important;
+        border-bottom-color: #460e14 !important;
         background-color: rgba(0, 95, 155, 0.1) !important;
       }
 
       &.active {
-        color: #0f3bff !important;
-        border-bottom-color: #0f3bff !important;
+        color: #460e14 !important;
+        border-bottom-color: #460e14 !important;
         background-color: rgba(0, 95, 155, 0.15) !important;
       }
     }
@@ -372,7 +376,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
   h3 {
-    color: #0f3bff;
+    color: #460e14;
     font-weight: 600;
   }
 
@@ -400,7 +404,7 @@
       color: #333;
 
       &:focus {
-        border-color: #0f3bff;
+        border-color: #460e14;
         outline: none;
         box-shadow: 0 0 0 0.2rem rgba(0, 95, 155, 0.25);
         transform: translateY(-1px);
@@ -462,7 +466,7 @@
       color: #e0e0e0 !important;
 
       &:focus {
-        border-color: #0f3bff !important;
+        border-color: #460e14 !important;
         background-color: #444 !important;
       }
 
@@ -501,7 +505,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 
   h4 {
-    color: #0f3bff;
+    color: #460e14;
     font-weight: 600;
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -553,7 +557,7 @@
       color: #333;
 
       &:focus {
-        border-color: #0f3bff;
+        border-color: #460e14;
         outline: none;
         box-shadow: 0 0 0 0.2rem rgba(0, 95, 155, 0.25);
       }
@@ -564,7 +568,7 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #0f3bff 0%, #004a7a 100%);
+      background: linear-gradient(135deg, #460e14 0%, #004a7a 100%);
       border: none;
       border-radius: 8px;
       padding: 0.6rem 1.5rem;
@@ -600,7 +604,7 @@
       color: #e0e0e0 !important;
 
       &:focus {
-        border-color: #0f3bff !important;
+        border-color: #460e14 !important;
         background-color: #444 !important;
       }
     }
@@ -647,7 +651,7 @@
   }
 
   .path {
-    stroke: #0f3bff;
+    stroke: #460e14;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
     animation: loader-dash 1.5s ease-in-out infinite;
@@ -683,8 +687,8 @@
   border-width: 0.3em;
 
   &.text-primary {
-    color: #0f3bff !important;
-    border-color: #0f3bff;
+    color: #460e14 !important;
+    border-color: #460e14;
     border-right-color: transparent;
   }
 }
@@ -748,7 +752,7 @@ app-header {
       }
 
       .subheading {
-        color: #0f3bff;
+        color: #460e14;
         font-size: 1rem;
         font-weight: 600;
         text-transform: uppercase;
@@ -765,7 +769,7 @@ app-header {
       }
 
       h2 {
-        color: #0f3bff;
+        color: #460e14;
         font-size: 2.5rem;
         font-weight: 700;
         margin-top: 0.5rem;
@@ -783,7 +787,7 @@ app-header {
       .price-display {
         font-size: 2rem;
         font-weight: 700;
-        color: #0f3bff;
+        color: #460e14;
         margin-top: 1rem;
 
         @media (max-width: 768px) {
@@ -864,7 +868,7 @@ app-header {
       height: 80px;
       border-radius: 50%;
       background: #fff;
-      border: 2px solid #0f3bff;
+      border: 2px solid #460e14;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -886,7 +890,7 @@ app-header {
 
       span {
         font-size: 2rem;
-        color: #0f3bff;
+        color: #460e14;
 
         @media (max-width: 768px) {
           font-size: 1.75rem;
@@ -921,7 +925,7 @@ app-header {
       .spec-value {
         font-size: 1.1rem;
         font-weight: 700;
-        color: #0f3bff;
+        color: #460e14;
         margin: 0;
 
         @media (max-width: 768px) {
@@ -990,14 +994,14 @@ app-header {
       }
 
       &.active {
-        color: #0f3bff;
+        color: #460e14;
         background: #f8f9fa;
-        border: 1px solid #0f3bff;
-        border-bottom: 2px solid #0f3bff;
+        border: 1px solid #460e14;
+        border-bottom: 2px solid #460e14;
 
         @media (max-width: 576px) {
-          border: 1px solid #0f3bff;
-          border-bottom: 1px solid #0f3bff;
+          border: 1px solid #460e14;
+          border-bottom: 1px solid #460e14;
         }
       }
     }
@@ -1131,7 +1135,7 @@ app-header {
     // Section Description
     .description-content {
       h4, h5 {
-        color: #0f3bff;
+        color: #460e14;
         font-weight: 700;
         margin-top: 2rem;
         margin-bottom: 1rem;
@@ -1236,7 +1240,7 @@ app-header {
     }
 
     .reviews-heading {
-      color: #0f3bff;
+      color: #460e14;
       font-weight: 700;
       font-size: 1.5rem;
       margin-bottom: 2rem;
@@ -1281,7 +1285,7 @@ app-header {
           width: 70px;
           height: 70px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #0f3bff 0%, #003f69 100%);
+          background: linear-gradient(135deg, #460e14 0%, #003f69 100%);
           color: white;
           display: flex;
           align-items: center;
@@ -1332,7 +1336,7 @@ app-header {
             .reviewer-name {
               font-size: 1.1rem;
               font-weight: 700;
-          color: #0f3bff;
+          color: #460e14;
               margin: 0;
 
               @media (max-width: 768px) {
@@ -1431,7 +1435,7 @@ app-header {
       }
 
       .summary-heading {
-        color: #0f3bff;
+        color: #460e14;
         font-weight: 700;
         font-size: 1.3rem;
         margin-bottom: 1.5rem;
@@ -1474,7 +1478,7 @@ app-header {
           display: block;
           font-size: 3rem;
           font-weight: 700;
-          color: #0f3bff;
+          color: #460e14;
           line-height: 1;
 
           @media (max-width: 768px) {
@@ -1578,7 +1582,7 @@ app-header {
 
             .rating-bar-fill {
               height: 100%;
-              background: linear-gradient(90deg, #0f3bff 0%, #004A7A 100%);
+              background: linear-gradient(90deg, #460e14 0%, #004A7A 100%);
               transition: width 0.3s ease;
               border-radius: 5px;
             }
@@ -1619,7 +1623,7 @@ app-header {
       border: 2px solid #e9ecef;
 
       .form-heading {
-        color: #0f3bff;
+        color: #460e14;
         font-weight: 700;
         font-size: 1.3rem;
         margin-bottom: 1.5rem;
@@ -1631,7 +1635,7 @@ app-header {
         label {
           display: block;
           font-weight: 600;
-          color: #0f3bff;
+          color: #460e14;
           margin-bottom: 0.5rem;
           font-size: 0.95rem;
         }
@@ -1646,7 +1650,7 @@ app-header {
 
           &:focus {
             outline: none;
-            border-color: #0f3bff;
+            border-color: #460e14;
             box-shadow: 0 0 0 0.2rem rgba(0, 94, 155, 0.25);
           }
         }
@@ -1683,7 +1687,7 @@ app-header {
   }
 
   .btn-primary {
-    background: linear-gradient(135deg, #0f3bff 0%, #004A7A 100%);
+    background: linear-gradient(135deg, #460e14 0%, #004A7A 100%);
     border: none;
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
@@ -1808,7 +1812,7 @@ app-header {
     h2 {
       font-size: 1.3rem;
       font-weight: 700;
-      color: #0f3bff;
+      color: #460e14;
       margin-bottom: 0.5rem;
       line-height: 1.3;
 
@@ -1822,7 +1826,7 @@ app-header {
       }
 
       a {
-        color: #0f3bff;
+        color: #460e14;
         text-decoration: none;
         transition: color 0.3s ease;
 
@@ -1835,7 +1839,7 @@ app-header {
     .price {
       font-size: 1.4rem;
       font-weight: 700;
-      color: #0f3bff;
+      color: #460e14;
       margin: 0;
       line-height: 1.2;
 
@@ -1928,7 +1932,7 @@ app-header {
 
   .featured-meta {
     padding: 0.5rem 0.55rem;
-    background: #0f3bff;
+    background: #460e14;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     margin-top: auto;
 
@@ -1993,7 +1997,7 @@ app-header {
 
         &:hover {
           background: #fff;
-          color: #0f3bff !important;
+          color: #460e14 !important;
         }
       }
     }
@@ -2067,9 +2071,9 @@ section.ftco-no-pt {
   }
 
   .modern-tabs-container .nav-tabs .nav-link.active {
-    color: #0f3bff !important;
+    color: #460e14 !important;
     border-color: #cdd6eb !important;
-    border-bottom-color: #0f3bff !important;
+    border-bottom-color: #460e14 !important;
     background: #fff !important;
   }
 
@@ -2098,7 +2102,7 @@ section.ftco-no-pt {
 
 /* Finition UI: cartes/modales, boutons, couleurs, etoiles */
 .ftco-car-details {
-  --brand-primary: #0f3bff;
+  --brand-primary: #460e14;
   --brand-primary-dark: #0a2dbf;
   --text-main: #1f2937;
   --text-soft: #667085;
@@ -2168,7 +2172,7 @@ section.ftco-no-pt {
   .review-form-section .btn-primary:hover:not(:disabled),
   .devis-form-container .btn-primary:hover:not(:disabled),
   .contact-panel .btn-primary:hover:not(:disabled) {
-    background: linear-gradient(135deg, var(--brand-primary-dark) 0%, #0f3bff 100%) !important;
+    background: linear-gradient(135deg, var(--brand-primary-dark) 0%, #460e14 100%) !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 10px 22px rgba(15, 59, 255, 0.3) !important;
   }
@@ -2207,7 +2211,7 @@ section.ftco-no-pt {
   }
 
   .rating-summary .rating-bar-fill {
-    background: linear-gradient(90deg, #4f7bff 0%, #0f3bff 100%) !important;
+    background: linear-gradient(90deg, #4f7bff 0%, #460e14 100%) !important;
   }
 
   .rating-summary .rating-number {

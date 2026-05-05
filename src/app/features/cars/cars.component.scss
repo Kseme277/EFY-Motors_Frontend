@@ -23,7 +23,7 @@
   overflow: hidden;
   
   .sidebar-header {
-    background: #0f3bff; // Matching project dark color
+    background: #460e14; // Matching project dark color
     color: #fff;
     padding: 20px;
     display: flex;
@@ -64,7 +64,7 @@
       
       &:hover {
         background-color: #fcfcfc;
-        color: #0f3bff;
+        color: #460e14;
       }
 
       .chevron {
@@ -109,7 +109,7 @@
     -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    background: #0f3bff;
+    background: #460e14;
     border: 2px solid #fff;
     border-radius: 50%;
     cursor: pointer;
@@ -134,7 +134,7 @@
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border-bottom-color: #0f3bff;
+    border-bottom-color: #460e14;
   }
 
   .car-card-link {
@@ -237,7 +237,7 @@
     }
 
     .price-badge {
-      background: #0f3bff;
+      background: #460e14;
       color: #fff;
       padding: 6px 12px;
       font-weight: 800;
@@ -305,7 +305,7 @@
   cursor: pointer;
   
   &:focus {
-    border-color: #0f3bff;
+    border-color: #460e14;
     box-shadow: none;
   }
 }
@@ -318,9 +318,9 @@
     padding: 5px 10px;
     
     &.active {
-      color: #0f3bff;
+      color: #460e14;
       background: #f0f7ff;
-      border-color: #0f3bff;
+      border-color: #460e14;
       z-index: 1;
     }
     
@@ -353,13 +353,13 @@
       transition: all 0.2s ease;
       
       &:hover:not(:disabled) {
-        border-color: #0f3bff;
-        color: #0f3bff;
+        border-color: #460e14;
+        color: #460e14;
       }
       
       &.active {
-        background: #0f3bff;
-        border-color: #0f3bff;
+        background: #460e14;
+        border-color: #460e14;
         color: #fff;
       }
       
@@ -441,7 +441,7 @@
     &:hover {
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
       transform: translateY(-2px);
-      border-color: #0f3bff;
+      border-color: #460e14;
     }
 
     .car-card-link {

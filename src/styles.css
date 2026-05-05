@@ -39,18 +39,18 @@
   --color-white: #ffffff;
   --color-black: #101828;
 
-  --color-brand-25: #f2f7ff;
-  --color-brand-50: #ecf3ff;
-  --color-brand-100: #dde9ff;
-  --color-brand-200: #c2d6ff;
-  --color-brand-300: #99c6e0;
-  --color-brand-400: #4d8fbe;
-  --color-brand-500: #0f3bff;
-  --color-brand-600: #004f82;
-  --color-brand-700: #003f69;
-  --color-brand-800: #003053;
-  --color-brand-900: #001f36;
-  --color-brand-950: #161950;
+  --color-brand-25: #fdf2f2;
+  --color-brand-50: #fefcf2; /* Cream */
+  --color-brand-100: #fde4e4;
+  --color-brand-200: #facdcd;
+  --color-brand-300: #f69b9b;
+  --color-brand-400: #f06a6a;
+  --color-brand-500: #460e14; /* Burgundy Accent */
+  --color-brand-600: #3d0c11;
+  --color-brand-700: #340a0f;
+  --color-brand-800: #2b080c;
+  --color-brand-900: #0e2c42; /* Navy Primary */
+  --color-brand-950: #0a2030;
 
   --color-blue-light-25: #f5fbff;
   --color-blue-light-50: #f0f9ff;
@@ -133,7 +133,7 @@
 
   --color-theme-pink-500: #ee46bc;
 
-  --color-theme-purple-500: #0f3bff;
+  --color-theme-purple-500: #460e14;
 
   --shadow-theme-md: 0px 4px 8px -2px rgba(16, 24, 40, 0.1),
     0px 2px 4px -2px rgba(16, 24, 40, 0.06);
@@ -544,13 +544,13 @@ span.flatpickr-weekday,
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-  background: #0f3bff;
+  background: #460e14;
   @apply !border-brand-500 !bg-brand-500 hover:!border-brand-500 hover:!bg-brand-500;
 }
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: -10px 0 0 #0f3bff;
+  box-shadow: -10px 0 0 #460e14;
 }
 
 .flatpickr-months .flatpickr-prev-month svg,
