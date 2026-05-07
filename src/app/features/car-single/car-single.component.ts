@@ -44,6 +44,8 @@ interface Car {
   vin?: string;
   drive_type?: string;
   garantie_mois?: number;
+  isPromo?: boolean;
+  oldPrice?: number;
 }
 
 interface Review {
@@ -235,7 +237,6 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
           brand: vehicle.marque,
           image: vehicle.photo_principale || vehicle.photos?.[0] || 'assets/images/car-1.jpg',
           photos: allPhotos.length > 0 ? allPhotos : (vehicle.photos || []),
-          price: vehicle.prix,
           mileage: vehicle.kilometrage,
           transmission: vehicle.boite_vitesse,
           seats: vehicle.nombre_places || 5,
@@ -252,7 +253,11 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
           categorie: vehicle.categorie,
           vin: vehicle.vin,
           drive_type: vehicle.transmission, // traction, propulsion, 4x4
-          garantie_mois: vehicle.garantie_mois
+          garantie_mois: vehicle.garantie_mois,
+          // Détection plus robuste de la promotion : soit le flag est vrai, soit le prix promo est valide
+          isPromo: !!vehicle.est_en_promotion || (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix),
+          oldPrice: (!!vehicle.est_en_promotion || (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix)) ? vehicle.prix : undefined,
+          price: (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix) ? vehicle.prix_promotionnel : vehicle.prix
         };
 
         this.loadSimilarVehicles(id);
@@ -295,13 +300,13 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
     
     this.apiService.getSimilarVehicles(vehicleId, 3).subscribe({
       next: (response) => {
-        const vehicles = response.items || response || [];
+        const vehicles = (response.items || response || [])
+          .filter((v: any) => v && !v.est_vendu && v.est_disponible !== false); // Filter sold/unavailable
         this.relatedCars = vehicles.map((v: any) => ({
           id: v.id,
           name: `${v.marque} ${v.modele}`,
           image: v.photo_principale || v.photos?.[0] || 'assets/images/car-1.jpg',
           tags: v.tags || [v.marque],
-          price: v.prix,
           brand: v.marque,
           mileage: v.kilometrage,
           transmission: v.boite_vitesse,
@@ -309,7 +314,10 @@ export class CarSingleComponent implements OnInit, OnDestroy, AfterViewInit {
           luggage: v.nombre_bagages || 0,
           fuel: v.carburant,
           nombre_avis: v.nombre_avis || 0,
-          rating: v.rating || 0
+          rating: v.rating || 0,
+          isPromo: !!v.est_en_promotion || (v.prix_promotionnel > 0 && v.prix_promotionnel < v.prix),
+          oldPrice: (!!v.est_en_promotion || (v.prix_promotionnel > 0 && v.prix_promotionnel < v.prix)) ? v.prix : undefined,
+          price: (v.prix_promotionnel > 0 && v.prix_promotionnel < v.prix) ? v.prix_promotionnel : v.prix
         }));
         this.isLoadingRelated = false;
         

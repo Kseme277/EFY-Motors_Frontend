@@ -36,7 +36,11 @@
       </div>
       <div class="price-box">
         <span>Notre prix</span>
-        <strong>{{ car.price | number }} FCFA</strong>
+        <strong *ngIf="!car.isPromo">{{ car.price | number }} FCFA</strong>
+        <div class="promo-price-container" *ngIf="car.isPromo">
+          <strong class="promo-price">{{ car.price | number }} FCFA</strong>
+          <span class="old-price-strikethrough">{{ car.oldPrice | number }} FCFA</span>
+        </div>
       </div>
     </div>
 
@@ -94,7 +98,7 @@
         <div class="contact-panel">
           <h4>Contact rapide</h4>
           <p>Intéressé par ce véhicule ? Demandez un devis personnalisé.</p>
-          <button class="btn btn-primary w-100" (click)="setActiveTab('devis')">Demander une offre</button>
+          <button class="btn btn-unique w-100" (click)="setActiveTab('devis')">Demander une offre</button>
         </div>
       </aside>
     </div>
@@ -251,7 +255,7 @@
                       <div class="form-group">
                         <button 
                           type="submit" 
-                          class="btn btn-primary" 
+                          class="btn btn-unique" 
                           [disabled]="reviewForm.invalid || isLoadingReview || selectedRating === 0">
                           <span *ngIf="!isLoadingReview">Publier mon avis</span>
                           <span *ngIf="isLoadingReview">
@@ -351,9 +355,8 @@
                       <div class="form-group text-center mt-4">
                         <button 
                           type="submit" 
-                          class="btn btn-primary btn-lg py-3 px-5" 
-                          [disabled]="devisForm.invalid || isLoadingDevis"
-                          style="background-color: #460e14; border-color: #460e14;">
+                          class="btn btn-unique btn-lg py-3 px-5" 
+                          [disabled]="devisForm.invalid || isLoadingDevis">
                           <span *ngIf="!isLoadingDevis">Envoyer la demande</span>
                           <span *ngIf="isLoadingDevis">
                             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
@@ -408,6 +411,7 @@
               <div class="meta-center">
                 <span class="msrp-label">PRIX: </span>
                 <strong class="price-val">{{ relatedCar.price | number }} FCFA</strong>
+                <span class="old-price-recent" *ngIf="relatedCar.isPromo" style="text-decoration: line-through; font-size: 0.7rem; color: #999; display: block;">{{ relatedCar.oldPrice | number }} FCFA</span>
               </div>
               <div class="meta-right">
                 <a [routerLink]="['/cars', relatedCar.id]" class="details-btn">DETAILS</a>

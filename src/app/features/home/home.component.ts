@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private heroCarouselInstance: any;
   private carCarouselInstance: any;
   private testimonyCarouselInstance: any;
+  // Trigger rebuild to pick up CarCard interface changes
 
   featuredCars: CarCard[] = [];
   recentCars: CarCard[] = [];
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   currentVideoId = '';
   isLoadingFeatured: boolean = true;
   brands: string[] = [];
-  
+
   searchParams: any = {
     marque: '',
     carburant: '',
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.searchParams.carburant) queryParams.fuel = this.searchParams.carburant;
     if (this.searchParams.prix_min) queryParams.minPrice = this.searchParams.prix_min;
     if (this.searchParams.prix_max) queryParams.maxPrice = this.searchParams.prix_max;
-    
+
     this.router.navigate(['/cars'], { queryParams });
   }
 
@@ -107,7 +108,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       name: vehicle.marque && vehicle.modele ? `${vehicle.marque} ${vehicle.modele}` : (vehicle.nom || 'Véhicule sans nom'),
       image: photos[0] || 'assets/images/car-1.jpg',
       tags: vehicle.tags || (vehicle.marque ? [vehicle.marque] : []),
-      price: vehicle.prix || 0,
+      price: (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix) ? vehicle.prix_promotionnel : (vehicle.prix || 0),
+      oldPrice: (!!vehicle.est_en_promotion || (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix)) ? (vehicle.prix || 0) : undefined,
+      isPromo: !!vehicle.est_en_promotion || (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix),
       brand: vehicle.marque || 'Inconnu',
       mileage: vehicle.kilometrage || 0,
       transmission: vehicle.boite_vitesse || 'Automatique',
@@ -162,7 +165,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       next: (response) => {
         const vehicles = this.extractVehicles(response);
         const uniqueVehicles = vehicles.filter((vehicle: any, index: number, self: any[]) =>
-          vehicle && vehicle.id && index === self.findIndex((v: any) => v.id === vehicle.id)
+          vehicle && vehicle.id && 
+          !vehicle.est_vendu && vehicle.est_disponible !== false && // Hide sold or unavailable
+          index === self.findIndex((v: any) => v.id === vehicle.id)
         );
         this.recentCars = uniqueVehicles.slice(0, 8).map((vehicle: any) => this.mapVehicleToCarCard(vehicle));
       },
@@ -211,18 +216,20 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       next: (response) => {
         console.log('API Response for featured vehicles:', response);
         const vehicles: any[] = this.extractVehicles(response);
-        
-        // Filtrer les doublons par ID
-        const uniqueVehicles = vehicles.filter((vehicle: any, index: number, self: any[]) => 
-          vehicle && vehicle.id && index === self.findIndex((v: any) => v.id === vehicle.id)
+
+        // Filtrer les doublons par ID et cacher les voitures vendues
+        const uniqueVehicles = vehicles.filter((vehicle: any, index: number, self: any[]) =>
+          vehicle && vehicle.id && 
+          !vehicle.est_vendu && vehicle.est_disponible !== false && // Hide sold or unavailable
+          index === self.findIndex((v: any) => v.id === vehicle.id)
         );
-        
+
         this.featuredCars = uniqueVehicles.map((vehicle: any) => this.mapVehicleToCarCard(vehicle));
         this.isLoadingFeatured = false;
-        
+
         // Forcer la détection de changements pour Angular
         this.cdr.detectChanges();
-        
+
         // Réinitialiser le carousel après le chargement des données avec un délai plus robuste
         setTimeout(() => {
           this.initializeCarCarousel();
@@ -240,8 +247,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private loadBrands() {
     // Liste complète des marques majeures pour assurer un affichage riche
     const majorBrands = [
-      'Toyota', 'Mercedes-Benz', 'BMW', 'Audi', 'Honda', 
-      'Ford', 'Nissan', 'Volkswagen', 'Hyundai', 'Kia', 
+      'Toyota', 'Mercedes-Benz', 'BMW', 'Audi', 'Honda',
+      'Ford', 'Nissan', 'Volkswagen', 'Hyundai', 'Kia',
       'Lexus', 'Mazda', 'Land Rover', 'Porsche', 'Jeep',
       'Chevrolet', 'Tesla', 'Peugeot', 'Renault', 'Mitsubishi'
     ];
@@ -250,7 +257,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       next: (response) => {
         const vehicles = this.extractVehicles(response);
         const inventoryBrands = [...new Set(vehicles.map((v: any) => v.marque))].filter(b => !!b);
-        
+
         // Fusionner les marques de l'inventaire avec les marques majeures
         const allBrands = [...new Set([...inventoryBrands, ...majorBrands])];
         this.brands = allBrands.sort();
@@ -303,52 +310,52 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // Initialiser tous les carousels après que la vue soit initialisée
     this.initializeCarousels();
-    
+
     // Initialiser le compteur si waypoint est disponible
     this.initializeCounter();
-    
+
     // Initialiser les animations de scroll
     this.initializeScrollAnimations();
   }
-  
+
   private initializeScrollAnimations() {
     setTimeout(() => {
       const elements = document.querySelectorAll('.present, .present-left, .present-right, .present-zoom, .reveal-up, .reveal-fade, .present-delay-1, .present-delay-2, .present-delay-3, .present-delay-4, .present-delay-5');
       this.scrollAnimationService.observeElements(elements);
     }, 100);
   }
-  
+
   private initializeCounter() {
     if (typeof $ === 'undefined') {
       setTimeout(() => this.initializeCounter(), 200);
       return;
     }
-    
+
     setTimeout(() => {
       const counterSection = document.getElementById('section-counter');
       if (!counterSection) {
         setTimeout(() => this.initializeCounter(), 200);
         return;
       }
-      
+
       if (counterSection.classList.contains('counter-initialized')) {
         return;
       }
-      
+
       counterSection.classList.add('counter-initialized');
-      
+
       const animateNumbers = () => {
         if (counterSection.classList.contains('ftco-animated')) {
           return;
         }
         counterSection.classList.add('ftco-animated');
-        
+
         const numbers = counterSection.querySelectorAll('.number');
-        
+
         // Vérifier si animateNumber est disponible
         if (typeof $.animateNumber !== 'undefined' && $.animateNumber.numberStepFactories) {
           const comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
-          
+
           numbers.forEach((element: Element) => {
             const $this = $(element);
             const num = $this.data('number');
@@ -379,16 +386,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           });
         }
       };
-      
+
       // Vérifier si la section est déjà visible
       const rect = counterSection.getBoundingClientRect();
       const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-      
+
       if (isVisible) {
         // Si déjà visible, animer immédiatement
         setTimeout(() => animateNumbers(), 300);
       }
-      
+
       // Utiliser Intersection Observer (plus fiable)
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
@@ -399,7 +406,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           });
         }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
-        
+
         observer.observe(counterSection);
       } else if (typeof $.fn.waypoint !== 'undefined') {
         // Fallback avec waypoint
@@ -428,7 +435,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const $carCarousel = $('.carousel-car');
-    
+
     // Si le carousel n'est pas encore dans le DOM (Angular est encore en train de charger)
     if ($carCarousel.length === 0 || $carCarousel.children('.item').length === 0) {
       if (retryCount < 10 && this.featuredCars.length > 0) {
@@ -444,10 +451,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         $carCarousel.removeClass('owl-loaded owl-drag');
         $carCarousel.find('.owl-stage-outer').children().unwrap();
       }
-      
+
       // Réinitialiser complètement les données jQuery
       $carCarousel.removeData('owl.carousel');
-      
+
       this.carCarouselInstance = $carCarousel.owlCarousel({
         items: 3,
         loop: this.featuredCars.length > 3,
@@ -466,7 +473,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         onInitialized: () => {
           // Afficher le carousel une fois initialisé
           $carCarousel.css('opacity', '1');
-          
+
           // Hook custom nav buttons
           $('.featured-items-section .nav-btn.prev').off('click').on('click', () => {
             $carCarousel.trigger('prev.owl.carousel');
@@ -503,7 +510,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
               // Ignorer si déjà détruit
             }
           }
-          
+
           this.heroCarouselInstance = $heroCarousel.owlCarousel({
             items: 1,
             loop: true,
@@ -533,7 +540,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
               // Ignorer si déjà détruit
             }
           }
-          
+
           this.testimonyCarouselInstance = $testimonyCarousel.owlCarousel({
             items: 1,
             loop: true,
@@ -568,7 +575,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         this.heroCarouselInstance = null;
       }
-      
+
       // Détruire le carousel des véhicules
       if ($('.carousel-car').length && $('.carousel-car').hasClass('owl-loaded')) {
         try {
@@ -578,7 +585,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         this.carCarouselInstance = null;
       }
-      
+
       // Détruire le carousel des témoignages
       if ($('.carousel-testimony').length && $('.carousel-testimony').hasClass('owl-loaded')) {
         try {

@@ -8,6 +8,8 @@ export interface CarCard {
   image: string;
   tags?: string[];
   price?: number;
+  oldPrice?: number;
+  isPromo?: boolean;
   brand?: string;
   mileage?: number;
   transmission?: string;
@@ -17,6 +19,7 @@ export interface CarCard {
   nombre_avis?: number;
   rating?: number;
   annee?: number;
+  photos?: string[];
 }
 
 @Component({

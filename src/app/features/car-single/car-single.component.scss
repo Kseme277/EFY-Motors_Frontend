@@ -584,6 +584,29 @@
 
 }
 
+.btn-unique {
+  background: #460e14 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(70, 14, 20, 0.2) !important;
+
+  &:hover:not(:disabled) {
+    background-color: #2d090d !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(70, 14, 20, 0.3) !important;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
 // Thème sombre pour review-form-section
 :host-context(.dark) .review-form-section {
   background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%) !important;

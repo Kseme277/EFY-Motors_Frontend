@@ -265,6 +265,7 @@
         <div class="featured-card">
           <div class="img-wrapper">
             <img [src]="car.image" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
+            <div class="promo-badge-ribbon" *ngIf="car.isPromo">PROMO</div>
           </div>
           <div class="featured-meta">
             <div class="meta-content">
@@ -274,7 +275,10 @@
               </div>
               <div class="meta-center">
                 <span class="msrp-label">PRIX: </span>
-                <strong class="price-val">{{ car.price | number }} FCFA</strong>
+                <div class="price-stack">
+                  <strong class="price-val">{{ car.price | number }} FCFA</strong>
+                  <span class="old-price-val" *ngIf="car.isPromo && car.oldPrice && car.oldPrice !== car.price">{{ car.oldPrice | number }} FCFA</span>
+                </div>
               </div>
               <div class="meta-right">
                 <a [routerLink]="['/cars', car.id]" class="details-btn">DETAILS</a>
@@ -302,9 +306,11 @@
       <a class="recent-card" *ngFor="let car of recentCars" [routerLink]="['/cars', car.id]">
         <div class="recent-image-wrap" (mousemove)="onRecentCardMove($event, car)" (mouseleave)="onRecentCardLeave(car)">
           <div class="buy-now-ribbon">Acheter</div>
+          <div class="promo-badge-recent" *ngIf="car.isPromo">PROMO</div>
           <img [src]="getRecentCardImage(car)" [alt]="car.name" (error)="$event.target.src='assets/images/car-1.jpg'">
-          <div class="recent-price-badge">
+          <div class="recent-price-badge" [class.is-promo]="car.isPromo">
             <span class="new-price">{{ car.price | number }} FCFA</span>
+            <span class="old-price" *ngIf="car.isPromo && car.oldPrice && car.oldPrice !== car.price">{{ car.oldPrice | number }} FCFA</span>
           </div>
         </div>
         <div class="recent-body">

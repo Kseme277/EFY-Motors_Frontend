@@ -196,7 +196,7 @@
     }
   }
 
-  .sold-sash {
+  .sold-sash, .promo-sash {
     position: absolute;
     top: 30px;
     right: -40px;
@@ -210,6 +210,14 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 3;
     pointer-events: none;
+  }
+
+  .promo-sash {
+    background: #004a7a;
+    top: 30px;
+    left: -40px;
+    transform: rotate(-45deg);
+    right: auto;
   }
 }
 

@@ -180,7 +180,9 @@ export class CarsComponent implements OnInit, OnDestroy {
         }
         
         console.log('CarsComponent - Vehicles extracted:', vehicles);
-        this.allCars = vehicles.map((vehicle: any) => {
+        this.allCars = vehicles
+          .filter((v: any) => v && !v.est_vendu && v.est_disponible !== false) // Filter sold/unavailable
+          .map((vehicle: any) => {
           const isElectric = vehicle.carburant === 'electrique' || vehicle.carburant === 'HYBRIDE_RECHARGEABLE';
           let energyLabel = 'N/A';
           if (vehicle.consommation_mixte) {
@@ -195,13 +197,13 @@ export class CarsComponent implements OnInit, OnDestroy {
             year: vehicle.annee,
             annee: vehicle.annee,
             image: vehicle.photo_principale || (vehicle.photos && vehicle.photos.length > 0 ? vehicle.photos[0] : 'assets/images/car-1.jpg'),
-            price: vehicle.est_en_promotion && vehicle.prix_promotionnel ? vehicle.prix_promotionnel : vehicle.prix,
-            oldPrice: vehicle.est_en_promotion ? vehicle.prix : undefined,
-            mileage: vehicle.kilometrage,
-            transmission: vehicle.boite_vitesse,
+            price: (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix) ? vehicle.prix_promotionnel : (vehicle.prix || 0),
+            oldPrice: (!!vehicle.est_en_promotion || (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix)) ? (vehicle.prix || 0) : undefined,
+            mileage: vehicle.kilometrage || 0,
+            transmission: vehicle.boite_vitesse || 'Automatique',
             seats: vehicle.nombre_places || 5,
             luggage: vehicle.nombre_bagages || 0,
-            fuel: vehicle.carburant,
+            fuel: vehicle.carburant || 'Essence',
             power: vehicle.puissance_din || 0,
             energy: energyLabel,
             acceleration: vehicle.features?.acceleration || 'N/A',
@@ -210,7 +212,7 @@ export class CarsComponent implements OnInit, OnDestroy {
             hasVideo: !!vehicle.features?.video_url,
             has360View: !!vehicle.features?.has_360_view, // Added
             isSold: vehicle.est_vendu || !vehicle.est_disponible,
-            isPromo: vehicle.est_en_promotion,
+            isPromo: !!vehicle.est_en_promotion || (vehicle.prix_promotionnel > 0 && vehicle.prix_promotionnel < vehicle.prix),
             color: vehicle.couleur_exterieure || 'N/A',
             nombre_avis: vehicle.nombre_avis || 0,
             rating: vehicle.rating || 0

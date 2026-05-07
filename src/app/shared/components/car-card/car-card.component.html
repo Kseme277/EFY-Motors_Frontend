@@ -2,6 +2,7 @@
   <div class="car">
     <div class="img-wrapper">
       <img [src]="car.image" [alt]="car.name">
+      <div class="promo-sash" *ngIf="car.isPromo">PROMO</div>
       <a [routerLink]="['/cars', car.id]" class="learn-more-btn">En savoir plus</a>
     </div>
     <div class="car-content">
@@ -11,6 +12,7 @@
       </ul>
       <div class="car-price" *ngIf="showPrice && car.price">
         <span class="price-value">{{ car.price | number }} FCFA</span>
+        <span class="old-price" *ngIf="car.isPromo && car.oldPrice && car.oldPrice !== car.price">{{ car.oldPrice | number }} FCFA</span>
       </div>
       <div class="car-rating" *ngIf="car.nombre_avis !== undefined && car.nombre_avis > 0">
         <div class="rating-stars" *ngIf="car.rating && car.rating > 0">
