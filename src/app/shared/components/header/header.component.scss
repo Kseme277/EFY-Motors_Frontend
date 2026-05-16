@@ -12,7 +12,7 @@
   background-color: transparent !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-bottom: 1px solid rgba(255, 255, 255, 0);
-
+  z-index: 100000;
   &.scrolled {
     background-color: rgba(14, 44, 66, 0.98) !important; /* New Navy */
     backdrop-filter: blur(15px);
@@ -71,12 +71,12 @@
       opacity: 0.85;
 
       &:hover {
-        color: #460e14 !important; /* Burgundy */
+        color: #ffffff !important; /* Text in white for readability */
         opacity: 1;
       }
 
       &.active {
-        color: #460e14 !important;
+        color: #ffffff !important;
         opacity: 1;
       }
 
@@ -87,7 +87,7 @@
         left: 50%;
         transform: translateX(-50%) scaleX(0);
         width: 40px;
-        height: 2px;
+        height: 3px; /* Thicker burgundy line */
         background: #460e14;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -140,6 +140,26 @@
     padding: 1rem !important;
     &::after { display: none; }
   }
+}
+
+/* Offcanvas Mobile Menu */
+.offcanvas-link {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 10px 16px !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(70, 14, 20, 0.7) !important; /* Light Burgundy Background */
+    color: #ffffff !important;
+  }
+}
+
+.active-offcanvas-link {
+  background-color: #460e14 !important; /* Solid Burgundy Background */
+  color: #ffffff !important;
+  /* Removed border-left since we use background */
 }
 
 
