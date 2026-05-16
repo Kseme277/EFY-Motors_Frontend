@@ -1,0 +1,16 @@
+--- src/app/features/contact/contact.component.scss
++++ src/app/features/contact/contact.component.scss
+@@ -12,8 +12,8 @@
+   flex-direction: column;
+   justify-content: center;
+   margin: 0 auto;
+-  padding: 0 305px;
++  padding: 0 15px;
+   width: 100%;
+-  max-width: 92%;
++  max-width: 1200px;
++  @media (min-width: 992px) {
++    padding: 0 305px;
++    max-width: 92%;
++  }
+ }
