@@ -170,11 +170,7 @@
       background-color: #460e14 !important;
       border-color: #460e14 !important;
       color: #ffffff !important;
-      padding: 15px 35px;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-radius: 8px;
       box-shadow: 0 10px 20px rgba(70, 14, 20, 0.2);
       transition: all 0.3s ease;
 
@@ -193,168 +189,168 @@
     opacity: 1 !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
-    
+
     @media (max-width: 768px) {
       padding-top: 3rem !important;
       padding-bottom: 3rem !important;
       padding-left: 1rem !important;
       padding-right: 1rem !important;
     }
-    
+
     @media (max-width: 576px) {
       padding-top: 2rem !important;
       padding-bottom: 2rem !important;
       padding-left: 0.5rem !important;
       padding-right: 0.5rem !important;
     }
-    
+
     .container {
       display: block !important;
       visibility: visible !important;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
       max-width: 100%;
-      
+
       @media (max-width: 1200px) {
         padding-left: 1rem;
         padding-right: 1rem;
       }
-      
+
       @media (max-width: 768px) {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
-      
+
       @media (max-width: 576px) {
         padding-left: 1rem;
         padding-right: 1rem;
       }
     }
-    
+
     .heading-section {
       display: block !important;
       visibility: visible !important;
       padding-left: 0;
       padding-right: 0;
-      
+
       @media (max-width: 768px) {
         margin-bottom: 2rem !important;
-        
+
         h2 {
           font-size: 1.75rem !important;
         }
       }
-      
+
       @media (max-width: 576px) {
         margin-bottom: 1.5rem !important;
-        
+
         h2 {
           font-size: 1.5rem !important;
         }
-        
+
         .subheading {
           font-size: 0.9rem !important;
         }
       }
     }
-    
+
     .row {
       display: flex !important;
       visibility: visible !important;
     }
-    
+
   }
   // Correction pour que la section suivante ne soit pas masquée
   section.ftco-section {
     position: relative;
     z-index: 2;
     background: #f8f9fa;
-    
+
     .featured-top {
       position: relative;
       z-index: 3;
-      
+
       @media (max-width: 768px) {
         .row {
           flex-direction: column;
         }
-        
+
         .col-md-4,
         .col-md-8 {
           width: 100%;
           max-width: 100%;
         }
       }
-      
+
       // Styles pour le bouton "Rechercher un véhicule" dans le formulaire
       .request-form {
         @media (max-width: 768px) {
           margin-bottom: 2rem;
           padding: 1.5rem !important;
         }
-        
+
         @media (max-width: 576px) {
           padding: 1rem !important;
-          
+
           h2 {
             font-size: 1.25rem !important;
           }
         }
-        
+
         .btn-secondary {
           background-color: #460e14 !important;
           border-color: #460e14 !important;
           color: #fff !important;
           transition: all 0.3s ease;
-          
+
           @media (max-width: 576px) {
             padding: 0.75rem 1rem !important;
             font-size: 0.9rem !important;
           }
-          
+
           &:hover {
             background-color: #004A7A !important;
             border-color: #004A7A !important;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 95, 155, 0.4);
-            
+
             @media (max-width: 768px) {
               transform: none;
             }
           }
         }
       }
-      
+
       /* Dark mode pour le formulaire de recherche */
       :host-context(.dark) .request-form {
         background-color: #2a2a2a !important;
-        
+
         h2 {
           color: #e5e5e5;
         }
-        
+
         .label {
           color: #e5e5e5;
         }
-        
+
         .form-control {
           background-color: #1a1a1a !important;
           color: #e5e5e5 !important;
           border-color: #3a3a3a !important;
         }
-        
+
         .form-control:focus {
           background-color: #1a1a1a !important;
           color: #e5e5e5 !important;
           border-color: #460e14 !important;
         }
-        
+
         select.form-control option {
           background-color: #2a2a2a;
           color: #e5e5e5;
         }
       }
-      
+
       .services-wrap {
         position: relative;
         z-index: 1;
@@ -362,74 +358,74 @@
         padding: 2rem;
         border-radius: 10px;
         transition: background-color 0.3s ease, color 0.3s ease;
-        
+
         // Dark mode inline pour forcer l'application
         :host-context(.dark) & {
           background: #2a2a2a !important;
         }
-        
+
         @media (max-width: 768px) {
           padding: 1.5rem;
         }
-        
+
         @media (max-width: 576px) {
           padding: 1rem;
         }
-        
+
         .heading-section {
           color: #460e14;
           font-weight: 700;
           font-size: 1.8rem;
           transition: color 0.3s ease;
-          
+
           @media (max-width: 768px) {
             font-size: 1.5rem;
           }
-          
+
           @media (max-width: 576px) {
             font-size: 1.25rem;
           }
         }
-        
+
         .services {
           @media (max-width: 768px) {
             margin-bottom: 1.5rem;
           }
-          
+
           h3.heading {
             transition: color 0.3s ease;
-            
+
             @media (max-width: 576px) {
               font-size: 1rem !important;
             }
           }
-          
+
           p.text-muted {
             transition: color 0.3s ease;
-            
+
             @media (max-width: 576px) {
               font-size: 0.85rem !important;
             }
           }
         }
-        
+
         // Centrer le bouton en responsive
         p {
           text-align: center;
-          
+
           @media (max-width: 768px) {
             text-align: center !important;
             margin-bottom: 0;
           }
-          
+
           @media (max-width: 576px) {
             text-align: center !important;
             margin-bottom: 0;
           }
-          
+
           .btn-primary {
             display: inline-block;
-            
+
             @media (max-width: 576px) {
               width: 100%;
               max-width: 100%;
@@ -438,43 +434,43 @@
           }
         }
       }
-      
+
       /* Dark mode pour services-wrap */
       :host-context(.dark) .services-wrap,
       .dark .services-wrap {
         background: #2a2a2a !important;
-        
+
         .heading-section {
           color: #fff !important;
         }
-        
+
         .services {
           h3.heading {
             color: #fff !important;
           }
-          
+
           p.text-muted {
             color: #e5e5e5 !important;
           }
-          
+
           .icon {
             color: #460e14;
           }
-          
+
           .text {
             color: #fff !important;
-            
+
             h3.heading {
               color: #fff !important;
             }
-            
+
             p {
               color: #e5e5e5 !important;
             }
           }
         }
       }
-      
+
       // Styles pour le bouton "Voir tous nos véhicules"
       .services-wrap .btn-primary {
         background-color: #460e14 !important;
@@ -483,13 +479,13 @@
         transition: all 0.3s ease;
         text-align: center;
         margin: 0 auto;
-        
+
         @media (max-width: 768px) {
           display: block;
           margin: 0 auto;
           text-align: center;
         }
-        
+
         @media (max-width: 576px) {
           padding: 0.75rem 1rem !important;
           font-size: 0.9rem !important;
@@ -499,13 +495,13 @@
           margin: 0 auto;
           text-align: center;
         }
-        
+
         &:hover {
           background-color: #004A7A !important;
           border-color: #004A7A !important;
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0, 95, 155, 0.4);
-          
+
           @media (max-width: 768px) {
             transform: none;
           }
@@ -587,7 +583,7 @@
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &.active {
     opacity: 1;
     transform: translateY(0);
@@ -598,7 +594,7 @@
   opacity: 0;
   transform: translateX(-50px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &.active {
     opacity: 1;
     transform: translateX(0);
@@ -609,7 +605,7 @@
   opacity: 0;
   transform: translateX(50px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &.active {
     opacity: 1;
     transform: translateX(0);
@@ -620,7 +616,7 @@
   opacity: 0;
   transform: scale(0.9);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &.active {
     opacity: 1;
     transform: scale(1);
@@ -639,7 +635,7 @@
       font-size: 4rem;
     }
   }
-  
+
   .text-7xl {
     font-size: 3.5rem;
   }
