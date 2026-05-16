@@ -167,17 +167,22 @@
     }
 
     .btn-primary {
+      background-color: #460e14 !important;
+      border-color: #460e14 !important;
+      color: #ffffff !important;
       padding: 15px 35px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      border-radius: 50px;
-      box-shadow: 0 10px 20px rgba(15, 59, 255, 0.2);
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(70, 14, 20, 0.2);
       transition: all 0.3s ease;
 
       &:hover {
+        background-color: #004A7A !important; // Blue from theme on hover
+        border-color: #004A7A !important;
         transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(15, 59, 255, 0.3);
+        box-shadow: 0 15px 30px rgba(0, 74, 122, 0.3);
       }
     }
   }

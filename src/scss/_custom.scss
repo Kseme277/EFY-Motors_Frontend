@@ -234,14 +234,22 @@ $efy-accent-hover: #A03D4F;
 
 // Personnalisation des boutons
 .btn-primary {
-  background-color: var(--cui-primary);
-  border-color: var(--cui-primary);
+  background-color: var(--cui-primary) !important;
+  border-color: var(--cui-primary) !important;
+  color: #fff !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
   
   &:hover,
   &:focus,
   &:active {
-    background-color: var(--cui-btn-primary-hover-bg);
-    border-color: var(--cui-btn-primary-hover-border-color);
+    background-color: var(--cui-btn-primary-hover-bg) !important;
+    border-color: var(--cui-btn-primary-hover-border-color) !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 74, 122, 0.3);
   }
 }
 
